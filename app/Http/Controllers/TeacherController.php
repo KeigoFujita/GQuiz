@@ -95,7 +95,8 @@ class TeacherController extends Controller
     public function my_students(Employee $employee)
     {
 
-        return view('teacher.my_students')->with('students', $employee->students);
+        return view('teacher.my_students')
+            ->with('students', $employee->students);
     }
 
     /**
@@ -104,9 +105,19 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function my_classes(Employee $employee)
-    {
-        return view('teacher.my_classes')->with('classes', $employee->school_classes);
+    public function my_classes()
+    {   
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+
+        return view('teacher.index_classes',[
+            'teacher'=> $teacher,
+            'classes'=> $classes,
+            'colors' => $colors
+        ]);
     }
 
 

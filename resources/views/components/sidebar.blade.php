@@ -22,7 +22,7 @@
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-teacher" aria-expanded="false"
         aria-controls="collapse-teacher">
         <div class="header" id="heading-teacher">
-            <p><i class="fa fa-users" aria-hidden="true"></i></i>Teacher</p>
+            <p><i class="fa fa-users" aria-hidden="true"></i>Teacher</p>
         </div>
         <div id="collapse-teacher" class="collapse" aria-labelledby="heading-teacher" data-parent="#accordion">
             <div class="content">

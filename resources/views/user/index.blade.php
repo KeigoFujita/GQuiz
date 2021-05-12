@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab"
-                    aria-controls="employees" aria-selected="false">Employees</a>
+                    aria-controls="employees" aria-selected="false">Teachers</a>
             </li>
         </ul>
     </div>
@@ -51,10 +51,9 @@
                     id="table">
                     <thead>
                         <th>Image</th>
-                        <th>Strand</th>
-                        <th>Section</th>
-                        <th>LRN</th>
-                        <th>Grade Level</th>
+                        <th>Course</th>
+                        <th>Student Number</th>
+                        <th>Year Level</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
                         <th>Last Name</th>
@@ -72,19 +71,19 @@
                                 </div>
                             </td>
                             <td>{{$student->strand->strand_name}}</td>
-                            <td>
-
-                                @if (isset($student->section))
-                                <a href="{{ route('sections.show',$student->section->id) }}"
-                                    class="badge badge-primary section-name" data-toggle="tooltip" data-placement="top"
-                                    title="View Details">{{ $student->section->section_name }}</a>
-                                @else
-                                N / A
-                                @endif
-
-                            </td>
                             <td>{{ $student->lrn }}</td>
-                            <td>{{ $student->grade_level == "11" ? "Grade 11": "Grade 12" }}</td>
+                            <td>
+                                @php
+
+                                if($student->grade_level == "1"){
+                                    echo "1st Year";
+                                }else if($student->grade_level == "2"){
+                                    echo "2nd Year";
+                                }else{
+                                    echo "3rd Year";
+                                }
+                                @endphp
+                            </td>
                             <td>{{ $student->first_name }}</td>
                             <td>{{ $student->middle_name }}</td>
                             <td>{{ $student->last_name }}</td>
@@ -123,7 +122,6 @@
                         <th>Last Name</th>
                         <th>Mobile Number</th>
                         <th>Gender</th>
-                        <th width="20%">Roles</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -141,13 +139,6 @@
                             <td>{{ $employee->last_name }}</td>
                             <td>{{ "+63" . $employee->mobile_number }}</td>
                             <td>{{ $employee->gender == "male" ? "Male": "Female" }}</td>
-                            <td>
-
-                                @foreach ($employee->roles as $role)
-                                <span class="badge badge-primary">{{ $role->role_name }}</span>
-                                @endforeach
-
-                            </td>
                             <td>
                                 @if (isset($employee->user))
                                 <span class="badge badge-success section-name" data-toggle="tooltip"
