@@ -28,13 +28,15 @@
         .select2-container {
             width: 100% !important;
         }
+
     </style>
     @error('section')
-    <style>
-        .select2-selection--single{
-            border: 1px solid #dc3545 !important;
-        }    
-    </style>    
+        <style>
+            .select2-selection--single {
+                border: 1px solid #dc3545 !important;
+            }
+
+        </style>
     @enderror
 </head>
 
@@ -66,57 +68,57 @@
                     <ul class="navbar-nav ml-auto">
 
                         @isset(Auth::user()->role)
-                        @if (Auth::user()->role == 'student')
-                        <ul class="navbar-nav mr-auto">
-                            <div class="portrait-xsm mr-1"
-                                style="background-color: {{ Auth::user()->student->color }}; ">
-                                <p class="default-font my-0">
-                                    {{ Auth::user()->student->two_initials }}</p>
-                            </div>
-                        </ul>
-                        @else
+                            @if (Auth::user()->role == 'student')
+                                <ul class="navbar-nav mr-auto">
+                                    <div class="portrait-xsm mr-1"
+                                        style="background-color: {{ Auth::user()->student->color }}; ">
+                                        <p class="default-font my-0">
+                                            {{ Auth::user()->student->two_initials }}</p>
+                                    </div>
+                                </ul>
+                            @else
 
-                        <ul class="navbar-nav mr-auto">
-                            <div class="portrait-xsm mr-1"
-                                style="background-color: {{ Auth::user()->employee->color }};">
-                                <p class="default-font my-0">
-                                    {{ Auth::user()->employee->two_initials }}</p>
-                            </div>
-                        </ul>
-                        @endif
+                                <ul class="navbar-nav mr-auto">
+                                    <div class="portrait-xsm mr-1"
+                                        style="background-color: {{ Auth::user()->employee->color }};">
+                                        <p class="default-font my-0">
+                                            {{ Auth::user()->employee->two_initials }}</p>
+                                    </div>
+                                </ul>
+                            @endif
                         @endisset
 
                         <!-- Authentication Links -->
                         @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome') }}">Home</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('welcome') }}">Home</a>
+                            </li>
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                                @if (Auth::user()->role == 'student')
-                                {{ Auth::user()->student->full_name}}
-                                @else
-                                {{ Auth::user()->employee->full_name}}
-                                @endif
+                                    @if (Auth::user()->role == 'student')
+                                        {{ Auth::user()->student->full_name }}
+                                    @else
+                                        {{ Auth::user()->employee->full_name }}
+                                    @endif
 
-                                <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <span class="caret"></span>
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -129,45 +131,44 @@
                 <div class="row">
                     @auth
 
-                    @if (Auth::user()->role == 'employee')
+                        @if (Auth::user()->role == 'employee')
 
-                    @if (Auth::user()->employee->is_teacher)
-                    <div class="col-lg-2 pad-0">
-                        @include('components.teacher_sidebar')
-                    </div>
-                    <div class="col-lg-10 pad-0 main-content">
-                        @yield('content')
-                    </div>
+                            @if (Auth::user()->employee->is_teacher)
+                                <div class="col-lg-12 pad-0 main-content">
+                                    @yield('content')
+                                </div>
 
-                    @else
+                            @else
 
-                    @if (Auth::user()->employee->is_registrar)
-                    <div class="col-lg-2 pad-0">
-                        @include('components.sidebar')
-                    </div>
-                    <div class="col-lg-10 pad-0 main-content">
-                        @yield('content')
-                    </div>
-                    @else
-                    <div class="col-lg-12 pad-0 main-content">
-                        @yield('content')
-                    </div>
+                                @if (Auth::user()->employee->is_registrar)
+                                    <div class="col-lg-2 pad-0">
+                                        @include('components.sidebar')
+                                    </div>
+                                    <div class="col-lg-10 pad-0 main-content">
+                                        @yield('content')
+                                    </div>
+                                @else
+                                    <div class="col-lg-12 pad-0 main-content">
+                                        @yield('content')
+                                    </div>
 
-                    @endif
+                                @endif
 
-                    @endif
+                            @endif
 
-                    @else
+                        @else
 
-                    <div class="col-lg-12 pad-0 main-content">
-                        @yield('content')
-                    </div>
+                            <div class="col-lg-12 pad-0 main-content">
+                                @yield('content')
+                            </div>
+                        @endif
+
                     @endauth
-                    @endif
+
                     @guest
-                    <div class="col-lg-12 pt-5">
-                        @yield('content')
-                    </div>
+                        <div class="col-lg-12 pt-5">
+                            @yield('content')
+                        </div>
                     @endguest
                 </div>
             </div>

@@ -56,13 +56,13 @@ class SchoolClassController extends Controller
 
         SchoolClass::create([
             'class_code' => $request->class_code,
-            'employee_id' => $request->employee_id,
-            'subject_id' => $request->subject_id,
+            'employee_id' => auth()->user()->employee->id,
+            'subject_id' => $request->subject_id ?? null,
             'schedule' => $request->class_schedule
         ]);
 
         session()->flash('success', 'Class created successfully.');
-        return redirect(route('schoolClass.index'));
+        return redirect(route('teachers.my-classes'));
     }
 
     /**

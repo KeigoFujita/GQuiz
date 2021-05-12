@@ -52,7 +52,7 @@ class LoginController extends Controller
             } else {
 
                 if ($user->employee->is_teacher) {
-                    return  route('teachers.MyStudents', $user->employee);
+                    return  route('teachers.my-classes', $user->employee);
                 } else if ($user->employee->is_registrar) {
                     return '/dashboard';
                 } else {

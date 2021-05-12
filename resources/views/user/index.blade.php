@@ -34,7 +34,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab"
-                        aria-controls="employees" aria-selected="false">Employees</a>
+                        aria-controls="employees" aria-selected="false">Teachers</a>
                 </li>
             </ul>
         </div>
@@ -44,12 +44,14 @@
             <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="classes-tab">
 
                 <div class="mt-5">
+                    {{-- <div class="row px-3 mb-5">
+                    <button class="btn btn-success btn-sm">Add Account</button>
+                </div> --}}
                     <table class="table table-bordered table-centered table-hover shadow-sm " style="margin-bottom:100px"
                         id="table">
                         <thead>
                             <th>Image</th>
-                            <th>Cours</th>
-                            {{-- <th>Section</th> --}}
+                            <th>Course</th>
                             <th>Student Number</th>
                             <th>Year Level</th>
                             <th>First Name</th>
@@ -69,20 +71,19 @@
                                         </div>
                                     </td>
                                     <td>{{ $student->strand->strand_name }}</td>
-                                    <td>
-
-                                        @if (isset($student->section))
-                                            <a href="{{ route('sections.show', $student->section->id) }}"
-                                                class="badge badge-primary section-name" data-toggle="tooltip"
-                                                data-placement="top"
-                                                title="View Details">{{ $student->section->section_name }}</a>
-                                        @else
-                                            N / A
-                                        @endif
-
-                                    </td>
                                     <td>{{ $student->lrn }}</td>
-                                    <td>{{ $student->grade_level == '11' ? 'Grade 11' : 'Grade 12' }}</td>
+                                    <td>
+                                        @php
+                                            
+                                            if ($student->grade_level == '1') {
+                                                echo '1st Year';
+                                            } elseif ($student->grade_level == '2') {
+                                                echo '2nd Year';
+                                            } else {
+                                                echo '3rd Year';
+                                            }
+                                        @endphp
+                                    </td>
                                     <td>{{ $student->first_name }}</td>
                                     <td>{{ $student->middle_name }}</td>
                                     <td>{{ $student->last_name }}</td>
@@ -94,8 +95,8 @@
                                             <span class="badge badge-success section-name" data-toggle="tooltip"
                                                 data-placement="top"
                                                 title="
-                                                                                    {{-- {{ $student->user->created_at }} --}}
-                                                                                    Verified at {{ \Carbon\Carbon::parse($student->user->created_at)->format('m/d/Y') }}">Account
+                                                                                        {{-- {{ $student->user->created_at }} --}}
+                                                                                        Verified at {{ \Carbon\Carbon::parse($student->user->created_at)->format('m/d/Y') }}">Account
                                                 Verified</span>
                                         @else
                                             <button class='btn btn-outline-danger btn-sm' data-toggle="modal"

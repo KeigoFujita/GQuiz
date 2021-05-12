@@ -65,10 +65,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     //Teachers
-    Route::get('teacher/{employee}/my-students/', 'TeacherController@my_students')->name('teachers.MyStudents');
-    Route::get('teacher/{employee}/my-classes/', 'TeacherController@my_classes')->name('teachers.MyClasses');
-    Route::get('teacher/my-classes/{class}', 'TeacherController@school_class')->name('teachers.schoolClass');
-
+    // Route::get('teacher/{employee}/my-students/', 'TeacherController@my_students')->name('teachers.MyStudents');
+    // Route::get('teacher/{employee}/my-classes/', 'TeacherController@my_classes')->name('teachers.MyClasses');
+    // Route::get('teacher/my-classes/{class}', 'TeacherController@school_class')->name('teachers.schoolClass');
+    Route::get('teacher/my-classes', 'TeacherController@my_classes')->name('teachers.my-classes');
 
     //Department Heads
     Route::get('department-head/{employee}', 'DepartmentController@department_head')->name('departments.department_head');
