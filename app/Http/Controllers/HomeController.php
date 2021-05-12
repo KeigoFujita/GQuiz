@@ -27,7 +27,10 @@ class HomeController extends Controller
 
         if (Auth::user()->role == 'student') {
             return redirect(route('students.show', Auth::user()->student));
+        }else if (Auth::user()->employee->is_teacher) {
+            return redirect(route('teachers.my-classes'));
         }
-        return redirect(route('semesters.index'));
+
+        return redirect(route('dashboard.index'));
     }
 }
