@@ -68,7 +68,12 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('teacher/{employee}/my-students/', 'TeacherController@my_students')->name('teachers.MyStudents');
     // Route::get('teacher/{employee}/my-classes/', 'TeacherController@my_classes')->name('teachers.MyClasses');
     // Route::get('teacher/my-classes/{class}', 'TeacherController@school_class')->name('teachers.schoolClass');
+
+    Route::post('teacher/search-student', 'TeacherController@search_student')->name('teachers.search-student');
     Route::get('teacher/my-classes', 'TeacherController@my_classes')->name('teachers.my-classes');
+    Route::get('teacher/my-classes/{schoolClass}/show', 'TeacherController@my_classes_show')->name('teachers.my-classes-show');
+    Route::delete('teacher/my-classes/{schoolClass}/remove-student/{student}', 'TeacherController@my_classes_remove_student')->name('teachers.my-classes-remove-student');
+    Route::get('teacher/my-classes/{schoolClass}/invite-student/{student}', 'TeacherController@my_classes_invite_student')->name('teachers.my-classes-invite-student');
 
     //Department Heads
     Route::get('department-head/{employee}', 'DepartmentController@department_head')->name('departments.department_head');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\SchoolClass;
+use App\Student;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -99,12 +100,7 @@ class TeacherController extends Controller
             ->with('students', $employee->students);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function my_classes()
     {   
         $teacher = auth()->user()->employee;
@@ -119,6 +115,90 @@ class TeacherController extends Controller
             'colors' => $colors
         ]);
     }
+    
+    public function my_classes_show(SchoolClass $schoolClass)
+    {   
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+
+        $students = $schoolClass->students;
+
+        return view('teacher.show_classes',[
+            'class'=> $schoolClass,
+            'colors' => $colors,
+            'students'=> $students
+        ]);
+    }
+
+    public function my_classes_remove_student(SchoolClass $schoolClass, Student $student)
+    {   
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $schoolClass->students()->detach($student->id);
+        $schoolClass->save();
+
+        return redirect(route('teachers.my-classes-show',$schoolClass));
+    }
+
+    public function my_classes_invite_student(SchoolClass $schoolClass, Student $student)
+    {   
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        if ($schoolClass->students->contains('id',$student->id)){
+            session()->flash('danger', 'Student is already in the class.');
+            return redirect(route('teachers.my-classes-show',$schoolClass));
+        }
+
+        $schoolClass->students()->attach($student->id);
+        $schoolClass->save();
+
+        session()->flash('success', 'Student invited successfully!');
+        return redirect(route('teachers.my-classes-show',$schoolClass));
+    }
+
+    public function search_student(Request $request)
+    {   
+        $query = $request->get('query') ?? '';
+        $class = SchoolClass::find($request->class);
+
+        if (!$query || $query === null ||strlen($query) === 0 ){
+            return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">No student found.</p></div></div></div>');
+        }else if(strlen($query) < 3){
+            return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">Please search atleast 3 characters...</p></div></div></div>');
+        }
+
+        $students = Student::query()
+                        ->where('first_name','LIKE','%'.$query.'%')
+                        ->orWhere('last_name','LIKE','%'.$query.'%')
+                        ->orWhere('lrn','LIKE','%'.$query.'%')
+                        ->get()->take(5);
+
+        return view('teacher.result-set',[
+            'students'=> $students,
+            'class'=> $class
+        ]);
+
+    }
+
 
 
     /**

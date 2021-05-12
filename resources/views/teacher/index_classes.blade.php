@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.teacher-app')
 
 @section('custom-css')
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -72,6 +72,7 @@
                 </button>
             </div>
 
+<<<<<<< HEAD
         @endif
 
         <div class="row">
@@ -93,15 +94,51 @@
                         <div class="card-footer">
                             <a href="#" class="card-link">View</a>
                         </div>
+=======
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible fade show">
+            {{ $error }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endforeach
+    @endif
+
+    <div class="row">
+        @forelse ($classes as $class)
+            <div class="px-3 mb-3">
+                <div class="card" style="width: 25rem;">
+                    <div class="card-header text-white py-4" style="background-color: {{ $colors[array_rand($colors)] }} !important;">
+                        <a href="{{ route('teachers.my-classes-show',$class) }}" class="mb-0">{{ $class->class_code }}</a>
+                        <span class="d-block">{{ $class->schedule }}</span>
+>>>>>>> 671cca384bee29de025915d67650afc4d9c4fcad
                     </div>
                 </div>
             @empty
                 <div class="w-100 card shadow-sm">
                     <div class="card-header py-3"></div>
                     <div class="card-body">
+<<<<<<< HEAD
                         <img src="https://img.icons8.com/cotton/344/empty-box.png" class="d-block mx-auto mb-3" alt=""
                             style="width: 100px;">
                         <p class="text-center" style="font-size: 1.5rem;">You don't have any classes yet!</p>
+=======
+                    
+                    <p class="card-text heading-text text-secondary mb-0">
+                        <i class="fa fa-graduation-cap mr-2" aria-hidden="true" style="width: 1rem;"></i>
+                        {{ $class->students->count() === 0 ? 'No ' : $class->students->count() }} enrolled students
+                    </p>
+                    <p class="card-text heading-text text-secondary mb-0">
+                        <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
+                        {{ rand(3,10) }} quizzes made
+                    </p>
+                    </div>
+                    <div class="card-footer py-3">
+                        
+>>>>>>> 671cca384bee29de025915d67650afc4d9c4fcad
                     </div>
                 </div>
             @endforelse

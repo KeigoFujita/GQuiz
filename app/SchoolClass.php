@@ -30,15 +30,8 @@ class SchoolClass extends Model
         return $this->hasMany(ClassRequirement::class, 'school_classes_id');
     }
 
-    public function getStudentsAttribute()
+    public function students()
     {
-        $students = collect([]);
-        $sections = $this->sections;
-
-        foreach ($sections as $key => $section) {
-            $students = $students->merge($section->students);
-        }
-
-        return $students;
+        return $this->belongsToMany(Student::class);
     }
 }

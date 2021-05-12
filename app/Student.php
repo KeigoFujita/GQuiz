@@ -20,6 +20,11 @@ class Student extends Model
         return Student::where($status, 'active')->get();
     }
 
+    public function classes()
+    {
+        return $this->belongsToMany(SchoolClass::class);
+    }
+    
 
     public function section()
     {
