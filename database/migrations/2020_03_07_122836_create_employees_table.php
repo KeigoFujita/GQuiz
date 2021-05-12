@@ -22,6 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('last_name', 100);
             $table->string('mobile_number', 11);
             $table->enum('gender', ['male', 'female']);
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

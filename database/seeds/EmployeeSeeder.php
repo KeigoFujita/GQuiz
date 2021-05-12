@@ -221,9 +221,9 @@ class EmployeeSeeder extends Seeder
         // $employee->roles()->attach('1');
 
         $employee = Employee::create([
-            'first_name' => 'Keigo Victor',
-            'middle_name' => 'Templo',
-            'last_name' => 'Fujita',
+            'first_name' => 'Jemar',
+            'middle_name' => 'Ogatcho',
+            'last_name' => 'Dematera',
             'mobile_number' => '9238024324',
             'gender' => 'male',
             'user_id' => 1

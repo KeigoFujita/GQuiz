@@ -4,7 +4,7 @@
 <div class="container-fluid py-5 px-5">
 
     <div class="mb-5">
-        <h1 class="display-4 title">Teachers</h1>
+        <p class="display-4 title">Teachers</p>
     </div>
     @if (session()->has('success'))
 
@@ -29,43 +29,26 @@
             <th>Last Name</th>
             <th>Gender</th>
             <th>Classes</th>
-            <th width="20%">Advisory Sections</th>
             <th>Actions</th>
         </thead>
         <tbody>
 
-            @foreach ($employees as $employee)
+            @foreach ($teachers as $teacher)
             <tr>
                 <td>
-                    <div class="portrait-sm" style="background-color: {{ $employee->color }};">
+                    <div class="portrait-sm" style="background-color: {{ $teacher->color }};">
                         <p class="default-font my-0">
-                            {{ $employee->two_initials }}</p>
+                            {{ $teacher->two_initials }}</p>
                     </div>
                 </td>
-                <td>{{ $employee->first_name }}</td>
-                <td>{{ $employee->middle_name }}</td>
-                <td>{{ $employee->last_name }}</td>
-                <td>{{ $employee->gender == "male" ? "Male": "Female" }}</td>
-                <td>{{ $employee->school_classes->count() }}</td>
-                <td>
-
-                    @foreach ($employee->sections as $section)
-                    <a href="{{ route('sections.show',$section) }}" class="badge badge-primary section-name"
-                        data-toggle="tooltip" data-placement="top" title="View Details">{{ $section->section_name }}</a>
-                    @endforeach
-                    {{-- {{$employee->sections}} --}}
-                    {{-- @foreach ($employee->sections as $section)
-                        {{ $section-> section_name }}
-                    @endforeach --}}
-                    {{-- @foreach ($employee->sections as $section)
-                        <a href="{{ route('sections.showActiveSection',$section) }}"
-                    class="badge badge-primary section-name" data-toggle="tooltip" data-placement="top"
-                    title="View Details">{{ $section->section->section_name }}</a>
-                    @endforeach --}}
-                </td>
+                <td>{{ $teacher->first_name }}</td>
+                <td>{{ $teacher->middle_name }}</td>
+                <td>{{ $teacher->last_name }}</td>
+                <td>{{ $teacher->gender == "male" ? "Male": "Female" }}</td>
+                <td>{{ $teacher->school_classes->count() }}</td>
                 <td>
                     <a type="button" class="btn btn-success btn-sm"
-                        href="{{route('employees.edit',$employee->id)}}">Manage</a>
+                        href="{{route('employees.edit',$teacher->id)}}">Edit Data</a>
                 </td>
             </tr>
             @endforeach

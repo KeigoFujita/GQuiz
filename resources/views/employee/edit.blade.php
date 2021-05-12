@@ -4,13 +4,13 @@
 <div class="container-fluid p-5 main-content">
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('employees.index') }}" class="text-info">Employees</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('teachers.index') }}" class="text-info">Teachers</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $employee->full_name }}</li>
         </ol>
     </nav>
     <div class="row ">
         <div class="col-md-12">
-            <h1 class="display-4 title mb-5">Edit Employee</h1>
+            <h1 class="display-4 title mb-5">Edit Teacher</h1>
             <form action="{{ route('employees.update',$employee)}}" method="post" id="form_main">
                 @csrf
                 @method('PUT')
@@ -90,28 +90,16 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
-
-                        <div class="form-group">
-                            <label for="tags">Roles</label>
-                            <select name="roles[]" id="roles" class="form-control tag-selector" form="form_main"
-                                multiple>
-
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->id}}" @if ($employee->hasRole($role->id)) selected @endif
-                                    >{{$role->role_name}}</option>
-                                @endforeach
-
-                            </select>
-                        </div>
-
-                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-success mt-5" name="submit">Update</button>
+                <button type="submit" class="btn btn-danger mt-5" name="submit" form="delete-form">Delete</button>
+            </form>
+            <form action="{{ route('employees.destroy',$employee) }}" method="POST" id="delete-form">
+                @csrf
+                @method('DELETE')
             </form>
         </div>
-
     </div>
 </div>
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $fillable = ['first_name', 'middle_name', 'last_name', 'mobile_number', 'gender', 'user_id'];
+    protected $fillable = ['first_name', 'middle_name', 'last_name', 'mobile_number', 'gender', 'user_id','status'];
 
     public function roles()
     {
@@ -83,7 +83,7 @@ class Employee extends Model
     public static function teachers()
     {
 
-        $teachers = Employee::with('roles')->whereHas('roles', function ($query) {
+        $teachers = Employee::where('status','active')->with('roles')->whereHas('roles', function ($query) {
             $teacher = Role::where('role_name', 'teacher')->first();
             $teacher_id = $teacher->id;
             $query->where('role_id', $teacher_id);

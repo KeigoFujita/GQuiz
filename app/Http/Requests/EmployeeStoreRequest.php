@@ -29,8 +29,7 @@ class EmployeeStoreRequest extends FormRequest
             'middle_name' => 'required',
             'last_name' => 'required',
             'mobile_number' => 'required|numeric|digits:10|unique:employees',
-            'gender' => 'required',
-            'roles' => 'present'
+            'gender' => 'required'
         ];
     }
 }

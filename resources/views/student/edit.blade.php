@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">LRN</label>
+                            <label for="exampleInputPassword1">Student Number   </label>
                             <input type="text" class="form-control @error('lrn') is-invalid @enderror" name="lrn"
                                 value="@if ($errors->has('lrn')){{ old('lrn') }}@else{{ $student->lrn }}@endif">
                             @error('lrn')
@@ -36,34 +36,48 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="grade_level">Grade Level</label>
+                            <label for="grade_level">Year Level</label>
                             <select name="grade_level" id="grade_level"
                                 class="form-control  @error('grade_level') is-invalid @enderror">
-                                <option value="11" 
+                                <option value="1" 
                                 @if(old('grade_level') !== null)
-                                    @if (old('grade_level') == 11)
+                                    @if (old('grade_level') == 1)
                                         selected
                                     @endif
                                 @else
-                                    @if ($student->grade_level == '11')
+                                    @if ($student->grade_level == '1')
                                             selected
                                     @endif
                                 @endif                                   
                                 >
-                                Grade 11
+                                1st Year
                                </option>
-                               <option value="12" 
+                               <option value="2" 
                                 @if(old('grade_level') !== null)
-                                    @if (old('grade_level') == 12)
+                                    @if (old('grade_level') == 2)
                                         selected
                                     @endif
                                 @else
-                                    @if ($student->grade_level == '12')
+                                    @if ($student->grade_level == '2')
                                             selected
                                     @endif
                                 @endif                                   
                                 >
-                                Grade 12
+                               2nd Year
+                               </option>
+
+                               <option value="3" 
+                                @if(old('grade_level') !== null)
+                                    @if (old('grade_level') == 3)
+                                        selected
+                                    @endif
+                                @else
+                                    @if ($student->grade_level == '3')
+                                            selected
+                                    @endif
+                                @endif                                   
+                                >
+                               3rd Year
                                </option>
                             </select>
 
@@ -109,27 +123,6 @@
 
                         </div>
 
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="my-1 mr-2" for="section">Section</label>
-                            <input type="hidden" name="old_section" value="{{ old('section') }}">
-                            <input type="hidden" name="original_section" value="{{ $student->section->id }}">
-                            <select id="section_select"
-                                class="form-control my-1 mr-sm-2 tag-selector @error('section') is-invalid @enderror"
-                                name="section">
-                                @if(old('section') == null)
-                                    <option value="-1">None</option>
-                                    <option value="{{ $student->section->id }}" selected>{{ $student->section->section_name }}</option>
-                                @endif
-                            </select>
-                            @error('section')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                        </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -196,9 +189,11 @@
 
             <div class="row justify-content-end px-3 mt-5">
                 <div>
-                    <a type="button" href="{{ route('students.show',$student) }}"
-                        class="btn btn-outline-success btn-sm">View
-                        Student</a>
+                    <form action="{{ route('students.destroy',$student) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </div>
                 <button type="submit" class="btn btn-success btn-sm ml-1" name="submit"
                     form="update_form">Update</button>

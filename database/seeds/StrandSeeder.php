@@ -13,33 +13,34 @@ class StrandSeeder extends Seeder
     public function run()
     {
         Strand::create([
-            'strand_name' => 'STEM',
-            'strand_description' => 'Science Technology Engineering Mathematics'
+            'strand_name' => 'BSCS',
+            'strand_description' => 'Bachelor of Science in Computer Science'
         ]);
 
         Strand::create([
-            'strand_name' => 'HUMSS',
-            'strand_description' => 'Humanities and Social Sciences'
+            'strand_name' => 'BSIT',
+            'strand_description' => 'Bachelor of Science in Information Technology'
         ]);
 
         Strand::create([
-            'strand_name' => 'ABM',
-            'strand_description' => 'Accountancy and Business Management'
+            'strand_name' => 'BSIS',
+            'strand_description' => 'Bachelor of Science in Information System'
         ]);
 
         Strand::create([
-            'strand_name' => 'GAS',
-            'strand_description' => 'General Academic Strand'
+            'strand_name' => 'BSBA',
+            'strand_description' => 'Bachelor of Science in Business Administration'
         ]);
 
         Strand::create([
-            'strand_name' => 'ICT - Programming',
-            'strand_description' => 'Information and Computer Technology- Programming'
+            'strand_name' => 'BSCE',
+            'strand_description' => 'Bachelor of Science in Computer Engineering'
         ]);
 
         Strand::create([
-            'strand_name' => 'ICT - Animation',
-            'strand_description' => 'Information and Computer Technology - Animation'
+            'strand_name' => 'BSE',
+            'strand_description' => 'Bachelor of Science in Entrepreneurship'
         ]);
+
     }
 }

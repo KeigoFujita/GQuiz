@@ -61,7 +61,7 @@ class StudentController extends Controller
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'gender' => $request->gender,
-            'section_id' => $request->section,
+            'section_id' => $request->section ?? null,
             'strand_id' => $request->strand
         ]);
 
@@ -357,5 +357,20 @@ class StudentController extends Controller
         $section = Section::select("id", "section_name AS text")->where('grade_level', $request->grade_level)->where('strand_id', $request->strand_id)->get();
         // $section = Section::where('grade_level', '12')->where('strand_id', '1')->get();
         return  response()->json($section->toJson(), 200);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Student $student)
+    {
+        $student->status = 'dropped';
+        $student->save();
+        
+        session()->flash('success', 'Student deleted successfully.');
+        return redirect(route('students.index'));
     }
 }

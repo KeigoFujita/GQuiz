@@ -4,37 +4,24 @@
 <div class="container-fluid p-5 main-content">
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('teachers.index') }}" class="text-info">Teachers</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Teacher</li>
+            <li class="breadcrumb-item"><a href="{{ route('employees.index') }}" class="text-info">Employees</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $employee->full_name }}</li>
         </ol>
     </nav>
     <div class="row ">
-
         <div class="col-md-12">
-
-            <h1 class="display-4 title mb-5">Add Teacher</h1>
-
-            @if (session()->has('success'))
-
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ session()-> get('success')}}
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            @endif
-            <form action="{{ route('employees.store')}}" method="post" id="form_main">
+            <h1 class="display-4 title mb-5">Edit Employee</h1>
+            <form action="{{ route('employees.update',$employee)}}" method="post" id="form_main">
                 @csrf
-
+                @method('PUT')
 
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">First Name</label>
                             <input type="text" class="form-control @error('first_name') is-invalid @enderror"
-                                name="first_name" value="{{ old('first_name') }}">
+                                name="first_name"
+                                value="@if ($errors->has('first_name')){{ old('first_name') }}@else{{ $employee->first_name }}@endif">
                             @error('first_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -46,7 +33,8 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Middle Name</label>
                             <input type="text" class="form-control  @error('middle_name') is-invalid @enderror"
-                                name="middle_name" value="{{ old('middle_name') }}">
+                                name="middle_name"
+                                value="@if ($errors->has('middle_name')){{ old('middle_name') }}@else{{ $employee->middle_name }}@endif">
 
                             @error('middle_name')
                             <span class="invalid-feedback" role="alert">
@@ -59,13 +47,15 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Last Name</label>
                             <input type="text" class="form-control  @error('last_name') is-invalid @enderror"
-                                name="last_name" value="{{ old('last_name') }}">
+                                name="last_name"
+                                value="@if ($errors->has('last_name')){{ old('last_name') }}@else{{ $employee->last_name }}@endif">
 
                             @error('last_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+
                         </div>
                     </div>
                 </div>
@@ -79,7 +69,8 @@
                                     <div class="input-group-text">+63</div>
                                 </div>
                                 <input type="text" class="form-control  @error('mobile_number') is-invalid @enderror"
-                                    name="mobile_number" value="{{ old('mobile_number') }}">
+                                    name="mobile_number"
+                                    value="@if ($errors->has('mobile_number')){{ old('mobile_number') }}@else{{ $employee->mobile_number }}@endif">
                                 @error('mobile_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message}}</strong>
@@ -88,41 +79,48 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="my-1 mr-2" for="gender">Gender</label>
                             <select class="form-control" name="gender">
-                                <option value="male" {{ old('gender') == 'male' ? "selected":""}}>Male</option>
-                                <option value="female" {{ old('gender') == 'female' ? "selected":""}}>Female</option>
+                                <option value="male" {{ $employee->gender  == 'male' ? "selected":""}}>Male</option>
+                                <option value="female" {{  $employee->gender == 'female' ? "selected":""}}>Female
+                                </option>
                             </select>
-
                         </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <label for="tags">Roles</label>
+                            <select name="roles[]" id="roles" class="form-control tag-selector" form="form_main"
+                                multiple>
+
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->id}}" @if ($employee->hasRole($role->id)) selected @endif
+                                    >{{$role->role_name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success mt-3 btn-sm" name="submit">Add Teacher</button>
+                <button type="submit" class="btn btn-success mt-5" name="submit">Update</button>
             </form>
         </div>
+
     </div>
 </div>
-{{-- <div>
-
-    @foreach ($roles as $role)
-    <div>
-        @if (collect(old('roles'))->contains($role->id))
-        <h1>Selected</h1>
-        @endif
-    </div>
-    @endforeach
-
-</div> --}}
 @endsection
+
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
     $('.tag-selector').select2();
-
 </script>
 @endsection
 
@@ -144,6 +142,5 @@
     .form-group label {
         font-weight: bold;
     }
-
 </style>
 @endsection
