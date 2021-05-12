@@ -96,11 +96,11 @@
                     <div class="card-body">
                     
                     <p class="card-text heading-text text-secondary mb-0">
-                        <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
+                        <i class="fa fa-graduation-cap mr-2" aria-hidden="true"  style="width: 1rem;"></i>
                         {{ $class->students->count() === 0 ? 'No ' : $class->students->count() }} enrolled students
                     </p>
                     <p class="card-text heading-text text-secondary mb-0">
-                        <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 2rem;"></i>
+                        <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
                         {{ rand(3,10) }} quizzes made
                     </p>
                     </div>
