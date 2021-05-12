@@ -16,8 +16,9 @@
     <style>
         html,
         body {
-            background-color: #fff;
-            color: #636b6f;
+            background-image: url('/img/1.jpg');
+
+            color: white;
             font-weight: 200;
             height: 100vh;
             margin: 0;
@@ -70,16 +71,16 @@
         }
 
         .logo img {
-            width: 130px;
+            width: 600px;
         }
 
         .login {
             margin: auto;
             margin-top: 50px;
-            width: 120px;
-            height: 35px;
-            background-color: #14394C;
+            width: 180px;
+            height: 50px;
             text-align: center;
+
 
             display: flex;
             align-items: center;
@@ -109,39 +110,39 @@
                 font-size: 1.3rem;
             }
         }
+
     </style>
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
 
+
+    <div class="flex-center position-ref full-height">
 
 
         <div class="content">
 
-            <div class="logo">
-                <img src="/img/logo.jpg" alt="">
+            <div class="logo" style="">
+                <img src="/img/pic1.jpg" alt="">
             </div>
-            <div class=" mb-1">
-                <p class="default-font display-1 mb-0">Gardner College</p>
-            </div>
-
-            <div class="sub">
-                <p class="default-font">Clearance System</p>
-            </div>
-
+            <p class="default-font display-1 mb-0" style=" font-size:40px;margin-top: 30px;">Get More Time To Teach
+                and Inspire Learners
+                with GQuiz.
+            </p>
 
             @if (Route::has('login'))
-            <div class="login">
-                @auth
-                <a href="{{ url('/home') }}">Home</a>
-                @else
-                <a href="{{ route('login') }}">Login</a>
-                @endauth
-            </div>
+                <div class="login">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-info" style=" font-size:20px;">Get Started</a>
+                    @endauth
+                </div>
             @endif
+
         </div>
     </div>
+
 </body>
 
 </html>
