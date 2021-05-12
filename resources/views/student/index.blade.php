@@ -28,10 +28,9 @@
     <table class="table table-bordered table-centered table-hover shadow-sm " style="margin-bottom:100px" id="table">
         <thead>
             <th>Image</th>
-            <th>Strand</th>
-            <th>Section</th>
-            <th>LRN</th>
-            <th>Grade Level</th>
+            <th>Course</th>
+            <th>Student Number</th>
+            <th>Year</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
@@ -49,27 +48,35 @@
                     </div>
                 </td>
                 <td>{{$student->strand->strand_name}}</td>
-                <td>
-
-                    @if (isset($student->section))
-                    <a href="{{ route('sections.show',$student->section->id) }}"
-                        class="badge badge-primary section-name" data-toggle="tooltip" data-placement="top"
-                        title="View Details">{{ $student->section->section_name }}</a>
-                    @else
-                    N / A
-                    @endif
-
-                </td>
                 <td>{{ $student->lrn }}</td>
-                <td>{{ $student->grade_level == "11" ? "Grade 11": "Grade 12" }}</td>
+                <td>
+                @php
+
+                if($student->grade_level == "1"){
+                    echo "1st Year";
+                }else if($student->grade_level == "2"){
+                    echo "2nd Year";
+                }else{
+                    echo "3rd Year";
+                }
+                @endphp
+                </td>
                 <td>{{ $student->first_name }}</td>
                 <td>{{ $student->middle_name }}</td>
                 <td>{{ $student->last_name }}</td>
                 <td>{{ $student->gender == "male" ? "Male": "Female" }}</td>
                 <td>
 
-                    <a type="button" class="btn btn-success btn-sm"
-                        href="{{route('students.show',$student->id)}}">View</a>
+                    <div class="d-flex align-items-center">
+                        <a type="button" class="btn btn-success btn-sm mr-1"
+                            href="{{route('students.edit',$student->id)}}">Edit</a>
+                        <form action="{{ route('students.destroy',$student) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                    
                 </td>
             </tr>
             @endforeach

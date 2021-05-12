@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    <div class="row mb-5">
+    {{-- <div class="row mb-5">
        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -102,82 +102,11 @@
                 </div>
             </div>
        </div>
-    </div>
+    </div> --}}
 
     <div class="row mb-5">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <a href="{{ route('departments.index') }}" style="color: black;"><h4 class="">Department Clearances</p></a>
-                    <div class="border mb-3"></div>
-                    @foreach ($department_requirements as $department_requirement)
-                    <div class="mb-4">
-                       <p class="mb-2" style="font-size: 1rem;">
-                           <a href="{{ route('departments.clearances',$department_requirement) }}" style="color: black;">{{ $department_requirement->requirement }} </a>
-                           <span class="ml-2 text-secondary" style="font-size: 0.7rem;">
-                               {{ $department_requirement->completed_department_clearances_count }} / {{ $department_requirement->department_clearances_count }} students complied
-                           </span>
-                       </p>
-                       <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar"
-                                style="width: {{ $department_requirement->percentage }}%"
-                                aria-valuenow="{{ $department_requirement->percentage }}" aria-valuemin="0"
-                                aria-valuemax="100">
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                   <div class="border mb-4"></div>
-                   <a href="{{ route('departments.index') }}" class="btn btn-info w-100">View More</a>
-               </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-           <div class="card">
-               <div class="card-body">
-                    <canvas id="grade_level_chart" width="200" height="200"></canvas>
-               </div>
-           </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                     <canvas id="by_strand_chart" width="200" height="200"></canvas>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="row">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <p style="color: black; font-size: 1.5rem;">Upcoming Classes</p>
-                    <table class="table">
-                        <thead>
-                            <th>Class Code</th>
-                            <th>Subject Name</th>
-                            <th>Lecturer</th>
-                            <th>Schedule</th>
-                        </thead>
-                        <tbody>
-                            @foreach ($classes as $class)
-                            <tr>
-                                <td>{{ $class->class_code }}</td>
-                                <td>{{ $class->subject->subject_name }}</td>
-                                <td>{{ $class->employee->full_name  }}</td>
-                                <td>{{ $class->schedule }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
+        <div class="card" style="height: 500px;">
                 <div class="card-body">
                      <p style="color: black; font-size: 1.5rem;">Department Heads</p>
                      <div class="border mb-3"></div>
@@ -197,7 +126,15 @@
                 </div>
             </div>
         </div>
-
+        
+        <div class="col-md-4">
+            <div class="card" style="height: 500px;">
+                <div class="card-body">
+                     <canvas id="by_strand_chart" width="200" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 @endsection
@@ -244,34 +181,6 @@
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
-        var grade_level_chart = document.getElementById('grade_level_chart').getContext('2d');
-        var grade_level_data =  JSON.parse($('meta[name="grade_level_data"]').attr('content'));
-        var myPieChart = new Chart(grade_level_chart, {
-            type: 'doughnut',
-            data: {
-                labels: ['Grade 11', 'Grade 12'],
-                datasets: [{
-                label: '# of students per grade level',
-                data: grade_level_data,
-                backgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                ],
-                borderWidth: 0
-                }],
-                
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Students by Grade Level',
-                    fontStyle: 'bold',
-                    fontSize: 20
-                },
-                cutoutPercentage: 60,
-            }
-        });
-
 
         var strand_chart = document.getElementById('by_strand_chart').getContext('2d');
         var strand_chart_data =  JSON.parse($('meta[name="students_by_strand_data"]').attr('content'));

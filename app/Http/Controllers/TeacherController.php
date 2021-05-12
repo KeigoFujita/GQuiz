@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\SchoolClass;
-use App\Semester;
-use App\Student;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -19,12 +17,7 @@ class TeacherController extends Controller
     {
         $employees = new Employee();
         $teachers = $employees->teachers();
-
-        // foreach ($teachers as $key => $teacher) {
-        //     dump($teacher->section);
-        // }
-        // die();
-        return view('teacher.index')->with('employees', $teachers);
+        return view('teacher.index')->with('teachers', $teachers);
     }
 
     /**
@@ -65,9 +58,8 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
     }
 
     /**

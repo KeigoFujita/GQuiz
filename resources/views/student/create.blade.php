@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputPassword1">LRN</label>
+                            <label for="exampleInputPassword1">Student Number</label>
                             <input type="text" class="form-control @error('lrn') is-invalid @enderror" name="lrn"
                                 value="{{ old('lrn') }}">
                             @error('lrn')
@@ -34,11 +34,12 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label for="grade_level">Grade Level</label>
+                            <label for="grade_level">Year Level</label>
                             <select id="grade_level" name="grade_level"
                                 class="form-control  @error('grade_level') is-invalid @enderror">
-                                <option value="11" {{ old('grade_level') == '11' ? "selected":""}}>Grade 11</option>
-                                <option value="12" {{ old('grade_level') == '12' ? "selected":""}}>Grade 12</option>
+                                <option value="1" {{ old('grade_level') == '1' ? "selected":""}}>1st Year</option>
+                                <option value="2" {{ old('grade_level') == '2' ? "selected":""}}>2nd Year</option>
+                                <option value="3" {{ old('grade_level') == '3' ? "selected":""}}>3rd Year</option>
                             </select>
 
                             @error('grade_level')
@@ -53,11 +54,11 @@
                     <div class="col-md-4">
 
                         <div class="form-group">
-                            <label class="my-1 mr-2" for="section">Strand</label>
+                            <label class="my-1 mr-2" for="section">Course</label>
                             <select id="strand_id"
                                 class="form-control my-1 mr-sm-2 @error('strand') is-invalid @enderror" name="strand">
                                 @foreach ($strands as $strand)
-                                    <option value="{{ $strand->id }}" {{ old('strand') == $strand->id ? "selected":""}}>{{ $strand->strand_name }}</option>
+                                    <option value="{{ $strand->id }}" {{ old('strand') == $strand->id ? "selected":""}}>{{ $strand->strand_name . " | " . $strand->strand_description }}</option>
                                 @endforeach
 
                             </select>
@@ -68,23 +69,6 @@
                             @enderror
 
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="my-1" for="section">Section</label>
-                            <input type="hidden" name="old_section" value="{{ old('section') }}">
-                            <select id="section_select"
-                                class="form-control my-1 mr-sm-2 tag-selector @error('section') is-invalid @enderror"
-                                name="section">
-                                <option value="-1">None</option>
-                            </select>
-                            @error('section')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">

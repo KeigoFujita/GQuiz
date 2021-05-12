@@ -31,7 +31,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index')->with('employees', Employee::all()->sortByDesc('id'));
+        return view('employee.index')->with('employees', Employee::where('status','active')->orderBy('id')->get());
     }
 
     /**
@@ -64,13 +64,12 @@ class EmployeeController extends Controller
             'mobile_number' => $request->mobile_number,
             'gender' => $request->gender
         ]);
-
-        if ($request->roles) {
-            $employee->roles()->attach($request->roles);
-        }
-
-        session()->flash('success', 'Employee added successfully.');
-        return redirect(route('employees.index'));
+        
+        $teacher_role = Role::where('role_name','teacher')->first();        
+        $employee->roles()->attach([$teacher_role->id]);
+        
+        session()->flash('success', 'Teacher added successfully.');
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -106,12 +105,12 @@ class EmployeeController extends Controller
 
         $data = $request->only(['first_name', 'middle_name', 'last_name', 'mobile_number', 'gender']);
 
-        $employee->roles()->sync($request->roles);
+        // $employee->roles()->sync($request->roles);
         $employee->update($data);
         $employee->save();
 
-        session()->flash('success', 'Employee updated successfully.');
-        return redirect(route('employees.index'));
+        session()->flash('success', 'Teacher updated successfully.');
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -120,8 +119,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        //
+        $employee->status = 'inactive';
+        $employee->save();
+        
+        session()->flash('success', 'Teacher deleted successfully.');
+        return redirect(route('teachers.index'));
     }
 }

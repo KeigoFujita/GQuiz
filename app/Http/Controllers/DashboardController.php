@@ -14,6 +14,7 @@ use App\Student;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -87,6 +88,7 @@ class DashboardController extends Controller
             ->with('department_requirements', $department_requirements)
             ->with('departments', $departments)
             ->with('classes', SchoolClass::orderBy('schedule')->take(6)->get());
+
     }
 
     /**

@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->string('middle_name', 100);
             $table->string('last_name', 100);
             $table->enum('gender', ['male', 'female']);
-            $table->enum('grade_level', ['11', '12']);
+            $table->enum('grade_level', ['11', '12', '1', '2', '3']);
             // $table->string('mobile_number', 11);
             // $table->string('house_bldg_blk_lot_number', 50);
             // $table->string('street_name', 50);
