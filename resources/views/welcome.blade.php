@@ -16,7 +16,7 @@
     <style>
         html,
         body {
-            background-image: url('/img/1.jpg');
+            background-image: url('/img/BG1.jpeg');
 
             color: white;
             font-weight: 200;
@@ -121,13 +121,21 @@
             </p>
 
             @if (Route::has('login'))
-                <div class="login">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-info" style=" font-size:20px;">Get Started</a>
-                    @endauth
-                </div>
+
+                <b>
+                    <div class="login">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+
+                            <a href="{{ route('login') }}" class="btn btn-outline-secondary bg-gardner "
+                                style="font-famiy: Rounded MT Bold; font-size:20px; color:white">Get Started
+                            </a>
+
+                        @endauth
+                    </div>
+
+                </b>
             @endif
 
         </div>

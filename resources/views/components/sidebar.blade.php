@@ -5,8 +5,8 @@
 
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-dashboard" aria-expanded="true"
         aria-controls="collapse-dashboard">
-        <div class="header" id="heading-dashboard">
-            <p><i class="fa fa-tachometer"></i>Dashboard </p>
+        <div class="header" id="heading-dashboard" ">
+            <p><i class=" fa fa-tachometer"></i>Dashboard </p>
         </div>
 
         <div id="collapse-dashboard" class="collapse collapsed" aria-labelledby="heading-dashboard"
