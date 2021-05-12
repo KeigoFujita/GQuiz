@@ -100,17 +100,6 @@
             font-size: 1rem;
         }
 
-
-        @media (max-width: 768px) {
-            .display-1 {
-                font-size: 3.5rem;
-            }
-
-            .sub p {
-                font-size: 1.3rem;
-            }
-        }
-
     </style>
 </head>
 
@@ -125,7 +114,8 @@
             <div class="logo" style="">
                 <img src="/img/pic1.jpg" alt="">
             </div>
-            <p class="default-font display-1 mb-0" style=" font-size:40px;margin-top: 30px;">Get More Time To Teach
+            <p class="default-font display-1 mb-0" style=" font-size:40px;margin-top: 30px;family-font:arial">Get More
+                Time To Teach
                 and Inspire Learners
                 with GQuiz.
             </p>

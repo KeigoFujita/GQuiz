@@ -90,27 +90,10 @@ class StudentController extends Controller
         $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
         $rand_color = $colors[array_rand($colors)];
 
-        $classes = $student->section->school_classes;
-        $requirement_ids = collect([]);
-
-
-        foreach ($classes as $key => $class) {
-            foreach ($class->class_requirements as $key => $requirement) {
-                $requirement_ids->add($requirement->id);
-            }
-        }
-
-
-        $class_clearances = ClassClearance::where('student_id', $student->id)
-            ->whereIn('class_requirement_id', $requirement_ids->values())->get();
-
-        $department_clearances = DepartmentClearance::getDepartmentClearance($student);
-
-
         return view('student.show')->with([
             'student' => $student,
-            'class_clearances' => $class_clearances,
-            'department_clearances' => $department_clearances,
+            'class_clearances' => [],
+            'department_clearances' => [],
             'color' => $rand_color
         ]);
     }
