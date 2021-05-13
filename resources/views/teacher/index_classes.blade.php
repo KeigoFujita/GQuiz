@@ -47,19 +47,32 @@
 
 
 @section('content')
-    <div class="container-fluid py-5 px-5 font-inter">
-
-        <div class="d-flex justify-content-between align-items-center">
-            <p class="title mb-5">
-                My Classes
-            </p>
+<div class="container-fluid py-5 px-5 font-inter">
+    
+    <div class="d-flex justify-content-between align-items-center">
+        <p class="title mb-5">
+            My Classes
+        </p>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="dropdown show mr-2">
+                <a class="btn btn-outline-secondary px-4 -py-2 dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-filter mr-2" aria-hidden="true"></i>
+                    Filter
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="{{ route('teachers.my-classes') }}">Active</a>
+                  <a class="dropdown-item" href="{{ route('teachers.my-classes-archived') }}">Archived</a>
+                </div>
+            </div>
+            
             <div>
-                <button type="button" class="btn btn-success px-4 py-2" href="#" data-toggle="modal"
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal"
                     data-target="#add-modal">
-                    <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+                    <i class="fa fa-plus mr-2" aria-hidden="true"></i> 
                     Add Class
                 </button>
-
+    
             </div>
         </div>
 
@@ -117,9 +130,18 @@
                 <div class="w-100 card shadow-sm">
                     <div class="card-header py-3"></div>
                     <div class="card-body">
-                        <img src="https://img.icons8.com/cotton/344/empty-box.png" class="d-block mx-auto mb-3" alt=""
-                            style="width: 100px;">
-                        <p class="text-center" style="font-size: 1.5rem;">You don't have any classes yet!</p>
+                    
+                    <p class="card-text heading-text text-secondary mb-0">
+                        <i class="fa fa-graduation-cap mr-2" aria-hidden="true"  style="width: 1rem;"></i>
+                        {{ $class->students->count() === 0 ? 'No ' : $class->students->count() }} enrolled students
+                    </p>
+                    <p class="card-text heading-text text-secondary mb-0">
+                        <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
+                        {{ rand(3,10) }} quizzes made
+                    </p>
+                    </div>
+                    <div class="card-footer py-3">
+                        
                     </div>
                 </div>
             @endforelse

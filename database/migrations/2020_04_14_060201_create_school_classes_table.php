@@ -19,6 +19,7 @@ class CreateSchoolClassesTable extends Migration
             $table->integer('employee_id')->nullable();
             $table->integer('subject_id')->nullable();
             $table->string('schedule')->nullable();
+            $table->string('status')->enum(['active','archived'])->default('active');
             $table->timestamps();
         });
     }
