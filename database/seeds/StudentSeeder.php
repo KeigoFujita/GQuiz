@@ -39,6 +39,17 @@ class StudentSeeder extends Seeder
         
         Student::insert($students);
 
+        Student::create([
+            'lrn' => $faker->unique()->numerify($string = '############'),
+            'grade_level' => $faker->randomElement(['1','2','3']),
+            'first_name' => 'Irish',
+            'middle_name' => 'Onanay',
+            'last_name' => 'Aspillaga',
+            'gender' => 'female',
+            'section_id'=> $section->id,
+            'strand_id'=> $section->strand->id
+        ]);
+
         // $student = Student::create([
         //     'lrn' => '109397050207',
         //     'grade_level' => '11',

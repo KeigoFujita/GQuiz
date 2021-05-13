@@ -23,8 +23,16 @@ class DatabaseSeeder extends Seeder
         $this->call(StrandSeeder::class);
         $this->call(SubjectSeeder::class);
         $this->call(EmployeeSeeder::class);
-        $this->call(SchoolClassSeeder::class);
         $this->call(SectionSeeder::class);
+        
+        $this->call(StudentSeeder::class);
+        $this->call(SchoolClassSeeder::class);
+        
+        $students = Student::select('id')->get()->map(function($student){
+            return [
+                'student_id' => $student->id
+            ];
+        })->toArray();
 
         //ATTACH EVERY SECTION A CLASS
         // Populate the pivot table
@@ -36,14 +44,6 @@ class DatabaseSeeder extends Seeder
             ); 
         });
 
-
-        $this->call(StudentSeeder::class);
-
-        $students = Student::select('id')->get()->map(function($student){
-            return [
-                'student_id' => $student->id
-            ];
-        })->toArray();
 
         AdviserClearance::insert($students);
 

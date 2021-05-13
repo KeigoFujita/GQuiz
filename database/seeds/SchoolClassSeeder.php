@@ -1,6 +1,7 @@
 <?php
 
 use App\SchoolClass;
+use App\Student;
 use Illuminate\Database\Seeder;
 
 class SchoolClassSeeder extends Seeder
@@ -12,62 +13,81 @@ class SchoolClassSeeder extends Seeder
      */
     public function run()
     {
-        SchoolClass::create([
+        $class = SchoolClass::create([
             'class_code' => 'ORAL-119-1',
-            'employee_id' => '32',
+            'employee_id' => '2',
             'subject_id' => '1',
             'schedule' => '7:00 AM - 8:00 AM'
         ]);
 
-        SchoolClass::create([
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+
+        $class = SchoolClass::create([
             'class_code' => 'GENMATH-120-2',
-            'employee_id' => '15',
+            'employee_id' => '2',
             'subject_id' => '2',
             'schedule' => '8:00 AM - 9:00 AM'
         ]);
 
-        SchoolClass::create([
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+
+        $class = SchoolClass::create([
             'class_code' => 'PE-121-3',
-            'employee_id' => '17',
+            'employee_id' => '2',
             'subject_id' => '3',
             'schedule' => '10:00 AM - 11:00 AM'
         ]);
 
-        SchoolClass::create([
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+
+        $class = SchoolClass::create([
             'class_code' => 'PERDEV-110-4',
-            'employee_id' => '26',
+            'employee_id' => '2',
             'subject_id' => '4',
             'schedule' => '11:10 AM - 12:10 NN'
         ]);
 
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
 
-        SchoolClass::create([
+
+        $class = SchoolClass::create([
             'class_code' => 'STATS-111-5',
-            'employee_id' => '30',
+            'employee_id' => '2',
             'subject_id' => '5',
             'schedule' => '12:10 NN - 1:10 PM'
         ]);
 
-        SchoolClass::create([
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+
+
+        $class = SchoolClass::create([
             'class_code' => 'MEDINFO-112-6',
-            'employee_id' => '25',
+            'employee_id' => '2',
             'subject_id' => '6',
             'schedule' => '1:10 PM - 2:10 PM'
         ]);
 
-        SchoolClass::create([
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+
+        $class = SchoolClass::create([
             'class_code' => 'ELS-113-7',
-            'employee_id' => '21',
+            'employee_id' => '2',
             'subject_id' => '7',
-            'schedule' => '2:10 PM - 3:10 PM'
+            'schedule' => '2:10 PM - 3:10 PM',
+            'status' => 'archived'
+        ]);
+        
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
+        
+        $class = SchoolClass::create([
+            'class_code' => 'UCSP-114-8',
+            'employee_id' => '2',
+            'subject_id' => '8',
+            'schedule' => '3:30 PM -4:30 PM',
+            'status' => 'archived'
         ]);
 
-        SchoolClass::create([
-            'class_code' => 'UCSP-114-8',
-            'employee_id' => '28',
-            'subject_id' => '8',
-            'schedule' => '3:30 PM -4:30 PM'
-        ]);
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
 
         SchoolClass::create([
             'class_code' => 'PHYSCIE-115-9',
@@ -97,12 +117,14 @@ class SchoolClassSeeder extends Seeder
             'schedule' => '7:00 AM - 8:00 AM'
         ]);
 
-        SchoolClass::create([
+        $class = SchoolClass::create([
             'class_code' => 'REWRI-119-13',
             'employee_id' => '2',
             'subject_id' => '13',
             'schedule' => '8:00 AM - 9:00 AM'
         ]);
+
+        $class->students()->attach(Student::inRandomOrder()->limit(rand(10,30))->get()->pluck('id')->toArray());
 
         SchoolClass::create([
             'class_code' => 'KPK-123-14',
@@ -306,5 +328,6 @@ class SchoolClassSeeder extends Seeder
             'subject_id' => '42',
             'schedule' => '2:10 PM - 3:10 PM'
         ]);
+
     }
 }

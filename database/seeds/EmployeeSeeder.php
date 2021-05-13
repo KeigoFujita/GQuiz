@@ -232,11 +232,11 @@ class EmployeeSeeder extends Seeder
 
 
         $employee = Employee::create([
-            'first_name' => 'Manilyn',
-            'middle_name' => 'Luz',
-            'last_name' => 'Cuizon',
+            'first_name' => 'Mateo',
+            'middle_name' => 'John',
+            'last_name' => 'Doe',
             'mobile_number' => '9238824324',
-            'gender' => 'female',
+            'gender' => 'male',
             'user_id' => 2
         ]);
         $employee->roles()->attach('1');
