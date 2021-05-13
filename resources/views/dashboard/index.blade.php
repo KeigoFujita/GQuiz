@@ -170,7 +170,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'Students by Strand',
+                        text: 'Students by Course',
                         fontStyle: 'bold',
                         fontSize: 20
                     },
