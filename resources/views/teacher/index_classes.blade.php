@@ -120,7 +120,7 @@
                             </p>
                             <p class="card-text heading-text text-secondary mb-0">
                                 <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
-                                {{ rand(3, 10) }} quizzes made
+                                {{ $class->quizzes->count() }} quizzes made
                             </p>
                         </div>
                         <div class="card-footer py-3">
@@ -129,23 +129,13 @@
                     </div>
                 </div>
             @empty
-                <div class="w-100 card shadow-sm">
-                    <div class="card-header py-3"></div>
-                    <div class="card-body">
-
-                        <p class="card-text heading-text text-secondary mb-0">
-                            <i class="fa fa-graduation-cap mr-2" aria-hidden="true" style="width: 1rem;"></i>
-                            {{ $class->students->count() === 0 ? 'No ' : $class->students->count() }} enrolled students
-                        </p>
-                        <p class="card-text heading-text text-secondary mb-0">
-                            <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
-                            {{ rand(3, 10) }} quizzes made
-                        </p>
-                    </div>
-                    <div class="card-footer py-3">
-
-                    </div>
+            <div class="w-100 card shadow-sm">
+                <div class="card-header py-3"></div>
+                <div class="card-body">
+                    <img src="https://img.icons8.com/cotton/344/empty-box.png" class="d-block mx-auto mb-3" alt="" style="width: 100px;">
+                    <p class="text-center" style="font-size: 1.5rem;">You don't have any classes yet!</p>
                 </div>
+            </div>
             @endforelse
 
         </div>

@@ -34,4 +34,9 @@ class SchoolClass extends Model
     {
         return $this->belongsToMany(Student::class);
     }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }

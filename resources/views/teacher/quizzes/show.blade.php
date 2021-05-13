@@ -6,8 +6,8 @@
 
         <div class="container rounded px-4 pt-3 pb-5 mb-3 "
             style="background-color: {{ $colors[array_rand($colors)] }} !important;">
-            <p class="title text-white mb-0">{{ $class->class_code }}</p>
-            <p class="text-white">{{ $class->schedule }}</p>
+            <p class="title text-white mb-0">{{ $quiz->name }}</p>
+            <a href="{{ route('teachers.my-classes-show',$class) }}" class="text-white">{{ $class->class_code}}</a>
         </div>
 
         <div class="container px-0">
@@ -50,17 +50,17 @@
             <div class="row no-gutters">
                 <div class="col-2">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action {{ $active === 'students' ? 'active' : '' }}"" id="list-home-list" data-toggle="list"
-                            href="#list-students" role="tab" aria-controls="home">
-                            <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
-                            Students
+                        <a class="list-group-item list-group-item-action active" id="list-questions-list" data-toggle="list"
+                            href="#list-questions" role="tab" aria-controls="home">
+                            <i class="fa fa-question mr-2" aria-hidden="true"></i>
+                            Questions
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'quiz' ? 'active' : '' }}"" id="list-profile-list" data-toggle="list"
-                            href="#list-quizzes" role="tab" aria-controls="profile">
-                            <i class="fa fa-pencil mr-2" aria-hidden="true"></i>
-                            Quizzes
+                        <a class="list-group-item list-group-item-action" id="list-scores-list" data-toggle="list"
+                            href="#list-scores" role="tab" aria-controls="profile">
+                            <i class="fa fa-star mr-2" aria-hidden="true"></i>
+                            Scores
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'settings' ? 'active' : '' }}"" id="list-settings-list" data-toggle="list"
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
                             href="#list-settings" role="tab" aria-controls="settings">
                             <i class="fa fa-cog mr-2" aria-hidden="true"></i>
                             Settings
@@ -69,9 +69,9 @@
                 </div>
                 <div class="col-10">
                     <div class="tab-content pl-3" id="nav-tabContent">
-                        @include('teacher.partials.students')
-                        @include('teacher.partials.quizzes')
-                        @include('teacher.partials.settings')
+                        @include('teacher.quizzes.partials.questions')
+                        @include('teacher.quizzes.partials.scores')
+                        @include('teacher.quizzes.partials.settings')
                     </div>
                 </div>
             </div>
@@ -105,44 +105,77 @@
         </div>
     </div>
 
-    <!-- Create Quiz Modal -->
+    <!-- Create Question Modal -->
     <div class="modal fade font-inter" id="create-quiz-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Create Quiz</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Create Question</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('teachers.quizzes-store',$class) }}" method="post" id="create-quiz">
+                    <form action="{{ route('teachers.quizzes-create-question',[$class,$quiz]) }}" method="post" id="create-quiz">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name"
-                                placeholder="E.g. Prelim Exam">
+                            <label for="question">Question</label>
+                            <textarea rows="5" type="text" class="form-control" name="question"
+                                placeholder="E.g.What is the square root of 144?"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="description">Notes</label>
-                            <textarea rows="5" type="text" class="form-control" name="description"
-                                placeholder="E.g. Please review about Global Warming"></textarea>
+                            <label for="name">Answer</label>
+                            <input type="text" class="form-control" name="answer"
+                                placeholder="E.g. 12">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" form="create-quiz">Create Quiz</button>
+                    <button type="submit" class="btn btn-success" form="create-quiz">Create Question</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Question Modal -->
+    <div class="modal fade font-inter" id="test" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('teachers.quizzes-update-question',[$class,$quiz]) }}" method="post" id="update-quiz">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <textarea rows="5" type="text" class="form-control" name="question" id="edit-txt-question"
+                                placeholder="E.g.What is the square root of 144?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Answer</label>
+                            <input type="text" class="form-control" name="answer" id="edit-txt-answer"
+                                placeholder="E.g. 12">
+                        </div>
+                        <input type="hidden" name="item_id" value="" id="edit-txt-id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" form="update-quiz">Save Changes</button>
                 </div>
             </div>
         </div>
     </div>
 
 
+
 @endsection
 
 @section('scripts')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <script>
@@ -167,8 +200,26 @@
                         $('#result-set').append(data);
                     });
                 }
-            })
+            });
+
+
         });
+
+
+        $('#test').on('show.bs.modal', function (event) {
+            
+            // Button that triggered the modal
+            var button = $(event.relatedTarget)
+            // Extract info from data-bs-* attributes
+            var item_id = button.data('item-id');
+            var item_question = button.data('item-question');
+            var item_answer = button.data('item-answer');
+            
+            $('#edit-txt-id').val(item_id);
+            $('#edit-txt-question').val(item_question);
+            $('#edit-txt-answer').val(item_answer);
+
+        })
 
     </script>
 @endsection

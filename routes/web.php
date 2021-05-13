@@ -75,6 +75,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('teacher/my-classes/archived', 'TeacherController@my_classes_archived')->name('teachers.my-classes-archived');
 
     Route::get('teacher/my-classes/{schoolClass}/show', 'TeacherController@my_classes_show')->name('teachers.my-classes-show');
+    Route::post('teacher/my-classes/{schoolClass}/quizzes/store', 'TeacherController@quizzes_store')->name('teachers.quizzes-store');
+
+    Route::get('teacher/my-classes/{schoolClass}/quizzes/{quiz}/show', 'TeacherController@quizzes_show')->name('teachers.quizzes-show');
+    Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/update', 'TeacherController@quizzes_update')->name('teachers.quizzes-update');
+    
+    Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/publish', 'TeacherController@quizzes_publish')->name('teachers.quizzes-publish');
+    Route::delete('teacher/my-classes/{schoolClass}/quizzes/{quiz}/archive', 'TeacherController@quizzes_archive')->name('teachers.quizzes-archive');
+    
+    
+    Route::post('teacher/my-classes/{schoolClass}/quizzes/{quiz}/create-question', 'TeacherController@quizzes_create_question')->name('teachers.quizzes-create-question');
+    Route::delete('teacher/my-classes/{schoolClass}/quizzes/{quiz}/delete-question/{item}', 'TeacherController@quizzes_delete_question')->name('teachers.quizzes-delete-question');
+    Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/update-question', 'TeacherController@quizzes_update_question')->name('teachers.quizzes-update-question');
+
+
     Route::delete('teacher/my-classes/{schoolClass}/remove-student/{student}', 'TeacherController@my_classes_remove_student')->name('teachers.my-classes-remove-student');
     Route::get('teacher/my-classes/{schoolClass}/invite-student/{student}', 'TeacherController@my_classes_invite_student')->name('teachers.my-classes-invite-student');
     Route::put('teacher/my-classes/{schoolClass}/update', 'TeacherController@my_classes_update')->name('teachers.my-classes-update');

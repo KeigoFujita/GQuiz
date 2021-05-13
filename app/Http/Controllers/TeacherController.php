@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Item;
+use App\Quiz;
 use App\SchoolClass;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -148,8 +151,187 @@ class TeacherController extends Controller
         return view('teacher.show_classes',[
             'class'=> $schoolClass,
             'colors' => $colors,
-            'students'=> $students
+            'students'=> $students,
+            'active' => 'students'
         ]);
+    }
+
+    public function quizzes_store(Request $request, SchoolClass $schoolClass)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        $schoolClass->quizzes()->create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        session()->flash('success', 'Quiz created successfully.');
+        return redirect(route('teachers.my-classes-show',$schoolClass));
+
+    }
+
+    public function quizzes_update(Request $request, SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+        
+        $quiz->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        session()->flash('success', 'Quiz updated successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass, $quiz]));
+
+    }
+
+    public function quizzes_publish(SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        if($quiz->items()->count() === 0){
+            session()->flash('danger', 'Unable to publish quiz with no question.');
+            return redirect(route('teachers.quizzes-show',[$schoolClass, $quiz]));
+        }
+
+        $quiz->status = 'active';
+        $quiz->save();
+
+        session()->flash('success', 'Quiz published successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass, $quiz]));
+
+    }
+
+    public function quizzes_archive(SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $quiz->status = 'archived';
+        $quiz->save();
+
+        session()->flash('success', 'Quiz archived successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass, $quiz]));
+
+    }
+
+    public function quizzes_show(SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+
+        return view('teacher.quizzes.show',[
+            'class' => $schoolClass,
+            'quiz' => $quiz,
+            'colors'=> $colors
+        ]);
+
+    }
+
+    public function quizzes_create_question(Request $request, SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $request->validate([
+            'question' => 'required',
+            'answer' => 'required',
+        ]);
+
+        $quiz->items()->create([
+            'question'=> $request->question,
+            'answer'=> $request->answer,
+        ]);
+
+        session()->flash('success', 'Question created successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
+
+    }
+
+    public function quizzes_delete_question(SchoolClass $schoolClass, Quiz $quiz, Item $item)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $item->delete();
+
+        session()->flash('success', 'Question deleted successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
+
+    }
+
+    public function quizzes_update_question(Request $request, SchoolClass $schoolClass, Quiz $quiz)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $item = Item::findOrFail($request->item_id);
+
+        $request->validate([
+            'question' => 'required',
+            'answer' => 'required',
+        ]);
+
+        $item->update([
+            'question'=> $request->question,
+            'answer'=> $request->answer,
+        ]);
+
+        session()->flash('success', 'Question udpated successfully.');
+        return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
+
     }
 
     public function my_classes_remove_student(SchoolClass $schoolClass, Student $student)
@@ -161,7 +343,6 @@ class TeacherController extends Controller
         if(!$classes->contains('id',$schoolClass->id)){
             abort(403,"Unauthorized");
         }
-
         $schoolClass->students()->detach($student->id);
         $schoolClass->save();
 

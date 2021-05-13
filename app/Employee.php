@@ -42,12 +42,12 @@ class Employee extends Model
 
     public function getSchoolClassesAttribute()
     {
-        return SchoolClass::where('employee_id', $this->id)->where('status','active')->get();
+        return SchoolClass::with('quizzes')->where('employee_id', $this->id)->where('status','active')->get();
     }
 
     public function getSchoolClassesArchivedAttribute()
     {
-        return SchoolClass::where('employee_id', $this->id)->where('status','archived')->get();
+        return SchoolClass::with('quizzes')->where('employee_id', $this->id)->where('status','archived')->get();
     }
 
     public function hasRole($roleId)

@@ -1,4 +1,4 @@
-<div class="tab-pane fade show active" id="list-students" role="tabpanel" aria-labelledby="list-home-list">
+<div class="tab-pane fade show {{ $active === 'students' ? 'active' : '' }}"" id="list-students" role="tabpanel" aria-labelledby="list-home-list">
     <div class="card">
         <div class="card-body">
             <div class="px-2 pb-3">
