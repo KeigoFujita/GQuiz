@@ -70,10 +70,18 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('teacher/my-classes/{class}', 'TeacherController@school_class')->name('teachers.schoolClass');
 
     Route::post('teacher/search-student', 'TeacherController@search_student')->name('teachers.search-student');
+    
     Route::get('teacher/my-classes', 'TeacherController@my_classes')->name('teachers.my-classes');
+    Route::get('teacher/my-classes/archived', 'TeacherController@my_classes_archived')->name('teachers.my-classes-archived');
+
     Route::get('teacher/my-classes/{schoolClass}/show', 'TeacherController@my_classes_show')->name('teachers.my-classes-show');
     Route::delete('teacher/my-classes/{schoolClass}/remove-student/{student}', 'TeacherController@my_classes_remove_student')->name('teachers.my-classes-remove-student');
     Route::get('teacher/my-classes/{schoolClass}/invite-student/{student}', 'TeacherController@my_classes_invite_student')->name('teachers.my-classes-invite-student');
+    Route::put('teacher/my-classes/{schoolClass}/update', 'TeacherController@my_classes_update')->name('teachers.my-classes-update');
+    Route::delete('teacher/my-classes/{schoolClass}/archive', 'TeacherController@my_classes_archive')->name('teachers.my-classes-archive');
+    Route::put('teacher/my-classes/{schoolClass}/restore', 'TeacherController@my_classes_restore')->name('teachers.my-classes-restore');
+
+
 
     //Department Heads
     Route::get('department-head/{employee}', 'DepartmentController@department_head')->name('departments.department_head');

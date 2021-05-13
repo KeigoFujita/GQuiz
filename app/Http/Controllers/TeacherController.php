@@ -115,6 +115,21 @@ class TeacherController extends Controller
             'colors' => $colors
         ]);
     }
+
+    public function my_classes_archived()
+    {   
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClassesArchived;
+
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+
+        return view('teacher.index_classes_archived',[
+            'teacher'=> $teacher,
+            'classes'=> $classes,
+            'colors' => $colors
+        ]);
+    }
     
     public function my_classes_show(SchoolClass $schoolClass)
     {   
@@ -122,7 +137,7 @@ class TeacherController extends Controller
 
         $classes = $teacher->schoolClasses;
 
-        if(!$classes->contains('id',$schoolClass->id)){
+        if(!$classes->contains('id',$schoolClass->id) || $schoolClass->status === 'archived'){
             abort(403,"Unauthorized");
         }
 
@@ -210,5 +225,66 @@ class TeacherController extends Controller
     public function school_class(SchoolClass $class)
     {   
         return view('teacher.class_requirement')->with('school_class', $class);
+    }
+
+    public function my_classes_update(Request $request, SchoolClass $schoolClass)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $request->validate([
+            'class_code' => 'required|unique:school_classes,class_code,' . $schoolClass->id,
+            'class_schedule' => 'required',
+        ]);
+
+        $schoolClass->update([
+            'class_code'=> $request->class_code,
+            'schedule'=> $request->class_schedule
+        ]);
+
+        session()->flash('success', 'Class updated  successfully.');
+
+        return redirect(route('teachers.my-classes-show',$schoolClass));
+    }
+
+    public function my_classes_archive(SchoolClass $schoolClass)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $schoolClass->status = 'archived';
+        $schoolClass->save();
+
+        session()->flash('success', 'Class archived  successfully.');
+
+        return redirect(route('teachers.my-classes'));
+    }
+
+    public function my_classes_restore(SchoolClass $schoolClass)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = SchoolClass::where('employee_id', $teacher->id)->get();
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        $schoolClass->status = 'active';
+        $schoolClass->save();
+
+        session()->flash('success', 'Class restored  successfully.');
+
+        return redirect(route('teachers.my-classes'));
     }
 }

@@ -50,7 +50,7 @@
     
     <div class="d-flex justify-content-between align-items-center">
         <p class="title mb-5">
-            My Classes
+            Archived Classes
         </p>
         <div class="d-flex align-items-center justify-content-center">
             <div class="dropdown show mr-2">
@@ -104,7 +104,7 @@
             <div class="px-3 mb-3">
                 <div class="card" style="width: 25rem;">
                     <div class="card-header text-white py-4" style="background-color: {{ $colors[array_rand($colors)] }} !important;">
-                        <a href="{{ route('teachers.my-classes-show',$class) }}" class="mb-0">{{ $class->class_code }}</a>
+                        <a href="#" class="mb-0">{{ $class->class_code }}</a>
                         <span class="d-block">{{ $class->schedule }}</span>
                     </div>
                     <div class="card-body">
@@ -119,7 +119,14 @@
                     </p>
                     </div>
                     <div class="card-footer py-3">
-                        
+                        <form action="{{ route('teachers.my-classes-restore',$class) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <button class="btn btn-sm btn-success" type="submit">
+                                <i class="fa fa-refresh mr-2" aria-hidden="true"></i>
+                                Restore
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
