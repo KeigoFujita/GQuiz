@@ -52,7 +52,7 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         //
     }
 
@@ -103,9 +103,9 @@ class TeacherController extends Controller
             ->with('students', $employee->students);
     }
 
-    
+
     public function my_classes()
-    {   
+    {
         $teacher = auth()->user()->employee;
 
         $classes = $teacher->schoolClasses;
@@ -120,7 +120,7 @@ class TeacherController extends Controller
     }
 
     public function my_classes_archived()
-    {   
+    {
         $teacher = auth()->user()->employee;
 
         $classes = $teacher->schoolClassesArchived;
@@ -133,9 +133,9 @@ class TeacherController extends Controller
             'colors' => $colors
         ]);
     }
-    
+
     public function my_classes_show(SchoolClass $schoolClass)
-    {   
+    {
         $teacher = auth()->user()->employee;
 
         $classes = $teacher->schoolClasses;
@@ -169,7 +169,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-        
+
         $schoolClass->quizzes()->create([
             'name' => $request->name,
             'description' => $request->description,
@@ -193,7 +193,7 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
-        
+
         $quiz->update([
             'name' => $request->name,
             'description' => $request->description,
@@ -335,7 +335,7 @@ class TeacherController extends Controller
     }
 
     public function my_classes_remove_student(SchoolClass $schoolClass, Student $student)
-    {   
+    {
         $teacher = auth()->user()->employee;
 
         $classes = $teacher->schoolClasses;
@@ -350,7 +350,7 @@ class TeacherController extends Controller
     }
 
     public function my_classes_invite_student(SchoolClass $schoolClass, Student $student)
-    {   
+    {
         $teacher = auth()->user()->employee;
 
         $classes = $teacher->schoolClasses;
@@ -372,11 +372,11 @@ class TeacherController extends Controller
     }
 
     public function search_student(Request $request)
-    {   
+    {
         $query = $request->get('query') ?? '';
         $class = SchoolClass::find($request->class);
 
-        if (!$query || $query === null ||strlen($query) === 0 ){
+        if (!$query ||strlen($query) === 0 ){
             return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">No student found.</p></div></div></div>');
         }else if(strlen($query) < 3){
             return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">Please search atleast 3 characters...</p></div></div></div>');
@@ -396,15 +396,8 @@ class TeacherController extends Controller
     }
 
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function school_class(SchoolClass $class)
-    {   
+    {
         return view('teacher.class_requirement')->with('school_class', $class);
     }
 

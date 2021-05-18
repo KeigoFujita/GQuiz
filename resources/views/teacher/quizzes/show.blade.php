@@ -207,14 +207,14 @@
 
 
         $('#test').on('show.bs.modal', function (event) {
-            
+
             // Button that triggered the modal
             var button = $(event.relatedTarget)
             // Extract info from data-bs-* attributes
             var item_id = button.data('item-id');
             var item_question = button.data('item-question');
             var item_answer = button.data('item-answer');
-            
+
             $('#edit-txt-id').val(item_id);
             $('#edit-txt-question').val(item_question);
             $('#edit-txt-answer').val(item_answer);

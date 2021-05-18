@@ -272,7 +272,7 @@ class SectionController extends Controller
     }
 
     public function clearance(Section $section)
-    {   
+    {
 
         $departments = Department::with('role')->get()->except(1)->map(function($department){
             $department_requirements = DepartmentRequirement::where('department_id',$department->id)->get();
@@ -283,11 +283,11 @@ class SectionController extends Controller
         $classes = $section->school_classes;
 
         $students = $section->students->map(function($student) use ($departments, $classes){
-            
+
             $department_clearances = [];
 
             foreach ($departments as $department) {
-                
+
                 $clearance = [
                     'id'=> $department->id,
                     'department_name'=>$department->department_name,
@@ -303,12 +303,12 @@ class SectionController extends Controller
                     ->where('status','incomplete')
                     ->count();
                     $clearance['status'] = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
+
                     $completion_date = DepartmentClearance::where('department_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
                     $clearance['completion_date'] = $no_of_incomplete == 0 ? Carbon::parse($completion_date)->format('m-d-Y') : 'N/A' ;
-                    
+
                 }
 
                 if($department->department_requirements->count() == 0) {
@@ -327,9 +327,9 @@ class SectionController extends Controller
                     ->where('class_requirement_id',$requirement->id)
                     ->where('status','incomplete')
                     ->count();
-    
+
                     $class->status = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
+
                     $completion_date = ClassClearance::where('class_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
@@ -348,7 +348,7 @@ class SectionController extends Controller
 
             return $student;
         });
-        
+
 
 
         $registrar = Role::where('role_name','registrar')->first();
@@ -363,7 +363,7 @@ class SectionController extends Controller
     }
 
     public function clearanceToPDF(Section $section)
-    {   
+    {
         $students = $section->students->map(function($student){
 
             $department_clearances = Department::with('role')->get()->except(1)->map(function($department) use ($student){
@@ -374,12 +374,12 @@ class SectionController extends Controller
                     ->where('status','incomplete')
                     ->count();
                     $department->status = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
-                    $completion_date = DepartmentClearance::where('department_requirement_id',$requirement->id)
+
+                    $completion_date = DepartmentClearance::query()->where('department_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
                     $department->completion_date = $no_of_incomplete == 0 ? Carbon::parse($completion_date)->format('m-d-Y') : 'N/A' ;
-    
+
                 });
                 if($department_requirements->count() == 0) {
                     $department->status = 'complete';
@@ -387,9 +387,9 @@ class SectionController extends Controller
                 }
                 return $department;
             });
-            
+
             $adviser_clearance = AdviserClearance::where('student_id',$student->id)->first();
-    
+
             $subject_clearances = $student->section->school_classes->map(function($class) use ($student){
                 $requirements = $class->class_requirements;
                 $requirements->each(function($requirement) use ($class, $student){
@@ -397,9 +397,9 @@ class SectionController extends Controller
                     ->where('class_requirement_id',$requirement->id)
                     ->where('status','incomplete')
                     ->count();
-    
+
                     $class->status = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
+
                     $completion_date = ClassClearance::where('class_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
@@ -424,7 +424,7 @@ class SectionController extends Controller
         if(isset($registrar)){
             $registrar_name = $registrar->assigned_officer->full_name;
         }
-        
+
          $pdf = PDF::loadView('section.clearance-pdf',[
              'students'=>$students,
              'registrar_name'=>$registrar_name,
@@ -434,7 +434,7 @@ class SectionController extends Controller
     }
 
     public function printClearance(Section $section)
-    {   
+    {
         $students = $section->students->map(function($student){
             $department_clearances = Department::with('role')->get()->except(1)->map(function($department) use ($student){
                 $department_requirements = DepartmentRequirement::where('department_id',$department->id)->get();
@@ -444,12 +444,12 @@ class SectionController extends Controller
                     ->where('status','incomplete')
                     ->count();
                     $department->status = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
+
                     $completion_date = DepartmentClearance::where('department_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
                     $department->completion_date = $no_of_incomplete == 0 ? Carbon::parse($completion_date)->format('m-d-Y') : 'N/A' ;
-    
+
                 });
                 if($department_requirements->count() == 0) {
                     $department->status = 'complete';
@@ -457,9 +457,9 @@ class SectionController extends Controller
                 }
                 return $department;
             });
-            
+
             $adviser_clearance = AdviserClearance::where('student_id',$student->id)->first();
-    
+
             $subject_clearances = $student->section->school_classes->map(function($class) use ($student){
                 $requirements = $class->class_requirements;
                 $requirements->each(function($requirement) use ($class, $student){
@@ -467,9 +467,9 @@ class SectionController extends Controller
                     ->where('class_requirement_id',$requirement->id)
                     ->where('status','incomplete')
                     ->count();
-    
+
                     $class->status = $no_of_incomplete == 0 ? 'complete' : 'incomplete';
-    
+
                     $completion_date = ClassClearance::where('class_requirement_id',$requirement->id)
                     ->where('student_id',$student->id)
                     ->max('updated_at');
@@ -494,7 +494,7 @@ class SectionController extends Controller
         if(isset($registrar)){
             $registrar_name = $registrar->assigned_officer->full_name;
         }
-        
+
          $pdf = PDF::loadView('section.clearance-pdf',[
              'students'=>$students,
              'registrar_name'=>$registrar_name,

@@ -3,18 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Section extends Model
 {
 
     protected $fillable = ['section_name', 'grade_level', 'employee_id', 'strand_id'];
 
-    public function employee()
+    public function employee() : BelongsTo
     {
         return $this->belongsTo(Employee::class);
     }
 
-    public function students()
+    public function students() : HasMany
     {
         return $this->hasMany(Student::class);
     }
