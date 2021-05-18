@@ -170,4 +170,6 @@ Route::middleware(['auth'])->group(function () {
 
     //QUIZZES
     Route::get('quizzes/{quiz}/preview', 'QuizController@preview')->name('quizzes.preview');
+
+    Route::get('search-term', 'QuizController@search_term')->name('search-term');
 });

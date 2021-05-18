@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Quiz;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class QuizController extends Controller
 {
@@ -48,5 +49,19 @@ class QuizController extends Controller
         $teacher = auth()->user()->employee;
         $classes = $teacher->schoolClasses;
         abort_if(!$classes->contains($quiz->schoolClass),403);
+    }
+
+    public function search_term(Request $request){
+
+        $query = $request->input('query');
+
+       $response = Http::withHeaders([
+            'Cookie' => '__cf_bm=aad7f235bdd2f818adf575600e8fdfa6bd80aee5-1621364471-1800-AdQb4lCJOlNB5w8TGPCo2DGHeDbv+iLFsscUVL9YI6rjvYc9w5qood2qLwoUD3i1/vHfgEbUXZDnL6VU+uisW3k=; app_session_id=7e4f8de3-f3b3-4eeb-9d7b-c86cace934be; fs=qtbfex; qi5=1x3bkovmhz9mb%3AMbiA7S2J9qvjNhHmAoSB; qtkn=uNX9RNWU4wyG3sfMNwPxcg',
+            'User-Agent'=> 'PostmanRuntime/7.28.0'
+        ])->get('https://quizlet.com/webapi/3.2/suggestions/definition?clientId=-6179229827316476521&limit=3&word='.$query.'&defLang=en&localTermId=-1&prefix=&wordLang=en');
+
+        return view('teacher.quizzes.items.result-set')
+            ->with('results',collect(json_decode($response->body())->responses[0]->data->suggestions->suggestions)->pluck('text'));
+
     }
 }

@@ -12,15 +12,24 @@
                 <form action="{{ route('teachers.quizzes-create-definition',[$class,$quiz]) }}" method="post"
                       id="create-quiz">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group position-relative mb-3">
                         <label for="term">Term</label>
-                        <input type="text" class="form-control" name="term"
-                               placeholder="E.g. Photosynthesis">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="term" id="txt-term"
+                                   placeholder="E.g. Photosynthesis">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="button" id="btn-search">
+                                    <i class="fa fa-search mr-2"></i>
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                        <div id="result-set-items"></div>
                     </div>
                     <div class="form-group">
                         <label for="definition">Definition</label>
-                        <textarea rows="5" type="text" class="form-control" name="definition"
-                                  placeholder="The process by which green plants and certain other organisms transform light energy into chemical energy."></textarea>
+                        <textarea rows="5" type="text" class="form-control" name="definition" id="txt-definition"
+                                  placeholder="E.g. The process by which green plants and certain other organisms transform light energy into chemical energy."></textarea>
                     </div>
                 </form>
             </div>
