@@ -14,14 +14,12 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <!-- Styles -->
     <style>
-        html,
         body {
-            background-image: url('/img/BG1.jpeg');
 
-            color: white;
+            color: black;
             font-weight: 200;
-            height: 100vh;
             margin: 0;
+            overflow: auto;
         }
 
         .full-height {
@@ -105,41 +103,249 @@
 
 <body>
 
+    <div class="d-flex align-content-center justify-content-center">
+        <div class="my-5">
 
-    <div class="flex-center position-ref full-height">
+            <div class="" style="margin-left:50px; ">
 
-
-        <div class="content">
-
-            <div class="logo" style="">
-                <img src="/img/pic1.jpg" alt="">
+                <img src="/img/piclogo1.jpg" alt="">
             </div>
-            <p class="default-font display-1 mb-0" style=" font-size:40px;margin-top: 30px;family-font:arial">Get More
+            <p class="default-font display-1 mb-0"
+                style=" font-size:40px;margin-top: 40px;margin-left: 250px; margin-right: 200px;family-font:arial">Get
+                More
                 Time To Teach
                 and Inspire Learners
                 with GQuiz.
+
+            <p class="default-font display-1 mb-0"
+                style=" font-size:25px; margin-top: 25px;margin-left:150px; color:gray; margin-right: 150px;family-font:arial">
+                A free and easy tool helping educators efficiently manage and assess progress,while enhancing
+                connections
+
             </p>
 
+            <p class="default-font display-1 mb-0"
+                style=" font-size:25px;margin-left: 500px;color:gray; margin-right: 150px;family-font:arial">
+
+                with learners from school, from home, or on the go.
+            </p>
             @if (Route::has('login'))
 
                 <b>
-                    <div class="login">
+                    <div class="mt-5" style="margin-left:550px;">
                         @auth
                             <a href="{{ url('/home') }}">Home</a>
                         @else
 
-                            <a href="{{ route('login') }}" class="btn btn-outline-secondary bg-gardner "
-                                style="font-famiy: Rounded MT Bold; font-size:20px; color:white">Get Started
+                            <a href="{{ route('login') }}" class="btn btn-outline-dark   "
+                                style="font-famiy: Rounded MT Bold; font-size:20px; color: gray"> I am Admin
+                            </a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-dark  "
+                                style="font-famiy: Rounded MT Bold;margin-left:5px; font-size:20px; color:gray">I'am
+                                Teacher
                             </a>
 
+                            <a href="{{ route('login') }}" class="btn btn-outline-dark "
+                                style="font-famiy: Rounded MT Bold; font-size:20px;  color:gray">I am Student
+                            </a>
                         @endauth
                     </div>
 
                 </b>
             @endif
 
+            <div class="col-12 mt-2">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="mb-3">
+
+                                <div class="" style="margin-left:20px; margin-top: 100px;width: 500px;">
+
+                                    <img src="/img/pic.jpg" alt="">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="mb-3">
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:35px;margin-top: 100px;color: black; margin-right: 150px;family-font:arial">
+
+
+                                    Simplify teaching and learning
+
+                                </p>
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Add students directly, and admin give an account
+                                </p>
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Set up a class in minutes and create class work that appear on students’ account
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Easily communicate with guardians and automatically send them updates
+
+                                </p>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 mt-5">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-5">
+
+                            <div class="mb-3">
+
+                                <div class="" style="margin-left:20px; margin-top: 100px;width: 500px;">
+                                    <p class="default-font display-1 mb-0"
+                                        style=" font-size:35px;margin-top: 50px;;color: black;family-font:arial">
+
+                                        Strengthen student connections
+
+                                    </p>
+
+                                    <p class="default-font display-1 mb-0"
+                                        style=" font-size:25px;margin-top: 50px;color:gray;family-font:arial">
+
+
+                                        * Connect with your students from anywhere with a hybrid approach for in-class
+
+                                    </p>
+
+                                    <p class="default-font display-1 mb-0"
+                                        style=" font-size:25px;margin-top: 50px;color:gray;family-font:arial">
+
+
+                                        * Communicate important announcements to the Stream page
+
+                                    <p class="default-font display-1 mb-0"
+                                        style=" font-size:25px;margin-top: 50px;color:gray;family-font:arial">
+
+
+                                        * Enable check the score of the students
+
+                                    </p>
+
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="mb-3">
+                                <div class="" style="margin-left:0px; margin-top: 50px; height:500px;">
+                                    <img src="/img/pic2.jpg" alt="">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-12 mt-6">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="">
+                                <div class="" style="margin-left:0px; margin-top: 100px; height:500px;">
+                                    <img src="/img/three.jpg" alt="">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+
+                            <div class="">
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:35px;margin-top: 100px;color: black; margin-right: 150px;family-font:arial">
+
+
+                                    Keep your data protected
+
+                                </p>
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Ensure each user has a unique sign-in to keep individual accounts secure
+                                </p>
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Restrict Classroom activity to members of the class
+
+                                <p class="default-font display-1 mb-0"
+                                    style=" font-size:25px;margin-top: 50px;color:gray; margin-right: 150px;family-font:arial">
+
+
+                                    * Protect student privacy - student data is never used for advertising purposes
+
+                                </p>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
+
+    <p class="default-font display-1 mb-5"
+        style=" font-size:30px;margin-top: 0px;margin-left: 250px; margin-right: 200px;family-font:arial">
+        “By allowing students to submit their work with Classroom, I can keep track of my sections, view Scores easily,
+        and mark Quizes during any free time I have, without having to carry stacks of paper around. Classroom has
+        made this process so easy and convenient.”
+    </p>
+
+
+
+
 
 </body>
 
