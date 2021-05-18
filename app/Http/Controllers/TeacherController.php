@@ -7,6 +7,7 @@ use App\Item;
 use App\Quiz;
 use App\SchoolClass;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -168,11 +169,14 @@ class TeacherController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'description' => 'required',
+            'expires_at' => 'required|after:now'
         ]);
 
         $schoolClass->quizzes()->create([
-            'name' => $request->name,
-            'description' => $request->description,
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'expires_at' => $request->input('expires_at'),
         ]);
 
         session()->flash('success', 'Quiz created successfully.');
@@ -192,11 +196,14 @@ class TeacherController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'description' => 'required',
+            'expires_at' => 'required|after:now'
         ]);
 
         $quiz->update([
-            'name' => $request->name,
-            'description' => $request->description,
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'expires_at' => $request->input('expires_at'),
         ]);
 
         session()->flash('success', 'Quiz updated successfully.');

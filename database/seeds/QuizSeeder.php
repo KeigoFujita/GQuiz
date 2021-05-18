@@ -15,7 +15,8 @@ class QuizSeeder extends Seeder
         $class = SchoolClass::query()->first();
         $quiz = $class->quizzes()->create([
             'name' => 'Preliminary Quiz',
-            'description' => 'Please review about the part of speech.'
+            'description' => 'Please review about the part of speech.',
+            'expires_at' => now()->addDay()
         ]);
 
         $quiz->items()->create([

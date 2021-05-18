@@ -50,17 +50,17 @@
             <div class="row no-gutters">
                 <div class="col-2">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action {{ $active === 'students' ? 'active' : '' }}"" id="list-home-list" data-toggle="list"
+                        <a class="list-group-item list-group-item-action {{ $active === 'students' ? 'active' : '' }}" id="list-home-list" data-toggle="list"
                             href="#list-students" role="tab" aria-controls="home">
                             <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
                             Students
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'quiz' ? 'active' : '' }}"" id="list-profile-list" data-toggle="list"
+                        <a class="list-group-item list-group-item-action {{ $active === 'quiz' ? 'active' : '' }}" id="list-profile-list" data-toggle="list"
                             href="#list-quizzes" role="tab" aria-controls="profile">
                             <i class="fa fa-pencil mr-2" aria-hidden="true"></i>
                             Quizzes
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'settings' ? 'active' : '' }}"" id="list-settings-list" data-toggle="list"
+                        <a class="list-group-item list-group-item-action {{ $active === 'settings' ? 'active' : '' }}" id="list-settings-list" data-toggle="list"
                             href="#list-settings" role="tab" aria-controls="settings">
                             <i class="fa fa-cog mr-2" aria-hidden="true"></i>
                             Settings
@@ -107,7 +107,7 @@
                             <th width="5%">Actions</th>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -145,6 +145,10 @@
                             <textarea rows="5" type="text" class="form-control" name="description"
                                 placeholder="E.g. Please review about Global Warming"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="expires_at">Expires At</label>
+                            <input type="text" class="form-control" id="expires_at" name="expires_at">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -162,7 +166,15 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
+
+        $("#expires_at").flatpickr({
+            enableTime: true,
+            defaultDate: "today",
+            dateFormat: "Y-m-d H:i",
+            minDate: "today",
+        });
 
         students_to_invite = [];
 
@@ -204,7 +216,7 @@
         });
 
         function inviteStudent(student_id, student_name, student_number){
-           
+
            $('#result-set').empty();
            $('#result-set').hide();
 
@@ -233,7 +245,7 @@
                     students_to_invite.forEach((element, index) => {
                         if(element === student_id){
                             is_added_already = true;
-                        }  
+                        }
                     });
 
                     if(!is_added_already){
@@ -247,7 +259,7 @@
                                 <td>${student_name}</td>
                                 <td>
                                     <button class="btn btn-danger btn-sm" onclick="uninviteStudent(${student_id})">Uninvite</button>
-                                </td>   
+                                </td>
                             </tr>
                         `)
 
@@ -262,7 +274,7 @@
                             </div>
                         `)
                     }
-                    
+
                 }
             });
 
@@ -272,7 +284,7 @@
             students_to_invite.forEach((element, index) => {
               if(element === student_id){
                  students_to_invite.splice(index,1)
-              }  
+              }
             });
             $('#student_'+student_id).remove();
 
@@ -287,6 +299,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
     <style>

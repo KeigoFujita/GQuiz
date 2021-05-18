@@ -18,8 +18,13 @@
                     <textarea rows="5" type="text" class="form-control" name="description"
                         placeholder="E.g. Please review about Global Warming">{{ $quiz->description }}</textarea>
                 </div>
-    
-                <button type="submit" class="btn btn-sm btn-success">Save Changes</button>    
+
+                <div class="form-group mb-4">
+                    <label for="expires_at">Expires At</label>
+                    <input type="text" class="form-control" id="expires_at" name="expires_at" value="{{ $quiz->expires_at }}">
+                </div>
+
+                <button type="submit" class="btn btn-sm btn-success">Save Changes</button>
             </form>
 
             <div class="dropdown-divider"></div>
@@ -57,4 +62,4 @@
             @endif
         </div>
     </div>
-</div>  
+</div>

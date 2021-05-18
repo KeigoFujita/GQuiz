@@ -11,13 +11,13 @@
                     <label for="class_code">Class Name</label>
                     <input type="text" class="form-control" name="class_code" value="{{ $class->class_code }}">
                 </div>
-    
+
                 <div class="form-group">
                     <label for="class_code">Class Schedule</label>
                     <input type="text" class="form-control" name="class_schedule"  value="{{ $class->schedule }}">
                 </div>
-    
-                <button type="submit" class="btn btn-sm btn-success">Save Changes</button>    
+
+                <button type="submit" class="btn btn-sm btn-success">Save Changes</button>
             </form>
 
             <div class="dropdown-divider"></div>

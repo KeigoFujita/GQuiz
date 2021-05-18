@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    protected $fillable = ['name','description','status'];
+    protected $fillable = ['name','description','status', 'expires_at'];
 
     public function items()
     {
