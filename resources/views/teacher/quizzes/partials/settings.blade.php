@@ -24,6 +24,22 @@
                     <input type="text" class="form-control" id="expires_at" name="expires_at" value="{{ $quiz->expires_at }}">
                 </div>
 
+                <div class="form-group mb-4">
+                    <label for="expires_at">Quiz Type</label>
+                    <div class="input-group">
+                        <select name="type" class="custom-select">
+                            <option value="enumeration" @if($quiz->type === 'enumeration') selected @endif>Enumeration</option>
+                            <option value="multiple_choice" @if($quiz->type === 'multiple_choice') selected @endif>Multiple Choice</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button">
+                                <i class="fa fa-eye mr-2"></i>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <button type="submit" class="btn btn-sm btn-success">Save Changes</button>
             </form>
 

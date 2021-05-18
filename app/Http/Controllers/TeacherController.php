@@ -197,13 +197,15 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'expires_at' => 'required|after:now'
+            'expires_at' => 'required|after:now',
+            'type'=> 'in:enumeration,multiple_choice'
         ]);
 
         $quiz->update([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'expires_at' => $request->input('expires_at'),
+            'type' => $request->input('type'),
         ]);
 
         session()->flash('success', 'Quiz updated successfully.');
