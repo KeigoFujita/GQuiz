@@ -128,9 +128,7 @@
 
                                 <tr>
                                     <td scope="row" data-label="Name">Year Level</td>
-                                    <td data-label="Details">
-                                        {{ $student->grade_level == '11' ? 'Grade 11' : 'Grade 12' }}
-                                    </td>
+                                    
                                 </tr>
 
                                 <tr>
@@ -144,11 +142,11 @@
                                     <td data-label="Name">Section</td>
                                     <td data-label="Details"></td>
                                 </tr> --}}
-
+{{-- 
                                 <tr>
                                     <td data-label="Name">Adviser</td>
                                     <td data-label="Details"></td>
-                                </tr>
+                                </tr> --}}
 
                                 <tr>
                                     <td data-label="Name">Gender</td>
