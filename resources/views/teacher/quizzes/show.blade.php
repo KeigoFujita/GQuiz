@@ -130,7 +130,7 @@
             $('#quiz-table').DataTable({});
 
             $('#search').on('keypress', function(e) {
-                if (e.which == 13) {
+                if (e.which === 13) {
 
                     $.ajaxSetup({
                         headers: {
@@ -166,6 +166,37 @@
             $('#edit-txt-definition').val(item_definition);
 
         })
+
+        $('form').keydown(function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        $('#btn-search').on('click',function(){
+            $('#result-set-items').empty();
+            let text = $('#txt-term').val();
+            if (text.length !== 0) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.get("{{ route('search-term') }}",{
+                    query: text
+                }, function(data){
+                    $('#result-set-items').empty();
+                    $('#result-set-items').append(data);
+                });
+            }
+        });
+
+        function setItemDefinition(text){
+            $('#result-set-items').empty();
+            $('#txt-definition').val(text);
+        }
 
     </script>
 @endsection
@@ -206,5 +237,16 @@
             font-family: 'Inter', sans-serif !important;
         }
 
+        #result-set-items{
+            margin-top: 10px;
+            position: absolute;
+            width: 100% ;
+            max-height: 340px;
+            overflow-y: auto;
+        }
+
+        #result-item:hover{
+            background-color: #EEE;
+        }
     </style>
 @endsection

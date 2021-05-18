@@ -32,10 +32,10 @@
                             <option value="multiple_choice" @if($quiz->type === 'multiple_choice') selected @endif>Multiple Choice</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="button">
+                            <a href="{{ route('quizzes.preview', $quiz) }}" class="btn btn-success" type="button">
                                 <i class="fa fa-eye mr-2"></i>
                                 Preview
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
