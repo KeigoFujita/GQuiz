@@ -167,4 +167,7 @@ Route::middleware(['auth'])->group(function () {
     // Newly Added
     Route::post('addStudent', 'SectionController@addStudent')->name('sections.addstudent');
     Route::post('addStudentToSection', 'SectionController@addStudentToSection')->name('students.add_student_to_section');
+
+    //QUIZZES
+    Route::get('quizzes/{quiz}/preview', 'QuizController@preview')->name('quizzes.preview');
 });
