@@ -19,6 +19,7 @@ class CreateQuizzesTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->enum('status',['active','archived'])->default('archived');
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
         });
     }

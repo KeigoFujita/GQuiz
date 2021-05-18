@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SubjectSeeder::class);
         $this->call(EmployeeSeeder::class);
         $this->call(SectionSeeder::class);
-        
+
         $this->call(StudentSeeder::class);
         $this->call(SchoolClassSeeder::class);
-        
+
         $students = Student::select('id')->get()->map(function($student){
             return [
                 'student_id' => $student->id
@@ -38,10 +38,10 @@ class DatabaseSeeder extends Seeder
         // Populate the pivot table
         $school_classes = SchoolClass::all();
 
-        Section::all()->each(function ($section) use ($school_classes) { 
+        Section::all()->each(function ($section) use ($school_classes) {
             $section->school_classes()->attach(
                 $school_classes->random(rand(6, 10))->pluck('id')->toArray()
-            ); 
+            );
         });
 
 
@@ -50,5 +50,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DepartmentRequirementSeeder::class);
         $this->call(ClassRequirementSeeder::class);
+        $this->call(QuizSeeder::class);
     }
 }
