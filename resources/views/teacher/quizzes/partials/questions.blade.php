@@ -6,37 +6,37 @@
                     <button class="btn btn-success btn-sm px-3 py-2" data-toggle="modal"
                     data-target="#create-quiz-modal">
                         <i class="fa fa-plus mr-2" aria-hidden="true"></i>
-                        Create Question
+                        Create Definition
                     </button>
                 </div>
                 <table class="table table-bordered table-centered table-hover shadow-sm " style="margin-bottom:100px" id="quiz-table">
                     <thead>
                         <th width="10%">No.</th>
-                        <th>Question</th>
-                        <th>Answer</th>
+                        <th>Term</th>
+                        <th>Definition</th>
                         <th width="5%">Actions</th>
                     </thead>
                     <tbody>
                         @foreach ($quiz->items as $item)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $item->question }}</td>
-                                <td>{{ $item->answer }}</td>
+                                <td>{{ $item->term }}</td>
+                                <td>{{ $item->definition }}</td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <button class="btn btn-success btn-sm mr-2" data-toggle="modal"
                                             data-target="#test"
                                             data-item-id="{{ $item->id }}"
-                                            data-item-question="{{ $item->question }}"
-                                            data-item-answer="{{ $item->answer }}">
+                                            data-item-term="{{ $item->term }}"
+                                            data-item-definition="{{ $item->definition }}">
                                             Edit
                                         </button>
-                                        <form action="{{ route('teachers.quizzes-delete-question',[$class,$quiz,$item]) }}" method="post">
+                                        <form action="{{ route('teachers.quizzes-delete-definition',[$class,$quiz,$item]) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         </form>
-                                    </div>    
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -45,4 +45,4 @@
             </div>
         </div>
     </div>
-</div>  
+</div>

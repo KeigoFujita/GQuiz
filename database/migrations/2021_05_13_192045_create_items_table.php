@@ -16,8 +16,8 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->integer('quiz_id')->unsigned()->nullable();
-            $table->string('question');
-            $table->string('answer');
+            $table->string('term');
+            $table->string('definition');
             $table->timestamps();
         });
     }

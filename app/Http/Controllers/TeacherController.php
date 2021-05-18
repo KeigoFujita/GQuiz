@@ -265,7 +265,7 @@ class TeacherController extends Controller
 
     }
 
-    public function quizzes_create_question(Request $request, SchoolClass $schoolClass, Quiz $quiz)
+    public function quizzes_create_definition(Request $request, SchoolClass $schoolClass, Quiz $quiz)
     {
         $teacher = auth()->user()->employee;
 
@@ -276,21 +276,24 @@ class TeacherController extends Controller
         }
 
         $request->validate([
-            'question' => 'required',
-            'answer' => 'required',
+            'term' => 'required',
+            'definition' => 'required',
         ]);
 
         $quiz->items()->create([
-            'question'=> $request->question,
-            'answer'=> $request->answer,
+            'term'=> $request->input('term'),
+            'definition'=> $request->input('definition'),
         ]);
 
-        session()->flash('success', 'Question created successfully.');
+        session()->flash('success', 'Definition created successfully.');
         return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
 
     }
 
-    public function quizzes_delete_question(SchoolClass $schoolClass, Quiz $quiz, Item $item)
+    /**
+     * @throws \Exception
+     */
+    public function quizzes_delete_definition(SchoolClass $schoolClass, Quiz $quiz, Item $item)
     {
         $teacher = auth()->user()->employee;
 
@@ -302,12 +305,12 @@ class TeacherController extends Controller
 
         $item->delete();
 
-        session()->flash('success', 'Question deleted successfully.');
+        session()->flash('success', 'Definition deleted successfully.');
         return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
 
     }
 
-    public function quizzes_update_question(Request $request, SchoolClass $schoolClass, Quiz $quiz)
+    public function quizzes_update_definition(Request $request, SchoolClass $schoolClass, Quiz $quiz)
     {
         $teacher = auth()->user()->employee;
 
@@ -317,19 +320,19 @@ class TeacherController extends Controller
             abort(403,"Unauthorized");
         }
 
-        $item = Item::findOrFail($request->item_id);
+        $item = Item::findOrFail($request->input('item_id'));
 
         $request->validate([
-            'question' => 'required',
-            'answer' => 'required',
+            'term' => 'required',
+            'definition' => 'required',
         ]);
 
         $item->update([
-            'question'=> $request->question,
-            'answer'=> $request->answer,
+            'term'=> $request->input('term'),
+            'definition'=> $request->input('definition'),
         ]);
 
-        session()->flash('success', 'Question udpated successfully.');
+        session()->flash('success', 'Definition updated successfully.');
         return redirect(route('teachers.quizzes-show',[$schoolClass,$quiz]));
 
     }
@@ -385,7 +388,7 @@ class TeacherController extends Controller
         return response()->json([
             'status'=> 'authorized'
         ]);
-        
+
     }
 
     public function search_student(Request $request)

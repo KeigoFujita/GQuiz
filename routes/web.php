@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('teacher/my-classes/{class}', 'TeacherController@school_class')->name('teachers.schoolClass');
 
     Route::post('teacher/search-student', 'TeacherController@search_student')->name('teachers.search-student');
-    
+
     Route::get('teacher/my-classes', 'TeacherController@my_classes')->name('teachers.my-classes');
     Route::get('teacher/my-classes/archived', 'TeacherController@my_classes_archived')->name('teachers.my-classes-archived');
 
@@ -79,14 +79,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('teacher/my-classes/{schoolClass}/quizzes/{quiz}/show', 'TeacherController@quizzes_show')->name('teachers.quizzes-show');
     Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/update', 'TeacherController@quizzes_update')->name('teachers.quizzes-update');
-    
+
     Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/publish', 'TeacherController@quizzes_publish')->name('teachers.quizzes-publish');
     Route::delete('teacher/my-classes/{schoolClass}/quizzes/{quiz}/archive', 'TeacherController@quizzes_archive')->name('teachers.quizzes-archive');
-    
-    
-    Route::post('teacher/my-classes/{schoolClass}/quizzes/{quiz}/create-question', 'TeacherController@quizzes_create_question')->name('teachers.quizzes-create-question');
-    Route::delete('teacher/my-classes/{schoolClass}/quizzes/{quiz}/delete-question/{item}', 'TeacherController@quizzes_delete_question')->name('teachers.quizzes-delete-question');
-    Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/update-question', 'TeacherController@quizzes_update_question')->name('teachers.quizzes-update-question');
+
+
+    Route::post('teacher/my-classes/{schoolClass}/quizzes/{quiz}/create-definition', 'TeacherController@quizzes_create_definition')->name('teachers.quizzes-create-definition');
+    Route::delete('teacher/my-classes/{schoolClass}/quizzes/{quiz}/delete-definition/{item}', 'TeacherController@quizzes_delete_definition')->name('teachers.quizzes-delete-definition');
+    Route::put('teacher/my-classes/{schoolClass}/quizzes/{quiz}/update-definition', 'TeacherController@quizzes_update_definition')->name('teachers.quizzes-update-definition');
 
 
     Route::delete('teacher/my-classes/{schoolClass}/remove-student/{student}', 'TeacherController@my_classes_remove_student')->name('teachers.my-classes-remove-student');

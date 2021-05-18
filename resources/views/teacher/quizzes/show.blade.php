@@ -52,8 +52,8 @@
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active" id="list-questions-list" data-toggle="list"
                             href="#list-questions" role="tab" aria-controls="home">
-                            <i class="fa fa-question mr-2" aria-hidden="true"></i>
-                            Questions
+                            <i class="fa fa-book mr-2" aria-hidden="true"></i>
+                            Definitions
                         </a>
                         <a class="list-group-item list-group-item-action" id="list-scores-list" data-toggle="list"
                             href="#list-scores" role="tab" aria-controls="profile">
@@ -105,73 +105,8 @@
         </div>
     </div>
 
-    <!-- Create Question Modal -->
-    <div class="modal fade font-inter" id="create-quiz-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Create Question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('teachers.quizzes-create-question',[$class,$quiz]) }}" method="post" id="create-quiz">
-                        @csrf
-                        <div class="form-group">
-                            <label for="question">Question</label>
-                            <textarea rows="5" type="text" class="form-control" name="question"
-                                placeholder="E.g.What is the square root of 144?"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Answer</label>
-                            <input type="text" class="form-control" name="answer"
-                                placeholder="E.g. 12">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" form="create-quiz">Create Question</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit Question Modal -->
-    <div class="modal fade font-inter" id="test" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('teachers.quizzes-update-question',[$class,$quiz]) }}" method="post" id="update-quiz">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="question">Question</label>
-                            <textarea rows="5" type="text" class="form-control" name="question" id="edit-txt-question"
-                                placeholder="E.g.What is the square root of 144?"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Answer</label>
-                            <input type="text" class="form-control" name="answer" id="edit-txt-answer"
-                                placeholder="E.g. 12">
-                        </div>
-                        <input type="hidden" name="item_id" value="" id="edit-txt-id">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" form="update-quiz">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    @include('teacher.quizzes.modals.create')
+    @include('teacher.quizzes.modals.edit')
 
 @endsection
 
@@ -209,15 +144,15 @@
         $('#test').on('show.bs.modal', function (event) {
 
             // Button that triggered the modal
-            var button = $(event.relatedTarget)
+            const button = $(event.relatedTarget)
             // Extract info from data-bs-* attributes
-            var item_id = button.data('item-id');
-            var item_question = button.data('item-question');
-            var item_answer = button.data('item-answer');
+            const item_id = button.data('item-id');
+            const item_term = button.data('item-term');
+            const item_definition = button.data('item-definition');
 
             $('#edit-txt-id').val(item_id);
-            $('#edit-txt-question').val(item_question);
-            $('#edit-txt-answer').val(item_answer);
+            $('#edit-txt-term').val(item_term);
+            $('#edit-txt-definition').val(item_definition);
 
         })
 
