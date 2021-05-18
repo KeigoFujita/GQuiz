@@ -349,7 +349,7 @@ class TeacherController extends Controller
         return redirect(route('teachers.my-classes-show',$schoolClass));
     }
 
-    public function my_classes_invite_student(SchoolClass $schoolClass, Student $student)
+    public function my_classes_invite_student(Request $request, SchoolClass $schoolClass)
     {
         $teacher = auth()->user()->employee;
 
@@ -359,16 +359,33 @@ class TeacherController extends Controller
             abort(403,"Unauthorized");
         }
 
-        if ($schoolClass->students->contains('id',$student->id)){
-            session()->flash('danger', 'Student is already in the class.');
-            return redirect(route('teachers.my-classes-show',$schoolClass));
-        }
-
-        $schoolClass->students()->attach($student->id);
+        $schoolClass->students()->attach($request->students);
         $schoolClass->save();
 
-        session()->flash('success', 'Student invited successfully!');
+        session()->flash('success', 'Students invited successfully!');
         return redirect(route('teachers.my-classes-show',$schoolClass));
+    }
+
+    public function check_student(Request $request, SchoolClass $schoolClass)
+    {
+        $teacher = auth()->user()->employee;
+
+        $classes = $teacher->schoolClasses;
+
+        if(!$classes->contains('id',$schoolClass->id)){
+            abort(403,"Unauthorized");
+        }
+
+        if ($schoolClass->students->contains('id',$request->student_id)){
+            return response()->json([
+                'status'=> 'unauthorized'
+            ]);
+        }
+
+        return response()->json([
+            'status'=> 'authorized'
+        ]);
+        
     }
 
     public function search_student(Request $request)
@@ -386,7 +403,7 @@ class TeacherController extends Controller
                         ->where('first_name','LIKE','%'.$query.'%')
                         ->orWhere('last_name','LIKE','%'.$query.'%')
                         ->orWhere('lrn','LIKE','%'.$query.'%')
-                        ->get()->take(5);
+                        ->get()->take(10);
 
         return view('teacher.result-set',[
             'students'=> $students,

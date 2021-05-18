@@ -90,7 +90,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::delete('teacher/my-classes/{schoolClass}/remove-student/{student}', 'TeacherController@my_classes_remove_student')->name('teachers.my-classes-remove-student');
-    Route::get('teacher/my-classes/{schoolClass}/invite-student/{student}', 'TeacherController@my_classes_invite_student')->name('teachers.my-classes-invite-student');
+
+    Route::post('teacher/my-classes/{schoolClass}/invite-student', 'TeacherController@my_classes_invite_student')->name('teachers.my-classes-invite-student');
+    Route::post('teacher/my-classes/{schoolClass}/check-student', 'TeacherController@check_student')->name('teachers.check-student');
+
     Route::put('teacher/my-classes/{schoolClass}/update', 'TeacherController@my_classes_update')->name('teachers.my-classes-update');
     Route::delete('teacher/my-classes/{schoolClass}/archive', 'TeacherController@my_classes_archive')->name('teachers.my-classes-archive');
     Route::put('teacher/my-classes/{schoolClass}/restore', 'TeacherController@my_classes_restore')->name('teachers.my-classes-restore');

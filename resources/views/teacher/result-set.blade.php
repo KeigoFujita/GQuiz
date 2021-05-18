@@ -11,7 +11,7 @@
                 <p style="font-size: 0.8rem;" >{{ $student->lrn }}</p>
             </div>
             <div class="d-flex align-items-center">
-                <a href="{{ route('teachers.my-classes-invite-student',[$class,$student]) }}" class="btn btn-sm btn-success px-3 py-2">Invite</a>
+                <button class="btn btn-sm btn-success px-3 py-2" onclick="inviteStudent({{ $student->id }}, '{{ $student->full_name }}', {{ $student->lrn }})">Invite</button>
             </div>
         </div>
         @empty
