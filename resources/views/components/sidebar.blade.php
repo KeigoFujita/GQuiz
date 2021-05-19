@@ -1,11 +1,10 @@
-<div class="accordion side-bar pt-3" id="accordion">
+<div class="accordion side-bar pt-0" id="accordion">
 
-    <p class="ml-3 mb-3 text-white">Options</p>
 
 
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-dashboard" aria-expanded="true"
         aria-controls="collapse-dashboard">
-        <div class="header" id="heading-dashboard" ">
+        <div class="header" id="heading-dashboard"">
             <p><i class=" fa fa-tachometer"></i>Dashboard </p>
         </div>
 

@@ -8,7 +8,7 @@
         </div>
         <div id="collapse-student" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('teachers.MyStudents',Auth::user()->employee) }}" class="btn btn-link collapsed">
+                <a href="{{ route('teachers.MyStudents', Auth::user()->employee) }}" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -23,11 +23,11 @@
         <div id="collapse-section" class="collapse" aria-labelledby="heading-section" data-parent="#accordion">
 
             @foreach (Auth::user()->employee->sections as $section)
-            <div class="content">
-                <a href="{{ route('sections.show',$section)}}" class="btn btn-link collapsed">
-                    {{ $section->section_name }}
-                </a>
-            </div>
+                <div class="content">
+                    <a href="{{ route('sections.show', $section) }}" class="btn btn-link collapsed">
+                        {{ $section->section_name }}
+                    </a>
+                </div>
             @endforeach
         </div>
     </div>
@@ -40,7 +40,7 @@
         </div>
         <div id="collapse-class" class="collapse" aria-labelledby="heading-class" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('teachers.MyClasses',Auth::user()->employee) }}" class="btn btn-link collapsed">
+                <a href="{{ route('teachers.MyClasses', Auth::user()->employee) }}" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>

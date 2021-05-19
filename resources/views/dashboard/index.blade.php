@@ -1,18 +1,13 @@
 @extends('layouts.app')
 
-
-
-
-
 <body>
     @section('content')
         <div class="container-fluid py-5 px-5 ">
 
-            <div class="mb-5 ">
+            <div class="mb- ">
                 <h1 class="display-4 title" ">Dashboard</h1>
-                </div>
-
-                <div class=" row mb-3" style=>
+                                                                                        </div>
+                                                                                             <div class=" row mb-3" style=>
                     <div class="col-md-4 col">
                         <div class="bg-success-200 text-white py-3 px-4 w-100">
                             <div class="d-flex justify-content-between">
@@ -34,8 +29,36 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="col-md-4 col">
+                        <div class="bg-warning-200 text-white py-3 px-4 w-100">
+                            <div class="d-flex justify-content-between">
+                                <div class="icon">
+                                    <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-graduation-cap"></i></p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="mb-0" style="font-size: 3rem;">{{ $student_count }}</p>
+                                    <span class="">Enrolled Students</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-warning-100 text-white px-4 py-1">
+                            <a href="{{ route('students.index') }}" style="color: white;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
+                                    <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
                     <div class="col-md-4 col"">
-                                              <div class=" bg-info-200 text-white py-3 px-4 w-100">
+                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                             <div class="
+                        bg-info-200 text-white py-3 px-4 w-100">
                         <div class="d-flex justify-content-between">
                             <div class="icon">
                                 <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-users"></i></p>
@@ -54,23 +77,26 @@
                             </div>
                         </a>
                     </div>
+
             </div>
 
         </div>
 
-        {{-- <div class="row mb-5">
-       <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                 <canvas id="daily_clearance" height="100px"></canvas>
-                </div>
-            </div>
-       </div>
-    </div> --}}
+        </div>
 
         <div class="row mb-5">
-            <div class="col-md-8">
-                <div class="card" style="height: 500px;">
+            <div class="col-md-12">
+                <div class="card" style="margin-left:50px; margin-right: 50px;">
+                    <div class="card-body">
+                        <canvas id="daily_clearance" height="100px"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-6">
+            <div class="col-md-6">
+                <div class="card" style="height: 500px;margin-left: 100px;">
                     <div class="card-body">
                         <p style="color: black; font-size: 1.5rem;">Department Heads</p>
                         <div class="border mb-3"></div>
@@ -95,7 +121,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="card" style="height: 500px;">
                     <div class="card-body">
                         <canvas id="by_strand_chart" width="200" height="200"></canvas>
@@ -220,5 +246,7 @@
 
         </script>
     @endsection
+
+
 
     <body>

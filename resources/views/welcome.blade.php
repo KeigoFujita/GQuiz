@@ -145,13 +145,15 @@
                             <a href="{{ route('login') }}" class="btn btn-outline-dark   "
                                 style="font-famiy: Rounded MT Bold; font-size:20px; color: gray"> I am Admin
                             </a>
+
                             <a href="{{ route('login') }}" class="btn btn-outline-dark  "
                                 style="font-famiy: Rounded MT Bold;margin-left:5px; font-size:20px; color:gray">I'am
                                 Teacher
                             </a>
 
                             <a href="{{ route('login') }}" class="btn btn-outline-dark "
-                                style="font-famiy: Rounded MT Bold; font-size:20px;  color:gray">I am Student
+                                style="font-famiy: Rounded MT Bold; margin-left:5px; font-size:20px;  color:gray">I am
+                                Student
                             </a>
                         @endauth
                     </div>

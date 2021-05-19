@@ -65,7 +65,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class=" navbar-nav ml-auto">
 
                         @isset(Auth::user()->role)
                             @if (Auth::user()->role == 'student')
@@ -108,8 +108,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
