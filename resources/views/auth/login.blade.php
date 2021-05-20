@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 
 <style>
@@ -24,7 +24,7 @@
     @section('content')
 
         <div class="container-fluid">
-            <div class=" row justify-content">
+            <div class=" row justify-content-center">
                 <div class="col-md-12" style="margin-top:100px;">
                     <div class="row justify-content-center">
                         <div class="logo mb-4">
@@ -35,15 +35,16 @@
 
             </div>
 
-            <div class="col-md-5" style=" margin-left:800px;">
+            <div class="col-md-5" style=" margin-left:400px;">
 
-                <div class="card">
+                <div class="card" style="background-color:blue;opacity: 0.3;">
+                    ">
 
                     <div class="card-header" STYLE="background-image: url('/img/blurr.png'); ">
                         {{ __('Login') }}
                     </div>
 
-                    <div class="card-body" style="background-image: url('/img/blurr.png'); height: 300px;">
+                    <div class="card-body" style=" height: 300px; ">
 
 
                         <form method="POST" action="{{ route('login') }}">
@@ -94,37 +95,36 @@
             </div>
         </div> --}}
 
-                            <div class="form-group row mb-0 mt-4">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-outline-secondary bg-gardner text-white"
-                                        style="width:100px;">
-                                        {{ __('Login') }}
-                                    </button>
+<div class="form-group row mb-0 mt-4">
+    <div class="col-md-8 offset-md-4">
+        <button type="submit" class="btn btn-outline-secondary bg-gardner text-white" style="width:100px;">
+            {{ __('Login') }}
+        </button>
 
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        </div>
+        @if (Route::has('password.request'))
+            <a class="btn btn-link" href="{{ route('password.request') }}">
+                {{ __('Forgot Your Password?') }}
+            </a>
+        @endif
+    </div>
+</div>
+</form>
+</div>
+</div>
+</div>
 
 
+</div>
+</div>
 
-    @endsection
 
+
+@endsection
 
 
 
 
 
 
-</body>
+
+</body> --}}
