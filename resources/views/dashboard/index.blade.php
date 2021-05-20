@@ -1,25 +1,19 @@
 @extends('layouts.app')
 
 <body>
-    @section('content')
-        <div class="container-fluid py-5 px-5 ">
+@section('content')
+    <div class="container-fluid py-5 px-5 ">
 
-            <div class="mb- ">
-                <h1 class="display-4 title" ">Dashboard</h1>
-                                                                                                                                                                        </div>
-                                                                                                                                                                             <div class="
+        <div class="mb- ">
+            <h1 class="display-4 title" ">Dashboard</h1>
+        </div>
+        <div class="
                     row mb-3" style=>
-                    <div class="col-md-4 col">
-                        <div class="bg-success-200 text-white py-3 px-4 w-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="icon">
-                                    <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-graduation-cap"></i></p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="mb-0" style="font-size: 3rem;">{{ $student_count }}</p>
-                                    <span class="">Enrolled Students</span>
-                                </div>
-                            </div>
+            <div class="col-md-4 col">
+                <div class="bg-success-200 text-white py-3 px-4 w-100">
+                    <div class="d-flex justify-content-between">
+                        <div class="icon">
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-graduation-cap"></i></p>
                         </div>
                         <div class="text-right">
                             <p class="mb-0" style="font-size: 3rem;">{{ $student_count }}</p>
@@ -28,7 +22,7 @@
                     </div>
                 </div>
                 <div class="bg-success-100 text-white px-4 py-1">
-                    <a href="{{ route('students.index.blade.php') }}" style="color: white;">
+                    <a href="{{ route('students.index') }}" style="color: white;">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
                             <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
@@ -37,30 +31,20 @@
                 </div>
             </div>
 
-                    <div class="col-md-4 col">
-                        <div class="bg-warning-200 text-white py-3 px-4 w-100">
-                            <div class="d-flex justify-content-between">
-                                <div class="icon">
-                                    <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-user"></i></p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="mb-0" style="font-size: 3rem;">5</p>
-                                    <span class="">Total of Admin</span>
-                                </div>
-                            </div>
+            <div class="col-md-4 col">
+                <div class="bg-warning-200 text-white py-3 px-4 w-100">
+                    <div class="d-flex justify-content-between">
+                        <div class="icon">
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-user"></i></p>
                         </div>
-                        <div class="bg-warning-100 text-white px-4 py-1">
-                            <a href="" style="color: white;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
-                                    <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
-                                </div>
-                            </a>
+                        <div class="text-right">
+                            <p class="mb-0" style="font-size: 3rem;">5</p>
+                            <span class="">Total of Admin</span>
                         </div>
                     </div>
                 </div>
                 <div class="bg-warning-100 text-white px-4 py-1">
-                    <a href="{{ route('students.index.blade.php') }}" style="color: white;">
+                    <a href="" style="color: white;">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
                             <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
@@ -70,13 +54,11 @@
             </div>
 
 
-            <div class="col-md-4 col">
+
+            <div class="col-md-4 col"">
 
 
-                    <div class="col-md-4 col"">
-                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                             <div class="
+            <div class="
                         bg-info-200 text-white py-3 px-4 w-100">
                 <div class="d-flex justify-content-between">
                     <div class="icon">
@@ -89,7 +71,7 @@
                 </div>
             </div>
             <div class="bg-info-100 text-white px-4 py-1">
-                <a href="{{ route('employees.index.blade.php') }}" style="color: white;">
+                <a href="{{ route('employees.index') }}" style="color: white;">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
                         <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
@@ -101,12 +83,13 @@
 
     </div>
 
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <div class="card" style="margin-left:50px; margin-right: 50px;">
-                    <div class="card-body">
-                        <canvas id="daily_clearance" height="100px"></canvas>
-                    </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <div class="card" style="margin-left:50px; margin-right: 50px;">
+                <div class="card-body">
+                    <canvas id="daily_clearance" height="100px"></canvas>
                 </div>
             </div>
         </div>
@@ -218,55 +201,46 @@
                     fontStyle: 'bold',
                     fontSize: 20
                 },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Students by Course',
-                        fontStyle: 'bold',
-                        fontSize: 20
-                    },
-                    cutoutPercentage: 60,
-                }
-            });
+                cutoutPercentage: 60,
+            }
+        });
 
 
 
 
 
-            var daily_clearance_ctx = document.getElementById("daily_clearance").getContext('2d');
-            var daily_clearance_data = JSON.parse($('meta[name="daily_clearance_data"]').attr('content'));
-            var daily_clearance_chart = new Chart(daily_clearance_ctx, {
-                type: 'line',
-                data: {
-                    labels: daily_clearance_data['days'],
-                    datasets: [{
-                        label: 'Quizes Taken', // Name the series
-                        data: daily_clearance_data['class_clearance'], // Specify the data values array
-                        fill: false,
-                        borderColor: '#2196f3', // Add custom color border (Line)
-                        backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                        borderWidth: 3 // Specify bar border width
-                    }, ]
+        var daily_clearance_ctx = document.getElementById("daily_clearance").getContext('2d');
+        var daily_clearance_data = JSON.parse($('meta[name="daily_clearance_data"]').attr('content'));
+        var daily_clearance_chart = new Chart(daily_clearance_ctx, {
+            type: 'line',
+            data: {
+                labels: daily_clearance_data['days'],
+                datasets: [{
+                    label: 'Quizes Taken', // Name the series
+                    data: daily_clearance_data['class_clearance'], // Specify the data values array
+                    fill: false,
+                    borderColor: '#2196f3', // Add custom color border (Line)
+                    backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
+                    borderWidth: 3 // Specify bar border width
+                }, ]
+            },
+            options: {
+                responsive: true, // Instruct chart js to respond nicely.
+                maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Daily Quizes Taken Status',
+                    fontStyle: 'bold',
+                    fontSize: 32
                 },
-                options: {
-                    responsive: true, // Instruct chart js to respond nicely.
-                    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-                },
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Daily Quizes Taken Status',
-                        fontStyle: 'bold',
-                        fontSize: 32
-                    },
-                }
-            });
-
-        </script>
-    @endsection
+            }
+        });
 
     </script>
 @endsection
+
 
 
 <body>

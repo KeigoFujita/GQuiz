@@ -32,6 +32,6 @@ class HomeController extends Controller
             return redirect(route('teachers.my-classes'));
         }
 
-        return redirect(route('dashboard.index.blade.php'));
+        return redirect(route('dashboard.index'));
     }
 }

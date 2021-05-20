@@ -11,7 +11,7 @@
         <div id="collapse-dashboard" class="collapse collapsed" aria-labelledby="heading-dashboard"
             data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('dashboard.index.blade.php') }}" class="btn btn-link collapsed">
+                <a href="{{ route('dashboard.index') }}" class="btn btn-link collapsed">
                     View Dashboard
                 </a>
             </div>
@@ -25,7 +25,7 @@
         </div>
         <div id="collapse-teacher" class="collapse" aria-labelledby="heading-teacher" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('teachers.index.blade.php') }}" class="btn btn-link collapsed">
+                <a href="{{ route('teachers.index') }}" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -43,7 +43,7 @@
         </div>
         <div id="collapse-student" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('students.index.blade.php') }}" class="btn btn-link collapsed">
+                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -62,7 +62,7 @@
         </div>
         <div id="collapse-user" class="collapse" aria-labelledby="heading-user" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('users.index.blade.php') }}" class="btn btn-link collapsed">
+                <a href="{{ route('users.index') }}" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
