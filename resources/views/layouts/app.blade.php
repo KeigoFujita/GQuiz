@@ -48,7 +48,7 @@
 
                 <a class="navbar-brand" href="{{ url('/') }}" style="font-weight:400;">
                     <img src="/img/logo_burned.png" alt="" style="height:30px; margin-top:-6px;" class="mr-2">
-                    Gardner College
+                    GQuiz
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -110,7 +110,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

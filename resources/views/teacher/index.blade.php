@@ -4,7 +4,7 @@
 
     <div class="container-fluid py-5 px-5"">
 
-            <div class=" mb-5">
+                                <div class=" mb-5">
         <p class="display-4 title">Teachers</p>
     </div>
     @if (session()->has('success'))
@@ -25,11 +25,12 @@
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
             <th width="5%">Image</th>
+            <th> ID</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
             <th>Gender</th>
-            <th>Classes</th>
+            <th>Subject</th>
             <th>Actions</th>
         </thead>
         <tbody>
@@ -42,6 +43,8 @@
                                 {{ $teacher->two_initials }}</p>
                         </div>
                     </td>
+
+                    <td>TTH-30{{ $teacher->id }}</td>
                     <td>{{ $teacher->first_name }}</td>
                     <td>{{ $teacher->middle_name }}</td>
                     <td>{{ $teacher->last_name }}</td>
