@@ -6,8 +6,9 @@
 
             <div class="mb- ">
                 <h1 class="display-4 title" ">Dashboard</h1>
-                                                                                        </div>
-                                                                                             <div class=" row mb-3" style=>
+                                                                                                                                                    </div>
+                                                                                                                                                         <div class="
+                    row mb-3" style=>
                     <div class="col-md-4 col">
                         <div class="bg-success-200 text-white py-3 px-4 w-100">
                             <div class="d-flex justify-content-between">
@@ -34,16 +35,16 @@
                         <div class="bg-warning-200 text-white py-3 px-4 w-100">
                             <div class="d-flex justify-content-between">
                                 <div class="icon">
-                                    <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-graduation-cap"></i></p>
+                                    <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-user"></i></p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="mb-0" style="font-size: 3rem;">{{ $student_count }}</p>
-                                    <span class="">Enrolled Students</span>
+                                    <p class="mb-0" style="font-size: 3rem;">5</p>
+                                    <span class="">Total of Admin</span>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-warning-100 text-white px-4 py-1">
-                            <a href="{{ route('students.index') }}" style="color: white;">
+                            <a href="" style="color: white;">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
                                     <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
@@ -55,9 +56,9 @@
 
 
                     <div class="col-md-4 col"">
-                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                             <div class="
+                                                                                                                                                                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                         <div class="
                         bg-info-200 text-white py-3 px-4 w-100">
                         <div class="d-flex justify-content-between">
                             <div class="icon">
@@ -84,7 +85,7 @@
 
         </div>
 
-        <div class="row mb-5">
+        <div class="row mb-3">
             <div class="col-md-12">
                 <div class="card" style="margin-left:50px; margin-right: 50px;">
                     <div class="card-body">
@@ -215,14 +216,14 @@
                 data: {
                     labels: daily_clearance_data['days'],
                     datasets: [{
-                        label: 'Students complied (Class Requirement)', // Name the series
+                        label: 'Teacher', // Name the series
                         data: daily_clearance_data['class_clearance'], // Specify the data values array
                         fill: false,
                         borderColor: '#2196f3', // Add custom color border (Line)
                         backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                         borderWidth: 3 // Specify bar border width
                     }, {
-                        label: 'Students complied (Department Requirement)', // Name the series
+                        label: 'Students ', // Name the series
                         data: daily_clearance_data['department_clearance'], // Specify the data values array
                         fill: false,
                         borderColor: '#D31E1E', // Add custom color border (Line)
@@ -237,7 +238,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'Daily Clearance Status',
+                        text: 'Daily User Status',
                         fontStyle: 'bold',
                         fontSize: 32
                     },
