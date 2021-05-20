@@ -5,7 +5,7 @@
         @if (Auth::user()->role == 'employee' && Auth::user()->employee->is_teacher == false)
             <nav aria-label="breadcrumb" style="background-color:transparent;">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('students.index.blade.php') }}" class="text-info">Students</a>
+                    <li class="breadcrumb-item"><a href="{{ route('students.index') }}" class="text-info">Students</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $student->full_name }}</li>
                 </ol>

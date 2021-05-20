@@ -4,7 +4,7 @@
     <div class="container-fluid p-5 main-content">
         <nav aria-label="breadcrumb" style="background-color:transparent;">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('employees.index.blade.php') }}" class="text-info">Employees</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('employees.index') }}" class="text-info">Employees</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $employee->full_name }}</li>
             </ol>
         </nav>

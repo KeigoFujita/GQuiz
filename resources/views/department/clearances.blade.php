@@ -15,7 +15,7 @@
     @else
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('departments.index.blade.php') }}" class="text-info">Departments</a>
+            <li class="breadcrumb-item"><a href="{{ route('departments.index') }}" class="text-info">Departments</a>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('departments.edit',$requirement->department) }}"
                     class="text-info">{{$requirement->department->department_name}}</a>
