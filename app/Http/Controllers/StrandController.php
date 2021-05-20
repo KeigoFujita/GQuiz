@@ -45,7 +45,7 @@ class StrandController extends Controller
         ]);
 
         session()->flash('success', 'Strand added successfully.');
-        return redirect(route('strands.index.blade.php'));
+        return redirect(route('strands.index'));
     }
 
     /**
@@ -85,7 +85,7 @@ class StrandController extends Controller
         $strand->save();
 
         session()->flash('success', 'Strand updated successfully.');
-        return redirect(route('strands.index.blade.php'));
+        return redirect(route('strands.index'));
     }
 
     /**

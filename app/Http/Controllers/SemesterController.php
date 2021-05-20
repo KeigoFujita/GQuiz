@@ -63,7 +63,7 @@ class SemesterController extends Controller
             session()->flash('error', 'The semester already exists.');
         }
 
-        return redirect(route('semesters.index.blade.php'));
+        return redirect(route('semesters.index'));
     }
 
     /**

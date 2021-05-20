@@ -69,7 +69,7 @@ class EmployeeController extends Controller
         $employee->roles()->attach([$teacher_role->id]);
 
         session()->flash('success', 'Teacher added successfully.');
-        return redirect(route('teachers.index.blade.php'));
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -110,7 +110,7 @@ class EmployeeController extends Controller
         $employee->save();
 
         session()->flash('success', 'Teacher updated successfully.');
-        return redirect(route('teachers.index.blade.php'));
+        return redirect(route('teachers.index'));
     }
 
     /**
@@ -125,6 +125,6 @@ class EmployeeController extends Controller
         $employee->save();
 
         session()->flash('success', 'Teacher deleted successfully.');
-        return redirect(route('teachers.index.blade.php'));
+        return redirect(route('teachers.index'));
     }
 }

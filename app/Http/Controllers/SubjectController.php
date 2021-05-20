@@ -45,7 +45,7 @@ class SubjectController extends Controller
         ]);
 
         session()->flash('success', 'Subject added successfully.');
-        return redirect(route('subjects.index.blade.php'));
+        return redirect(route('subjects.index'));
     }
 
     /**

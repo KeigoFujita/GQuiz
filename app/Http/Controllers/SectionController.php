@@ -66,7 +66,7 @@ class SectionController extends Controller
         $section->employee()->associate($request->employee_id);
         $section->save();
         session()->flash('success', 'Section created successfully.');
-        return redirect(route('sections.index.blade.php'));
+        return redirect(route('sections.index'));
     }
 
     /**

@@ -20,13 +20,13 @@ class AssignOfficerController extends Controller
 
                 if (Auth::user()->employee->id == $department->role->assigned_officer->id) {
                     session()->flash('error', 'Cannot remove role for existing user.');
-                    return redirect(route('departments.index.blade.php'));
+                    return redirect(route('departments.index'));
                 }
                 $assigned_officer = $department->role->assigned_officer;
                 $assigned_officer->roles()->detach($department->role->id);
                 session()->flash('success', 'Removed Assigned Officer Successfuly.');
             }
-            return redirect(route('departments.index.blade.php'));
+            return redirect(route('departments.index'));
         } else {
             $employee = Employee::find($request->employee_id);
         }
@@ -35,12 +35,12 @@ class AssignOfficerController extends Controller
 
         if (!isset($employee)) {
             session()->flash('error', 'Cannot find the employee.');
-            return redirect(route('departments.index.blade.php'));
+            return redirect(route('departments.index'));
         }
 
         if (!isset($department)) {
             session()->flash('error', 'Cannot find the department.');
-            return redirect(route('departments.index.blade.php'));
+            return redirect(route('departments.index'));
         }
 
         $role_id = $department->role->id;
@@ -49,6 +49,6 @@ class AssignOfficerController extends Controller
         }
         $employee->roles()->attach($role_id);
         session()->flash('success', 'Officer Assigned Successfuly.');
-        return redirect(route('departments.index.blade.php'));
+        return redirect(route('departments.index'));
     }
 }

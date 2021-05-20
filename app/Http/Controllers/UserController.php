@@ -68,7 +68,7 @@ class UserController extends Controller
         }
 
         session()->flash('success', 'Account is created successfully.');
-        return redirect(route('users.index.blade.php'));
+        return redirect(route('users.index'));
     }
 
     /**

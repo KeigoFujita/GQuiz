@@ -84,7 +84,7 @@ class StudentController extends Controller
         // $student->save();
 
         session()->flash('success', 'Student added successfully.');
-        return redirect(route('students.index.blade.php'));
+        return redirect(route('students.index'));
     }
 
     /**
@@ -362,7 +362,7 @@ class StudentController extends Controller
         $student->save();
 
         session()->flash('success', 'Student deleted successfully.');
-        return redirect(route('students.index.blade.php'));
+        return redirect(route('students.index'));
     }
 
     public function my_classes(SchoolClass $schoolClass)
