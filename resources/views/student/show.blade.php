@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.student-app')
 
 @section('content')
     <div class="container-fluid p-5 main-content">
         @if (Auth::user()->role == 'employee' && Auth::user()->employee->is_teacher == false)
             <nav aria-label="breadcrumb" style="background-color:transparent;">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('students.index') }}" class="text-info">Students</a>
+                    <li class="breadcrumb-item"><a href="{{ route('students.index.blade.php') }}" class="text-info">Students</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $student->full_name }}</li>
                 </ol>
@@ -59,16 +59,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="clearance-tab" data-toggle="tab" href="#clearance" role="tab"
-                                aria-controls="clearance" aria-selected="false">
-                                @if (Auth::user()->role == 'student')
-                                    My Pending Quiz
-                                @else
-                                    Pending Quiz
-                                @endif
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="other-tab" data-toggle="tab" href="#other" role="tab"
                                 aria-controls="other" aria-selected="false">
                                 @if (Auth::user()->role == 'student')
@@ -83,40 +73,11 @@
 
                 {{-- Tab Content --}}
                 <div class="tab-content" id="myTabContent">
+
                     {{-- Classes --}}
-                    <div class="tab-pane fade show active" id="classes" role="tabpanel" aria-labelledby="classes-tab">
+                    @include('student.partials.classes')
 
-                        <h1 class="display-4 mt-3 mb-3 default-font" style="font-size:2rem;">
-                            @if (Auth::user()->role == 'student')
-                                My Classes
-                            @else
-                                Classes
-                            @endif
-                        </h1>
-
-
-                        <div class="container-fluid py-5 px-5 font-inter">
-
-                            <div class="w-100 card shadow-sm">
-                                <div class="card-header py-3"></div>
-                                <div class="card-body">
-                                    <img src="https://img.icons8.com/cotton/344/empty-box.png" class="d-block mx-auto mb-3"
-                                        alt="" style="width: 100px;">
-                                    <p class="text-center" style="font-size: 1.5rem;">You don't have any classes
-                                        yet!</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class="tab-pane fade" id="clearance" role="tabpanel" aria-labelledby="clearance-tab">
-
-                        Pending Quiz
-
-                    </div>
-                    {{-- Others --}}
+                    {{-- My Information --}}
                     <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
                         <table class="table table-bordered table-centered   table-hover shadow-sm custom-table">
                             <thead>
@@ -128,7 +89,7 @@
 
                                 <tr>
                                     <td scope="row" data-label="Name">Year Level</td>
-                                    
+                                    <td data-label="Year Level">{{ $student->grade_level == 1 ? '1st year' : '3rd year' }}</td>
                                 </tr>
 
                                 <tr>
@@ -137,16 +98,6 @@
                                         {{ $student->strand->strand_name . ' | ' . $student->strand->strand_description }}
                                     </td>
                                 </tr>
-
-                                {{-- <tr>
-                                    <td data-label="Name">Section</td>
-                                    <td data-label="Details"></td>
-                                </tr> --}}
-{{-- 
-                                <tr>
-                                    <td data-label="Name">Adviser</td>
-                                    <td data-label="Details"></td>
-                                </tr> --}}
 
                                 <tr>
                                     <td data-label="Name">Gender</td>
@@ -167,13 +118,6 @@
                                 <tr>
                                     <td data-label="Name">Last Name</td>
                                     <td data-label="Details">{{ $student->last_name }}</td>
-                                </tr>
-
-
-
-                                <tr>
-                                    <td data-label="Name">Subjects</td>
-                                    <td data-label="Details"></td>
                                 </tr>
 
                             </tbody>
@@ -272,6 +216,46 @@
                 border-bottom: 0;
             }
 
+        }
+
+    </style>
+    <style>
+        .title {
+            font-size: 3rem;
+            letter-spacing: -0.01ch;
+        }
+
+        .card-header a {
+            font-size: 2rem;
+            text-decoration: none;
+            color: white !important;
+            margin-bottom: 0;
+        }
+
+        .card-header i {
+            font-size: 1rem;
+            text-decoration: none;
+            color: white !important;
+        }
+
+        .card-header a:hover {
+            border-bottom: 2px solid white;
+            color: white !important;
+        }
+
+        .font-inter {
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .card-body .heading-text {
+            font-weight: 500;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .card-body .heading-label {
+            font-weight: 400;
+            color: black !important;
+            display: block;
         }
 
     </style>

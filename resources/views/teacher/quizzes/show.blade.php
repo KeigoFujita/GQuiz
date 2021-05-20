@@ -57,8 +57,8 @@
                         </a>
                         <a class="list-group-item list-group-item-action" id="list-scores-list" data-toggle="list"
                             href="#list-scores" role="tab" aria-controls="profile">
-                            <i class="fa fa-star mr-2" aria-hidden="true"></i>
-                            Scores
+                            <i class="fa fa-line-chart mr-2" aria-hidden="true"></i>
+                            Records
                         </a>
                         <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
                             href="#list-settings" role="tab" aria-controls="settings">

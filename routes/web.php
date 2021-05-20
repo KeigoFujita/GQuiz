@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/migrate',function(){
     Artisan::call('migrate:fresh --seed');
-    return redirect(route('dashboard.index'));
+    return redirect(route('dashboard.index.blade.php'));
 });
 
 Route::get('/', function () {
@@ -172,4 +172,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('quizzes/{quiz}/preview', 'QuizController@preview')->name('quizzes.preview');
 
     Route::get('search-term', 'QuizController@search_term')->name('search-term');
+
+    Route::get('my-classes/{schoolClass}','StudentController@my_classes')->name('students.my-classes');
+    Route::get('my-quizzes/{quiz}/take-quiz','StudentController@take_quiz')->name('students.take-quiz');
+    Route::post('my-quizzes/{quiz}/submit-quiz','StudentController@submit_quiz')->name('students.submit-quiz');
+    Route::post('my-quizzes/{quiz}/submit-quiz-radio','StudentController@submit_quiz_radio')->name('students.submit-quiz-radio');
 });

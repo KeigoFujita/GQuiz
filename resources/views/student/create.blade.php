@@ -6,7 +6,7 @@
     @if (Auth::user()->employee->isTeacher == false)
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('students.index') }}" class="text-info">Students</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('students.index.blade.php') }}" class="text-info">Students</a></li>
             <li class="breadcrumb-item active" aria-current="page">Add Student</li>
         </ol>
     </nav>
@@ -183,7 +183,7 @@
     }
 
     $(document).ready(function() {
-    
+
         getSections();
     $("#grade_level").click(function() {
         old_section = '-1';

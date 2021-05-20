@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -20,7 +21,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Redirector
      */
     public function index()
     {
@@ -31,6 +32,6 @@ class HomeController extends Controller
             return redirect(route('teachers.my-classes'));
         }
 
-        return redirect(route('dashboard.index'));
+        return redirect(route('dashboard.index.blade.php'));
     }
 }

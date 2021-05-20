@@ -88,7 +88,7 @@
 
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
-  !*** ./node_modules/axios/index.js ***!
+  !*** ./node_modules/axios/index.blade.php.js ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1759,7 +1759,7 @@ function isStandardBrowserEnv() {
  * Iterate over an Array or an Object invoking a function for each item.
  *
  * If `obj` is an Array callback will be called passing
- * the value, index, and complete array for each item.
+ * the value, index.blade.php, and complete array for each item.
  *
  * If 'obj' is an Object callback will be called passing
  * the value, key, and complete object for each property.
@@ -8185,7 +8185,7 @@ Expr = Sizzle.selectors = {
 				// advance to the next closing parenthesis
 				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
 
-				// excess is a negative index
+				// excess is a negative index.blade.php
 				match[0] = match[0].slice( 0, excess );
 				match[2] = unquoted.slice( 0, excess );
 			}
@@ -8285,7 +8285,7 @@ Expr = Sizzle.selectors = {
 						// non-xml :nth-child(...) stores cache data on `parent`
 						if ( forward && useCache ) {
 
-							// Seek `elem` from a previously-cached index
+							// Seek `elem` from a previously-cached index.blade.php
 
 							// ...in a gzip-friendly way
 							node = parent;
@@ -8314,7 +8314,7 @@ Expr = Sizzle.selectors = {
 							}
 
 						} else {
-							// Use previously-cached element index if available
+							// Use previously-cached element index.blade.php if available
 							if ( useCache ) {
 								// ...in a gzip-friendly way
 								node = elem;
@@ -8342,7 +8342,7 @@ Expr = Sizzle.selectors = {
 										node.nodeType === 1 ) &&
 										++diff ) {
 
-										// Cache the index of each encountered element
+										// Cache the index.blade.php of each encountered element
 										if ( useCache ) {
 											outerCache = node[ expando ] || (node[ expando ] = {});
 
@@ -9041,7 +9041,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 						}
 					}
 
-					// Discard index placeholder values to get only actual matches
+					// Discard index.blade.php placeholder values to get only actual matches
 					setMatched = condense( setMatched );
 				}
 
@@ -9567,7 +9567,7 @@ jQuery.fn.extend( {
 	// Determine the position of an element within the set
 	index: function( elem ) {
 
-		// No argument, return index in parent
+		// No argument, return index.blade.php in parent
 		if ( !elem ) {
 			return ( this[ 0 ] && this[ 0 ].parentNode ) ? this.first().prevAll().length : -1;
 		}
@@ -9958,7 +9958,7 @@ jQuery.extend( {
 		var tuples = [
 
 				// action, add listener, callbacks,
-				// ... .then handlers, argument index, [final state]
+				// ... .then handlers, argument index.blade.php, [final state]
 				[ "notify", "progress", jQuery.Callbacks( "memory" ),
 					jQuery.Callbacks( "memory" ), 2 ],
 				[ "resolve", "done", jQuery.Callbacks( "once memory" ),
@@ -13747,7 +13747,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ name ];
 
 			// Not quite $.extend, this won't overwrite existing keys.
-			// Reusing 'index' because we have the correct "name"
+			// Reusing 'index.blade.php' because we have the correct "name"
 			for ( index in value ) {
 				if ( !( index in props ) ) {
 					props[ index ] = value[ index ];
@@ -15121,7 +15121,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 			} else {
 
-				// Item is non-scalar (array or object), encode its numeric index.
+				// Item is non-scalar (array or object), encode its numeric index.blade.php.
 				buildParams(
 					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
 					v,
@@ -17152,7 +17152,7 @@ return jQuery;
       MAX_INTEGER = 1.7976931348623157e+308,
       NAN = 0 / 0;
 
-  /** Used as references for the maximum length and index of an array. */
+  /** Used as references for the maximum length and index.blade.php of an array. */
   var MAX_ARRAY_LENGTH = 4294967295,
       MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
       HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
@@ -17670,7 +17670,7 @@ return jQuery;
 
   /**
    * A specialized version of `_.includes` for arrays without support for
-   * specifying an index to search from.
+   * specifying an index.blade.php to search from.
    *
    * @private
    * @param {Array} [array] The array to inspect.
@@ -17872,9 +17872,9 @@ return jQuery;
    * @private
    * @param {Array} array The array to inspect.
    * @param {Function} predicate The function invoked per iteration.
-   * @param {number} fromIndex The index to search from.
+   * @param {number} fromIndex The index.blade.php to search from.
    * @param {boolean} [fromRight] Specify iterating from right to left.
-   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
    */
   function baseFindIndex(array, predicate, fromIndex, fromRight) {
     var length = array.length,
@@ -17894,8 +17894,8 @@ return jQuery;
    * @private
    * @param {Array} array The array to inspect.
    * @param {*} value The value to search for.
-   * @param {number} fromIndex The index to search from.
-   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @param {number} fromIndex The index.blade.php to search from.
+   * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
    */
   function baseIndexOf(array, value, fromIndex) {
     return value === value
@@ -17909,9 +17909,9 @@ return jQuery;
    * @private
    * @param {Array} array The array to inspect.
    * @param {*} value The value to search for.
-   * @param {number} fromIndex The index to search from.
+   * @param {number} fromIndex The index.blade.php to search from.
    * @param {Function} comparator The comparator invoked per element.
-   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
    */
   function baseIndexOfWith(array, value, fromIndex, comparator) {
     var index = fromIndex - 1,
@@ -18117,13 +18117,13 @@ return jQuery;
   }
 
   /**
-   * Used by `_.trim` and `_.trimStart` to get the index of the first string symbol
+   * Used by `_.trim` and `_.trimStart` to get the index.blade.php of the first string symbol
    * that is not found in the character symbols.
    *
    * @private
    * @param {Array} strSymbols The string symbols to inspect.
    * @param {Array} chrSymbols The character symbols to find.
-   * @returns {number} Returns the index of the first unmatched string symbol.
+   * @returns {number} Returns the index.blade.php of the first unmatched string symbol.
    */
   function charsStartIndex(strSymbols, chrSymbols) {
     var index = -1,
@@ -18134,13 +18134,13 @@ return jQuery;
   }
 
   /**
-   * Used by `_.trim` and `_.trimEnd` to get the index of the last string symbol
+   * Used by `_.trim` and `_.trimEnd` to get the index.blade.php of the last string symbol
    * that is not found in the character symbols.
    *
    * @private
    * @param {Array} strSymbols The string symbols to inspect.
    * @param {Array} chrSymbols The character symbols to find.
-   * @returns {number} Returns the index of the last unmatched string symbol.
+   * @returns {number} Returns the index.blade.php of the last unmatched string symbol.
    */
   function charsEndIndex(strSymbols, chrSymbols) {
     var index = strSymbols.length;
@@ -18347,8 +18347,8 @@ return jQuery;
    * @private
    * @param {Array} array The array to inspect.
    * @param {*} value The value to search for.
-   * @param {number} fromIndex The index to search from.
-   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @param {number} fromIndex The index.blade.php to search from.
+   * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
    */
   function strictIndexOf(array, value, fromIndex) {
     var index = fromIndex - 1,
@@ -18369,8 +18369,8 @@ return jQuery;
    * @private
    * @param {Array} array The array to inspect.
    * @param {*} value The value to search for.
-   * @param {number} fromIndex The index to search from.
-   * @returns {number} Returns the index of the matched value, else `-1`.
+   * @param {number} fromIndex The index.blade.php to search from.
+   * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
    */
   function strictLastIndexOf(array, value, fromIndex) {
     var index = fromIndex + 1;
@@ -19476,11 +19476,11 @@ return jQuery;
             !(skipIndexes && (
                // Safari 9 has enumerable `arguments.length` in strict mode.
                key == 'length' ||
-               // Node.js 0.10 has enumerable non-index properties on buffers.
+               // Node.js 0.10 has enumerable non-index.blade.php properties on buffers.
                (isBuff && (key == 'offset' || key == 'parent')) ||
-               // PhantomJS 2 has enumerable non-index properties on typed arrays.
+               // PhantomJS 2 has enumerable non-index.blade.php properties on typed arrays.
                (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
-               // Skip index properties.
+               // Skip index.blade.php properties.
                isIndex(key, length)
             ))) {
           result.push(key);
@@ -19559,12 +19559,12 @@ return jQuery;
     }
 
     /**
-     * Gets the index at which the `key` is found in `array` of key-value pairs.
+     * Gets the index.blade.php at which the `key` is found in `array` of key-value pairs.
      *
      * @private
      * @param {Array} array The array to inspect.
      * @param {*} key The key to search for.
-     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
      */
     function assocIndexOf(array, key) {
       var length = array.length;
@@ -20670,7 +20670,7 @@ return jQuery;
      * @private
      * @param {Object} object The destination object.
      * @param {Object} source The source object.
-     * @param {number} srcIndex The index of `source`.
+     * @param {number} srcIndex The index.blade.php of `source`.
      * @param {Function} [customizer] The function to customize merged values.
      * @param {Object} [stack] Tracks traversed source values and their merged
      *  counterparts.
@@ -20706,7 +20706,7 @@ return jQuery;
      * @param {Object} object The destination object.
      * @param {Object} source The source object.
      * @param {string} key The key of the value to merge.
-     * @param {number} srcIndex The index of `source`.
+     * @param {number} srcIndex The index.blade.php of `source`.
      * @param {Function} mergeFunc The function to merge values.
      * @param {Function} [customizer] The function to customize assigned values.
      * @param {Object} [stack] Tracks traversed source values and their merged
@@ -20779,7 +20779,7 @@ return jQuery;
      *
      * @private
      * @param {Array} array The array to query.
-     * @param {number} n The index of the element to return.
+     * @param {number} n The index.blade.php of the element to return.
      * @returns {*} Returns the nth element of `array`.
      */
     function baseNth(array, n) {
@@ -21166,14 +21166,14 @@ return jQuery;
 
     /**
      * The base implementation of `_.sortedIndex` and `_.sortedLastIndex` which
-     * performs a binary search of `array` to determine the index at which `value`
+     * performs a binary search of `array` to determine the index.blade.php at which `value`
      * should be inserted into `array` in order to maintain its sort order.
      *
      * @private
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
-     * @param {boolean} [retHighest] Specify returning the highest qualified index.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @param {boolean} [retHighest] Specify returning the highest qualified index.blade.php.
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      */
     function baseSortedIndex(array, value, retHighest) {
@@ -21206,8 +21206,8 @@ return jQuery;
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @param {Function} iteratee The iteratee invoked per element.
-     * @param {boolean} [retHighest] Specify returning the highest qualified index.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @param {boolean} [retHighest] Specify returning the highest qualified index.blade.php.
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      */
     function baseSortedIndexBy(array, value, iteratee, retHighest) {
@@ -22127,7 +22127,7 @@ return jQuery;
      * Creates a `_.find` or `_.findLast` function.
      *
      * @private
-     * @param {Function} findIndexFunc The function to find the collection index.
+     * @param {Function} findIndexFunc The function to find the collection index.blade.php.
      * @returns {Function} Returns the new find function.
      */
     function createFind(findIndexFunc) {
@@ -22712,7 +22712,7 @@ return jQuery;
       stack.set(array, other);
       stack.set(other, array);
 
-      // Ignore non-index properties.
+      // Ignore non-index.blade.php properties.
       while (++index < arrLength) {
         var arrValue = array[index],
             othValue = other[index];
@@ -23332,12 +23332,12 @@ return jQuery;
     }
 
     /**
-     * Checks if `value` is a valid array-like index.
+     * Checks if `value` is a valid array-like index.blade.php.
      *
      * @private
      * @param {*} value The value to check.
-     * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-     * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+     * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.blade.php.
+     * @returns {boolean} Returns `true` if `value` is a valid index.blade.php, else `false`.
      */
     function isIndex(value, length) {
       var type = typeof value;
@@ -23354,7 +23354,7 @@ return jQuery;
      *
      * @private
      * @param {*} value The potential iteratee value argument.
-     * @param {*} index The potential iteratee index or key argument.
+     * @param {*} index The potential iteratee index.blade.php or key argument.
      * @param {*} object The potential iteratee object argument.
      * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
      *  else `false`.
@@ -23660,8 +23660,8 @@ return jQuery;
 
     /**
      * Reorder `array` according to the specified indexes where the element at
-     * the first index is assigned as the first element, the element at
-     * the second index is assigned as the second element, and so on.
+     * the first index.blade.php is assigned as the first element, the element at
+     * the second index.blade.php is assigned as the second element, and so on.
      *
      * @private
      * @param {Array} array The array to reorder.
@@ -24173,7 +24173,7 @@ return jQuery;
     /**
      * Creates a slice of `array` excluding elements dropped from the end.
      * Elements are dropped until `predicate` returns falsey. The predicate is
-     * invoked with three arguments: (value, index, array).
+     * invoked with three arguments: (value, index.blade.php, array).
      *
      * @static
      * @memberOf _
@@ -24214,7 +24214,7 @@ return jQuery;
     /**
      * Creates a slice of `array` excluding elements dropped from the beginning.
      * Elements are dropped until `predicate` returns falsey. The predicate is
-     * invoked with three arguments: (value, index, array).
+     * invoked with three arguments: (value, index.blade.php, array).
      *
      * @static
      * @memberOf _
@@ -24294,7 +24294,7 @@ return jQuery;
     }
 
     /**
-     * This method is like `_.find` except that it returns the index of the first
+     * This method is like `_.find` except that it returns the index.blade.php of the first
      * element `predicate` returns truthy for instead of the element itself.
      *
      * @static
@@ -24303,8 +24303,8 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @param {number} [fromIndex=0] The index to search from.
-     * @returns {number} Returns the index of the found element, else `-1`.
+     * @param {number} [fromIndex=0] The index.blade.php to search from.
+     * @returns {number} Returns the index.blade.php of the found element, else `-1`.
      * @example
      *
      * var users = [
@@ -24350,8 +24350,8 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @param {number} [fromIndex=array.length-1] The index to search from.
-     * @returns {number} Returns the index of the found element, else `-1`.
+     * @param {number} [fromIndex=array.length-1] The index.blade.php to search from.
+     * @returns {number} Returns the index.blade.php of the found element, else `-1`.
      * @example
      *
      * var users = [
@@ -24507,7 +24507,7 @@ return jQuery;
     }
 
     /**
-     * Gets the index at which the first occurrence of `value` is found in `array`
+     * Gets the index.blade.php at which the first occurrence of `value` is found in `array`
      * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
      * for equality comparisons. If `fromIndex` is negative, it's used as the
      * offset from the end of `array`.
@@ -24518,8 +24518,8 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
-     * @param {number} [fromIndex=0] The index to search from.
-     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @param {number} [fromIndex=0] The index.blade.php to search from.
+     * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
      * @example
      *
      * _.indexOf([1, 2, 1, 2], 2);
@@ -24703,8 +24703,8 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
-     * @param {number} [fromIndex=array.length-1] The index to search from.
-     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @param {number} [fromIndex=array.length-1] The index.blade.php to search from.
+     * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
      * @example
      *
      * _.lastIndexOf([1, 2, 1, 2], 2);
@@ -24730,7 +24730,7 @@ return jQuery;
     }
 
     /**
-     * Gets the element at index `n` of `array`. If `n` is negative, the nth
+     * Gets the element at index.blade.php `n` of `array`. If `n` is negative, the nth
      * element from the end is returned.
      *
      * @static
@@ -24738,7 +24738,7 @@ return jQuery;
      * @since 4.11.0
      * @category Array
      * @param {Array} array The array to query.
-     * @param {number} [n=0] The index of the element to return.
+     * @param {number} [n=0] The index.blade.php of the element to return.
      * @returns {*} Returns the nth element of `array`.
      * @example
      *
@@ -24901,7 +24901,7 @@ return jQuery;
     /**
      * Removes all elements from `array` that `predicate` returns truthy for
      * and returns an array of the removed elements. The predicate is invoked
-     * with three arguments: (value, index, array).
+     * with three arguments: (value, index.blade.php, array).
      *
      * **Note:** Unlike `_.filter`, this method mutates `array`. Use `_.pull`
      * to pull elements from an array by value.
@@ -25007,7 +25007,7 @@ return jQuery;
     }
 
     /**
-     * Uses a binary search to determine the lowest index at which `value`
+     * Uses a binary search to determine the lowest index.blade.php at which `value`
      * should be inserted into `array` in order to maintain its sort order.
      *
      * @static
@@ -25016,7 +25016,7 @@ return jQuery;
      * @category Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      * @example
      *
@@ -25039,7 +25039,7 @@ return jQuery;
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      * @example
      *
@@ -25066,7 +25066,7 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
-     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
      * @example
      *
      * _.sortedIndexOf([4, 5, 5, 5, 6], 5);
@@ -25085,7 +25085,7 @@ return jQuery;
 
     /**
      * This method is like `_.sortedIndex` except that it returns the highest
-     * index at which `value` should be inserted into `array` in order to
+     * index.blade.php at which `value` should be inserted into `array` in order to
      * maintain its sort order.
      *
      * @static
@@ -25094,7 +25094,7 @@ return jQuery;
      * @category Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      * @example
      *
@@ -25117,7 +25117,7 @@ return jQuery;
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
-     * @returns {number} Returns the index at which `value` should be inserted
+     * @returns {number} Returns the index.blade.php at which `value` should be inserted
      *  into `array`.
      * @example
      *
@@ -25144,7 +25144,7 @@ return jQuery;
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
-     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @returns {number} Returns the index.blade.php of the matched value, else `-1`.
      * @example
      *
      * _.sortedLastIndexOf([4, 5, 5, 5, 6], 5);
@@ -25294,7 +25294,7 @@ return jQuery;
     /**
      * Creates a slice of `array` with elements taken from the end. Elements are
      * taken until `predicate` returns falsey. The predicate is invoked with
-     * three arguments: (value, index, array).
+     * three arguments: (value, index.blade.php, array).
      *
      * @static
      * @memberOf _
@@ -25335,7 +25335,7 @@ return jQuery;
     /**
      * Creates a slice of `array` with elements taken from the beginning. Elements
      * are taken until `predicate` returns falsey. The predicate is invoked with
-     * three arguments: (value, index, array).
+     * three arguments: (value, index.blade.php, array).
      *
      * @static
      * @memberOf _
@@ -26167,7 +26167,7 @@ return jQuery;
     /**
      * Checks if `predicate` returns truthy for **all** elements of `collection`.
      * Iteration is stopped once `predicate` returns falsey. The predicate is
-     * invoked with three arguments: (value, index|key, collection).
+     * invoked with three arguments: (value, index.blade.php|key, collection).
      *
      * **Note:** This method returns `true` for
      * [empty collections](https://en.wikipedia.org/wiki/Empty_set) because
@@ -26216,7 +26216,7 @@ return jQuery;
     /**
      * Iterates over elements of `collection`, returning an array of all elements
      * `predicate` returns truthy for. The predicate is invoked with three
-     * arguments: (value, index|key, collection).
+     * arguments: (value, index.blade.php|key, collection).
      *
      * **Note:** Unlike `_.remove`, this method returns a new array.
      *
@@ -26258,7 +26258,7 @@ return jQuery;
     /**
      * Iterates over elements of `collection`, returning the first element
      * `predicate` returns truthy for. The predicate is invoked with three
-     * arguments: (value, index|key, collection).
+     * arguments: (value, index.blade.php|key, collection).
      *
      * @static
      * @memberOf _
@@ -26266,7 +26266,7 @@ return jQuery;
      * @category Collection
      * @param {Array|Object} collection The collection to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @param {number} [fromIndex=0] The index to search from.
+     * @param {number} [fromIndex=0] The index.blade.php to search from.
      * @returns {*} Returns the matched element, else `undefined`.
      * @example
      *
@@ -26303,7 +26303,7 @@ return jQuery;
      * @category Collection
      * @param {Array|Object} collection The collection to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
-     * @param {number} [fromIndex=collection.length-1] The index to search from.
+     * @param {number} [fromIndex=collection.length-1] The index.blade.php to search from.
      * @returns {*} Returns the matched element, else `undefined`.
      * @example
      *
@@ -26317,7 +26317,7 @@ return jQuery;
     /**
      * Creates a flattened array of values by running each element in `collection`
      * thru `iteratee` and flattening the mapped results. The iteratee is invoked
-     * with three arguments: (value, index|key, collection).
+     * with three arguments: (value, index.blade.php|key, collection).
      *
      * @static
      * @memberOf _
@@ -26391,7 +26391,7 @@ return jQuery;
 
     /**
      * Iterates over elements of `collection` and invokes `iteratee` for each element.
-     * The iteratee is invoked with three arguments: (value, index|key, collection).
+     * The iteratee is invoked with three arguments: (value, index.blade.php|key, collection).
      * Iteratee functions may exit iteration early by explicitly returning `false`.
      *
      * **Note:** As with other "Collections" methods, objects with a "length"
@@ -26493,7 +26493,7 @@ return jQuery;
      * @category Collection
      * @param {Array|Object|string} collection The collection to inspect.
      * @param {*} value The value to search for.
-     * @param {number} [fromIndex=0] The index to search from.
+     * @param {number} [fromIndex=0] The index.blade.php to search from.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.reduce`.
      * @returns {boolean} Returns `true` if `value` is found, else `false`.
      * @example
@@ -26592,7 +26592,7 @@ return jQuery;
     /**
      * Creates an array of values by running each element in `collection` thru
      * `iteratee`. The iteratee is invoked with three arguments:
-     * (value, index|key, collection).
+     * (value, index.blade.php|key, collection).
      *
      * Many lodash methods are guarded to work as iteratees for methods like
      * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
@@ -26725,7 +26725,7 @@ return jQuery;
      * invocation is supplied the return value of the previous. If `accumulator`
      * is not given, the first element of `collection` is used as the initial
      * value. The iteratee is invoked with four arguments:
-     * (accumulator, value, index|key, collection).
+     * (accumulator, value, index.blade.php|key, collection).
      *
      * Many lodash methods are guarded to work as iteratees for methods like
      * `_.reduce`, `_.reduceRight`, and `_.transform`.
@@ -26938,7 +26938,7 @@ return jQuery;
     /**
      * Checks if `predicate` returns truthy for **any** element of `collection`.
      * Iteration is stopped once `predicate` returns truthy. The predicate is
-     * invoked with three arguments: (value, index|key, collection).
+     * invoked with three arguments: (value, index.blade.php|key, collection).
      *
      * @static
      * @memberOf _
@@ -27825,8 +27825,8 @@ return jQuery;
 
     /**
      * Creates a function that invokes `func` with arguments arranged according
-     * to the specified `indexes` where the argument value at the first index is
-     * provided as the first argument, the argument value at the second index is
+     * to the specified `indexes` where the argument value at the first index.blade.php is
+     * provided as the first argument, the argument value at the second index.blade.php is
      * provided as the second argument, and so on.
      *
      * @static
@@ -28116,7 +28116,7 @@ return jQuery;
      * This method is like `_.clone` except that it accepts `customizer` which
      * is invoked to produce the cloned value. If `customizer` returns `undefined`,
      * cloning is handled by the method instead. The `customizer` is invoked with
-     * up to four arguments; (value [, index|key, object, stack]).
+     * up to four arguments; (value [, index.blade.php|key, object, stack]).
      *
      * @static
      * @memberOf _
@@ -28618,7 +28618,7 @@ return jQuery;
      * This method is like `_.isEqual` except that it accepts `customizer` which
      * is invoked to compare values. If `customizer` returns `undefined`, comparisons
      * are handled by the method instead. The `customizer` is invoked with up to
-     * six arguments: (objValue, othValue [, index|key, object, other, stack]).
+     * six arguments: (objValue, othValue [, index.blade.php|key, object, other, stack]).
      *
      * @static
      * @memberOf _
@@ -28910,7 +28910,7 @@ return jQuery;
      * This method is like `_.isMatch` except that it accepts `customizer` which
      * is invoked to compare values. If `customizer` returns `undefined`, comparisons
      * are handled by the method instead. The `customizer` is invoked with five
-     * arguments: (objValue, srcValue, index|key, object, source).
+     * arguments: (objValue, srcValue, index.blade.php|key, object, source).
      *
      * @static
      * @memberOf _
@@ -30726,7 +30726,7 @@ return jQuery;
 
     /**
      * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
-     * it's created. Arrays are created for missing index properties while objects
+     * it's created. Arrays are created for missing index.blade.php properties while objects
      * are created for all other missing properties. Use `_.setWith` to customize
      * `path` creation.
      *
@@ -32844,14 +32844,14 @@ return jQuery;
     }
 
     /**
-     * Creates a function that gets the argument at index `n`. If `n` is negative,
+     * Creates a function that gets the argument at index.blade.php `n`. If `n` is negative,
      * the nth argument from the end is returned.
      *
      * @static
      * @memberOf _
      * @since 4.0.0
      * @category Util
-     * @param {number} [n=0] The index of the argument to return.
+     * @param {number} [n=0] The index.blade.php of the argument to return.
      * @returns {Function} Returns the new pass-thru function.
      * @example
      *
@@ -33173,7 +33173,7 @@ return jQuery;
 
     /**
      * Invokes the iteratee `n` times, returning an array of the results of
-     * each invocation. The iteratee is invoked with one argument; (index).
+     * each invocation. The iteratee is invoked with one argument; (index.blade.php).
      *
      * @static
      * @since 0.1.0
@@ -35048,7 +35048,7 @@ function find(arr, check) {
 }
 
 /**
- * Return the index of the matching object
+ * Return the index.blade.php of the matching object
  * @method
  * @memberof Popper.Utils
  * @argument {Array} arr
@@ -35945,7 +35945,7 @@ function toValue(str, measurement, popperOffsets, referenceOffsets) {
 function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
   var offsets = [0, 0];
 
-  // Use height if placement is left or right and index is 0 otherwise use width
+  // Use height if placement is left or right and index.blade.php is 0 otherwise use width
   // in this way the first offset will use an axis and the second one
   // will use the other one
   var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
@@ -37522,7 +37522,7 @@ function isRegExp (v) {
 }
 
 /**
- * Check if val is a valid array index.
+ * Check if val is a valid array index.blade.php.
  */
 function isValidArrayIndex (val) {
   var n = parseFloat(String(val));
@@ -37776,7 +37776,7 @@ function looseEqual (a, b) {
 }
 
 /**
- * Return the first index at which a loosely equal value can be
+ * Return the first index.blade.php at which a loosely equal value can be
  * found in the array (if value is a plain object, the array must
  * contain an object of the same shape), or -1 if it is not present.
  */
@@ -43981,7 +43981,7 @@ function createPatchFunction (backend) {
               // e.g. for directives that uses the "inserted" hook.
               var insert = ancestor.data.hook.insert;
               if (insert.merged) {
-                // start at index 1 to avoid re-invoking component mounted hook
+                // start at index.blade.php 1 to avoid re-invoking component mounted hook
                 for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
                   insert.fns[i$2]();
                 }
@@ -47427,7 +47427,7 @@ function processKey (el) {
         var parent = el.parent;
         if (iterator && iterator === exp && parent && parent.tag === 'transition-group') {
           warn$2(
-            "Do not use v-for index as key on <transition-group> children, " +
+            "Do not use v-for index.blade.php as key on <transition-group> children, " +
             "this is the same as not using keys.",
             getRawBindingAttr(el, 'key'),
             true /* tip */
@@ -49601,7 +49601,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49621,7 +49621,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

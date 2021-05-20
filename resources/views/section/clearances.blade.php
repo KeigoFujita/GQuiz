@@ -18,7 +18,7 @@
     @if (Auth::user()->role == 'employee' && Auth::user()->employee->is_teacher == false)
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('sections.index') }}" class="text-info">Sections</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('sections.index.blade.php') }}" class="text-info">Sections</a></li>
             <li class="breadcrumb-item"><a href="{{ route('sections.show',$section) }}"
                     class="text-info">{{ $section->section_name }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Clearances</li>
@@ -123,8 +123,8 @@
                             @else
                                 bg-danger
                             @endif
-                            
-                            
+
+
                             " clearance_id="{{ $student->adviser_clearance->id }}">
                                 <option value="complete" @if ($student->adviser_clearance->status == 'complete')
                                     selected
@@ -203,13 +203,13 @@
         });
      }
 
-     
+
 
      $("#checkAll").click(function(){
         //$('input:checkbox').prop('indeterminate', !checkedAll);
         $('input:checkbox').prop('checked',!checkedAll);
         checkedAll = !checkedAll;
-        
+
         if(checkedAll){
             $(this).text('Uncheck All')
         }else{

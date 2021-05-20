@@ -15,7 +15,7 @@
     @else
     <nav aria-label="breadcrumb" style="background-color:transparent;">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('departments.index') }}" class="text-info">Departments</a>
+            <li class="breadcrumb-item"><a href="{{ route('departments.index.blade.php') }}" class="text-info">Departments</a>
             </li>
             <li class="breadcrumb-item"><a href="{{ route('departments.edit',$requirement->department) }}"
                     class="text-info">{{$requirement->department->department_name}}</a>
@@ -76,7 +76,7 @@
                     <th width="13%">Actions</th>
                 </thead>
                 <tbody>
-    
+
                     @foreach ($department_clearances as $clearance)
                     <tr>
                         <td>
@@ -97,17 +97,17 @@
                         <td>{{ $clearance->student->last_name }}</td>
                         <td>{{ $clearance->student->gender == 'male' ? "Male" : "Female" }}</td>
                         <td>
-    
+
                             <div class="form-group my-0">
                                 <select class="form-control actions text-white form-control-sm
-    
+
                                 @if ($clearance->status == 'complete')
                                     bg-success
                                 @else
                                     bg-danger
                                 @endif
-                                
-                                
+
+
                                 " id="select_complete" clearance_id="{{ $clearance->id }}">
                                     <option value="complete" @if ($clearance->status == 'complete')
                                         selected
@@ -117,11 +117,11 @@
                                         @endif>Incomplete</option>
                                 </select>
                             </div>
-    
+
                         </td>
                     </tr>
                     @endforeach
-    
+
                 </tbody>
             </table>
         </div>
@@ -166,7 +166,7 @@
             performAjax(status,clearance_id);
 
         });
-        
+
     });
 
 
@@ -192,13 +192,13 @@
         });
      }
 
-     
+
 
      $("#checkAll").click(function(){
         //$('input:checkbox').prop('indeterminate', !checkedAll);
         $('input:checkbox').prop('checked',!checkedAll);
         checkedAll = !checkedAll;
-        
+
         if(checkedAll){
             $(this).text('Uncheck All')
         }else{

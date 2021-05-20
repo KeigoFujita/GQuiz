@@ -24,14 +24,14 @@ class UsersTableSeeder extends Seeder
 
             User::create([
                 'name' => 'N/A',
-                'email' => 'matt@gmail.com',
-                'password' => Hash::make('matt12345')
+                'email' => 'jewel@gmail.com',
+                'password' => Hash::make('jewel12345')
             ]);
 
             User::create([
                 'name' => 'N/A',
                 'email' => 'irish@gmail.com',
-                'password' => Hash::make('irish1234'),  
+                'password' => Hash::make('irish1234'),
                 'role' => 'student'
             ]);
         }

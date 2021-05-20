@@ -23,7 +23,7 @@ class StudentSeeder extends Seeder
         $faker = Faker::create();
         $sections = Section::select('id','strand_id')->inRandomOrder()->get();
 
-        for ($i=1; $i <=478; $i++) { 
+        for ($i=1; $i <=478; $i++) {
             $section = $faker->randomElement($sections);
             array_push($students,[
                 'lrn' => $faker->unique()->numerify($string = '############'),
@@ -36,7 +36,7 @@ class StudentSeeder extends Seeder
                 'strand_id'=> $section->strand->id
             ]);
         }
-        
+
         Student::insert($students);
 
         Student::create([
@@ -47,7 +47,8 @@ class StudentSeeder extends Seeder
             'last_name' => 'Aspillaga',
             'gender' => 'female',
             'section_id'=> $section->id,
-            'strand_id'=> $section->strand->id
+            'strand_id'=> $section->strand->id,
+            'user_id' => 3
         ]);
 
         // $student = Student::create([
@@ -883,7 +884,7 @@ class StudentSeeder extends Seeder
         // ]);
 
 
-       
+
 
     }
 }

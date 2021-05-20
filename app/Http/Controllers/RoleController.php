@@ -55,7 +55,7 @@ class RoleController extends Controller
         ]);
 
         session()->flash('success', 'Role added successfully.');
-        return redirect(route('roles.index'));
+        return redirect(route('roles.index.blade.php'));
     }
 
     /**
@@ -104,7 +104,7 @@ class RoleController extends Controller
         $role->save();
 
         session()->flash('success', 'Role updated successfully.');
-        return redirect(route('roles.index'));
+        return redirect(route('roles.index.blade.php'));
     }
 
     /**
@@ -117,11 +117,11 @@ class RoleController extends Controller
     {
         if ($role->employees()->count() > 0) {
             session()->flash('error', 'Cannot delete role that is used.');
-            return redirect(route('roles.index'));
+            return redirect(route('roles.index.blade.php'));
         } else {
             $role->delete();
             session()->flash('success', 'Role deleted successfully.');
-            return redirect(route('roles.index'));
+            return redirect(route('roles.index.blade.php'));
         }
     }
 }

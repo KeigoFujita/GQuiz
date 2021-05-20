@@ -57,7 +57,7 @@ class DepartmentController extends Controller
         ]);
 
         session()->flash('success', 'Department created successfully.');
-        return redirect(route('departments.index'));
+        return redirect(route('departments.index.blade.php'));
     }
 
     /**
@@ -96,7 +96,7 @@ class DepartmentController extends Controller
         $department->save();
 
         session()->flash('success', 'Department updated successfully.');
-        return redirect(route('departments.index'));
+        return redirect(route('departments.index.blade.php'));
     }
 
     /**
@@ -111,11 +111,11 @@ class DepartmentController extends Controller
 
         if ($department->role()->count() > 0) {
             session()->flash('error', 'Cannot delete department that is used.');
-            return redirect(route('departments.index'));
+            return redirect(route('departments.index.blade.php'));
         } else {
             $department->delete();
             session()->flash('success', 'Department deleted successfully.');
-            return redirect(route('departments.index'));
+            return redirect(route('departments.index.blade.php'));
         }
     }
 

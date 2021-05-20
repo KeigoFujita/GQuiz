@@ -9,15 +9,24 @@ use App\DepartmentClearance;
 use App\DepartmentRequirement;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
+use App\Http\Requests\SubmitQuizFormRequest;
+use App\Item;
+use App\Quiz;
 use App\Role;
+use App\SchoolClass;
 use App\Section;
 use App\Strand;
 use App\Student;
 use Facade\FlareClient\Http\Response;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
 
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class StudentController extends Controller
 {
@@ -75,26 +84,25 @@ class StudentController extends Controller
         // $student->save();
 
         session()->flash('success', 'Student added successfully.');
-        return redirect(route('students.index'));
+        return redirect(route('students.index.blade.php'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @param Student $student
+     * @return View
      */
-    public function show(Student $student)
+    public function show(Student $student) : View
     {
 
         $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
-        $rand_color = $colors[array_rand($colors)];
 
         return view('student.show')->with([
             'student' => $student,
-            'class_clearances' => [],
-            'department_clearances' => [],
-            'color' => $rand_color
+            'classes' => $student->classes,
+            'colors' => $colors
         ]);
     }
 
@@ -135,9 +143,9 @@ class StudentController extends Controller
         return redirect(route('students.edit', $student));
     }
 
-    
+
     public function clearance(Student $student)
-    {   
+    {
         $department_clearances = Department::with('role')->get()->except(1)->map(function($department) use ($student){
             $department_requirements = DepartmentRequirement::where('department_id',$department->id)->get();
             $department_requirements->map(function($requirement) use ($student, $department){
@@ -159,7 +167,7 @@ class StudentController extends Controller
             }
             return $department;
         });
-        
+
         $adviser_clearance = AdviserClearance::where('student_id',$student->id)->first();
 
         $subject_clearances = $student->section->school_classes->map(function($class) use ($student){
@@ -199,7 +207,7 @@ class StudentController extends Controller
     }
 
     public function clearanceToPDF(Student $student)
-    {   
+    {
         $department_clearances = Department::with('role')->get()->except(1)->map(function($department) use ($student){
             $department_requirements = DepartmentRequirement::where('department_id',$department->id)->get();
             $department_requirements->map(function($requirement) use ($student, $department){
@@ -221,9 +229,9 @@ class StudentController extends Controller
             }
             return $department;
         });
-        
+
         $adviser_clearance = AdviserClearance::where('student_id',$student->id)->first();
-        
+
         $subject_clearances = $student->section->school_classes->map(function($class) use ($student){
             $requirements = $class->class_requirements;
             $requirements->each(function($requirement) use ($class, $student){
@@ -251,7 +259,7 @@ class StudentController extends Controller
         if(isset($registrar)){
             $registrar_name = $registrar->assigned_officer->full_name;
         }
-        
+
          $pdf = PDF::loadView('student.clearance-pdf',[
              'student'=>$student,
              'department_clearances'=>$department_clearances,
@@ -264,7 +272,7 @@ class StudentController extends Controller
     }
 
     public function printClearance(Student $student)
-    {   
+    {
         $department_clearances = Department::with('role')->get()->except(1)->map(function($department) use ($student){
             $department_requirements = DepartmentRequirement::where('department_id',$department->id)->get();
             $department_requirements->map(function($requirement) use ($student, $department){
@@ -286,7 +294,7 @@ class StudentController extends Controller
             }
             return $department;
         });
-        
+
         $adviser_clearance = AdviserClearance::where('student_id',$student->id)->first();
 
         $subject_clearances = $student->section->school_classes->map(function($class) use ($student){
@@ -317,7 +325,7 @@ class StudentController extends Controller
         if(isset($registrar)){
             $registrar_name = $registrar->assigned_officer->full_name;
         }
-        
+
          $pdf = PDF::loadView('student.clearance-pdf',[
              'student'=>$student,
              'department_clearances'=>$department_clearances,
@@ -352,8 +360,114 @@ class StudentController extends Controller
     {
         $student->status = 'dropped';
         $student->save();
-        
+
         session()->flash('success', 'Student deleted successfully.');
-        return redirect(route('students.index'));
+        return redirect(route('students.index.blade.php'));
+    }
+
+    public function my_classes(SchoolClass $schoolClass)
+    {
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        $quizzes = $schoolClass->quizzes()->where('status','active')->get();
+        $members = $schoolClass->students;
+
+        return view('student.my_classes.index',[
+           'class'=>$schoolClass,
+           'colors'=>$colors,
+           'quizzes'=>$quizzes,
+           'members'=> $members
+        ]);
+    }
+
+    public function take_quiz(Quiz $quiz)
+    {
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        $items = $quiz->items()->inRandomOrder()->get();
+
+        if($quiz->is_expired){
+            session()->flash('danger', 'This quiz has expired. Please contact your professor for more info');
+            return redirect(route('students.my-classes', $quiz->schoolClass));
+        }
+
+        if(Auth::user()->student->quizzes->contains('id',$quiz->id)){
+            session()->flash('danger', 'You already take this quiz!');
+            return redirect(route('students.my-classes', $quiz->schoolClass));
+        }
+
+        if($quiz->type === "enumeration"){
+            return view('quizzes.take-quiz.enumeration')
+                ->with('quiz',$quiz)
+                ->with('items',$items)
+                ->with('colors',$colors);
+        }else{
+
+            $questions = $items->map(function($item) use ($items){
+                $answer = $item->term;
+                $id = $item->id;
+                $choices = $items->filter(function($item) use ($answer){
+                    return $item->term !== $answer;
+                })->pluck('term')
+                    ->shuffle()
+                    ->take(3)
+                    ->add($answer)
+                    ->shuffle()
+                    ->toArray();
+                return [
+                    'question'=> $item->definition,
+                    'choices'=> $choices,
+                    'answer'=> $answer,
+                    'id'=> $id,
+                ];
+            });
+
+            return view('quizzes.take-quiz.multiple_choice')
+                ->with('quiz',$quiz)
+                ->with('questions',$questions)
+                ->with('colors',$colors);
+        }
+    }
+
+    public function submit_quiz(SubmitQuizFormRequest $request, Quiz $quiz)
+    {
+        $score = 0;
+        foreach ($request->input('ids') as $index => $id){
+            $item = Item::findOrFail($id);
+            $answer = $item->term;
+            $student_answer = $request->input('answers')[$index];
+            if(Str::lower($student_answer) === Str::lower($answer)){
+                $score++;
+            }
+        }
+        $student = Auth::user()->student;
+        $student->quizzes()->attach($quiz->id,[
+            'score' => $score
+        ]);
+
+        session()->flash('success', 'Thank you for your response.');
+        return redirect(route('students.my-classes', $quiz->schoolClass));
+    }
+
+    public function submit_quiz_radio(Request $request, Quiz $quiz)
+    {
+        $request->validate([
+            'answers'=> 'required|array|between:'.$quiz->items->count().','.$quiz->items->count()
+        ]);
+
+        $score = 0;
+        foreach ($request->input('ids') as $index => $id){
+            $item = Item::findOrFail($id);
+            $answer = $item->term;
+            $student_answer = $request->input('answers')[$index];
+            if(Str::lower($student_answer) === Str::lower($answer)){
+                $score++;
+            }
+        }
+        $student = Auth::user()->student;
+        $student->quizzes()->attach($quiz->id,[
+            'score' => $score
+        ]);
+
+        session()->flash('success', 'Thank you for your response.');
+        return redirect(route('students.my-classes', $quiz->schoolClass));
     }
 }

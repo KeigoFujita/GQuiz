@@ -64,12 +64,12 @@ class EmployeeController extends Controller
             'mobile_number' => $request->mobile_number,
             'gender' => $request->gender
         ]);
-        
-        $teacher_role = Role::where('role_name','teacher')->first();        
+
+        $teacher_role = Role::where('role_name','teacher')->first();
         $employee->roles()->attach([$teacher_role->id]);
-        
+
         session()->flash('success', 'Teacher added successfully.');
-        return redirect(route('teachers.index'));
+        return redirect(route('teachers.index.blade.php'));
     }
 
     /**
@@ -110,7 +110,7 @@ class EmployeeController extends Controller
         $employee->save();
 
         session()->flash('success', 'Teacher updated successfully.');
-        return redirect(route('teachers.index'));
+        return redirect(route('teachers.index.blade.php'));
     }
 
     /**
@@ -123,8 +123,8 @@ class EmployeeController extends Controller
     {
         $employee->status = 'inactive';
         $employee->save();
-        
+
         session()->flash('success', 'Teacher deleted successfully.');
-        return redirect(route('teachers.index'));
+        return redirect(route('teachers.index.blade.php'));
     }
 }
