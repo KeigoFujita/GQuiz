@@ -142,16 +142,16 @@
                             </div>
                         @else
 
-                            <a href="{{ route('login') }}" class="btn btn-outline-dark   "
+                            <a href="{{ url('/login/admin') }}" class="btn btn-outline-dark   "
                                 style="font-famiy: Rounded MT Bold; font-size:20px; color: gray"> I am Admin
                             </a>
 
-                            <a href="{{ route('login') }}" class="btn btn-outline-dark  "
+                            <a href="{{ url('/login/teacher') }}" class="btn btn-outline-dark  "
                                 style="font-famiy: Rounded MT Bold;margin-left:5px; font-size:20px; color:gray">I'am
                                 Teacher
                             </a>
 
-                            <a href="{{ route('login') }}" class="btn btn-outline-dark "
+                            <a href="{{ url('/login/student') }}" class="btn btn-outline-dark "
                                 style="font-famiy: Rounded MT Bold; margin-left:5px; font-size:20px;  color:gray">I am
                                 Student
                             </a>
@@ -351,15 +351,15 @@
     </p>
 
     <p class="default-font display-1 mb-5"
-        style=" font-size:30px;margin-top: 0px;margin-left: 500px; margin-right: 200px;family-font:arial">
+        style=" font-size:30px;margin-top: 0px;margin-left: 550px; margin-right: 200px;family-font:arial">
         Ready to start getting better results?
     </p>
 
-    <a href="{{ route('login') }}" class="btn btn-outline-dark "
-        style="font-famiy: Rounded MT Bold; font-size:20px;margin-left: 650px;  color:gray">Go started
+    <a href="https://gardner.edu.ph/" target="_new" class="btn btn-outline-dark "
+        style="font-famiy: Rounded MT Bold; font-size:20px;margin-left: 700px;  color:gray">Enroll Now!
     </a>
 
-    ...
+
     <style>
         .owl-carousel .item {
             height: 18rem;
@@ -401,7 +401,7 @@
         })
 
     </script>
-    ...
+
 
     <div class="owl-carousel owl-theme mt-5">
         <div class="item">

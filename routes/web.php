@@ -25,6 +25,20 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
+Route::get('/login/admin',function(){
+    return view('auth.login_admin');
+
+});
+
+Route::get('/login/student',function(){
+    return view('auth.login_student');
+
+});
+
+Route::get('/login/teacher',function(){
+    return view('auth.login_teacher');
+
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
