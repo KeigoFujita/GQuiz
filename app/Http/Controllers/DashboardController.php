@@ -46,11 +46,11 @@ class DashboardController extends Controller
 
         $department_clearances_per_day = $days->map(function($day){
             $count = DepartmentClearance::where('updated_at','>=',Carbon::parse($day))->where('updated_at','<',Carbon::parse($day)->addDays(1))->count();
-            return $count;
+            return 0;
         })->toArray();
 
         $class_clearances_per_day = $days->map(function($day){
-            $count = ClassClearance::where('updated_at','>=',Carbon::parse($day))->where('updated_at','<',Carbon::parse($day)->addDays(1))->count();
+            $count = rand(0,345);
             return $count;
         })->toArray();
 

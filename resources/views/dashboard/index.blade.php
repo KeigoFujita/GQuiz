@@ -6,8 +6,8 @@
 
             <div class="mb- ">
                 <h1 class="display-4 title" ">Dashboard</h1>
-                                                                                                                                                    </div>
-                                                                                                                                                         <div class="
+                                                                                                                                                                        </div>
+                                                                                                                                                                             <div class="
                     row mb-3" style=>
                     <div class="col-md-4 col">
                         <div class="bg-success-200 text-white py-3 px-4 w-100">
@@ -74,9 +74,9 @@
 
 
                     <div class="col-md-4 col"">
-                                                                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                         <div class="
+                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                             <div class="
                         bg-info-200 text-white py-3 px-4 w-100">
                 <div class="d-flex justify-content-between">
                     <div class="icon">
@@ -240,20 +240,13 @@
                 data: {
                     labels: daily_clearance_data['days'],
                     datasets: [{
-                        label: 'Teacher', // Name the series
+                        label: 'Quizes Taken', // Name the series
                         data: daily_clearance_data['class_clearance'], // Specify the data values array
                         fill: false,
                         borderColor: '#2196f3', // Add custom color border (Line)
                         backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                         borderWidth: 3 // Specify bar border width
-                    }, {
-                        label: 'Students ', // Name the series
-                        data: daily_clearance_data['department_clearance'], // Specify the data values array
-                        fill: false,
-                        borderColor: '#D31E1E', // Add custom color border (Line)
-                        backgroundColor: '#D31E1E', // Add custom color background (Points and Fill)
-                        borderWidth: 3 // Specify bar border width
-                    }]
+                    }, ]
                 },
                 options: {
                     responsive: true, // Instruct chart js to respond nicely.
@@ -262,7 +255,7 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'Daily User Status',
+                        text: 'Daily Quizes Taken Status',
                         fontStyle: 'bold',
                         fontSize: 32
                     },
