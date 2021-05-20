@@ -6,6 +6,7 @@ use App\Employee;
 use App\Item;
 use App\Quiz;
 use App\SchoolClass;
+use App\Strand;
 use App\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -267,12 +268,14 @@ class TeacherController extends Controller
         $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
 
         $students = $schoolClass->students;
+        $strands = Strand::all();
 
         return view('teacher.quizzes.show',[
             'students'=> $students,
             'class' => $schoolClass,
             'quiz' => $quiz,
-            'colors'=> $colors
+            'colors'=> $colors,
+            'strands' => $strands
         ]);
 
     }
