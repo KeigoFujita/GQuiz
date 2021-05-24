@@ -8,103 +8,25 @@ use App\Quiz;
 use App\SchoolClass;
 use App\Strand;
 use App\Student;
-use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $employees = new Employee();
         $teachers = $employees->teachers();
         return view('teacher.index')->with('teachers', $teachers);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function my_students(Employee $employee)
-    {
-
-        return view('teacher.my_students')
-            ->with('students', $employee->students);
-    }
-
 
     public function my_classes()
     {
@@ -305,10 +227,15 @@ class TeacherController extends Controller
 
     }
 
+
     /**
-     * @throws \Exception
+     * @param SchoolClass $schoolClass
+     * @param Quiz $quiz
+     * @param Item $item
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function quizzes_delete_definition(SchoolClass $schoolClass, Quiz $quiz, Item $item)
+    public function quizzes_delete_definition(SchoolClass $schoolClass, Quiz $quiz, Item $item) : RedirectResponse
     {
         $teacher = auth()->user()->employee;
 
@@ -377,14 +304,14 @@ class TeacherController extends Controller
             abort(403,"Unauthorized");
         }
 
-        $schoolClass->students()->attach($request->students);
+        $schoolClass->students()->attach($request->input('students'));
         $schoolClass->save();
 
         session()->flash('success', 'Students invited successfully!');
         return redirect(route('teachers.my-classes-show',$schoolClass));
     }
 
-    public function check_student(Request $request, SchoolClass $schoolClass)
+    public function check_student(Request $request, SchoolClass $schoolClass): JsonResponse
     {
         $teacher = auth()->user()->employee;
 
@@ -394,7 +321,7 @@ class TeacherController extends Controller
             abort(403,"Unauthorized");
         }
 
-        if ($schoolClass->students->contains('id',$request->student_id)){
+        if ($schoolClass->students->contains('id',$request->input('student_id'))){
             return response()->json([
                 'status'=> 'unauthorized'
             ]);
@@ -409,12 +336,12 @@ class TeacherController extends Controller
     public function search_student(Request $request)
     {
         $query = $request->get('query') ?? '';
-        $class = SchoolClass::find($request->class);
+        $class = SchoolClass::find($request->input('class'));
 
         if (!$query ||strlen($query) === 0 ){
             return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">No student found.</p></div></div></div>');
         }else if(strlen($query) < 3){
-            return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">Please search atleast 3 characters...</p></div></div></div>');
+            return response('<div class="card"><div class="card-body"><div class="d-flex justify-content-center align-items-center"><p class="mb-0">Please search at least 3 characters...</p></div></div></div>');
         }
 
         $students = Student::query()
@@ -452,8 +379,8 @@ class TeacherController extends Controller
         ]);
 
         $schoolClass->update([
-            'class_code'=> $request->class_code,
-            'schedule'=> $request->class_schedule
+            'class_code'=> $request->input('class_code'),
+            'schedule'=> $request->input('class_schedule'),
         ]);
 
         session()->flash('success', 'Class updated  successfully.');

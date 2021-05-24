@@ -8,6 +8,7 @@ use App\Http\Requests\EmployeeUpdateRequest;
 use App\Role;
 use App\Semester;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class EmployeeController extends Controller
 {
@@ -37,9 +38,9 @@ class EmployeeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create() : View
     {
         return view('employee.create')->with('roles', Role::all());
     }
