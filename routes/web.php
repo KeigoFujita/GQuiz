@@ -218,7 +218,7 @@ Route::middleware(['auth'])->group(function () {
     
 
     
-    Route::get('/Transactions',function(){
+    Route::get('/Transaction',function(){
         $employees = new Employee();
         $teachers = $employees->teachers()->take(7);
         $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
