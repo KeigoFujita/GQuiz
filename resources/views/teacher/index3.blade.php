@@ -5,7 +5,7 @@
     <div class="container-fluid py-5 px-5"">
 
                                 <div class=" mb-5">
-        <p class="display-4 title">Products</p>
+        <p class="display-4 title">Transactions</p>
     </div>
     @if (session()->has('success'))
 
@@ -19,47 +19,50 @@
     @endif
 
     <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Product</a>
+        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Transaction</a>
     </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
-            <th width="5%">Image</th>
-            <th>Product ID</th>
-            <th>Product Type</th>
-            <th>Product Name</th>
-            <th>Expiry Date</th>
+{{--            <th width="5%">Image</th>--}}
+            <th>Transaction ID</th>
+            <th>Transaction Date</th>
+            <th>Cashier Name</th>
+            <th>No Items</th>
+            <th>Total Amount</th>
+            <th>Customer Name</th>
             <th>Status</th>
-            <th>Stock</th>
             <th>Actions</th>
         </thead>
         <tbody>
 
             @foreach ($teachers as $teacher)
                 <tr>
-                    <td>
-                        <div class="portrait-sm" style="background-color: {{ $teacher->color }};">
-                            <p class="default-font my-0">
-                                {{ $teacher->two_initials }}</p>
-                        </div>
-                    </td>
+{{--                    <td>--}}
+{{--                        <div class="portrait-sm" style="background-color: {{ $teacher->color }};">--}}
+{{--                            <p class="default-font my-0">--}}
+{{--                                {{ $teacher->two_initials }}</p>--}}
+{{--                        </div>--}}
+{{--                    </td>--}}
 
-                    <td>PRD-30{{ $teacher->id }}</td>
-                    <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid','Prinivil','Glucophage '][rand(0,4)]}}</td>
-                    <td>{{ ['Altace', 'Amaryl', 'Ambien','Mevacor','Zestril','Zocor','Zovirax'][rand(0,6)]}}</td>
-                    <td>{{ now()->addDays(rand(0,30))->format('M  d,Y ') }}</td>
+                    <td>TR-30{{ $teacher->id }}</td>
+                    <td>{{ now()->format('M d, Y') }}</td>
+                    <td>{{ Faker\Factory::create()->randomElement(['Andrea Collins','Alberto Diaz']) }}</td>
+                    <td>{{ Faker\Factory::create()->randomNumber() }}</td>
+                    <td>Php. {{ Faker\Factory::create()->randomFloat(2) }}</td>
+                    <td>{{ Faker\Factory::create()->randomElement(['Jeanie Rivers','Sesanta Andre','Walk-In']) }}</td>
                     <td>
                         @php
                         $status = rand(0,1);
                         @endphp
 
                         @if($status === 0)
-                            <span class="badge badge-pill badge-danger">Out of Stock</span>
+                            <span class="badge badge-pill badge-danger">Return</span>
                         @else
-                            <span class="badge badge-pill badge-success">Available</span>
+                            <span class="badge badge-pill badge-success">Sales</span>
                         @endif
                     </td>
-                    <td>{{ $status * rand(0,2312) }}</td>
+
                     <td>
                         <a type="button" class="btn btn-success btn-sm"
                             href="{{ route('employees.edit', $teacher->id) }}">Manage</a>

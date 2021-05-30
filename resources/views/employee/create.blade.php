@@ -27,8 +27,6 @@
                 @endif
                 <form action="{{ route('employees.store') }}" method="post" id="form_main">
                     @csrf
-
-
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -105,17 +103,6 @@
             </div>
         </div>
     </div>
-    {{-- <div>
-
-    @foreach ($roles as $role)
-    <div>
-        @if (collect(old('roles'))->contains($role->id))
-        <h1>Selected</h1>
-        @endif
-    </div>
-    @endforeach
-
-</div> --}}
 @endsection
 
 @section('scripts')
@@ -130,7 +117,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         .select2-selection__choice {
-            border-radius: 0px !important;
+            border-radius: 0 !important;
             background-color: #3490DC !important;
             color: white !important;
             border: none !important;

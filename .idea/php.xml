@@ -114,12 +114,12 @@
   </component>
   <component name="PhpInterpreters">
     <interpreters>
-      <interpreter id="36736523-e848-4693-aded-3e44fb76371f" name="PHP 7.4" home="C:\laragon\bin\php\php-7.4.15-Win32-vc15-x64\php.exe" debugger_id="php.debugger.XDebug" />
+      <interpreter id="36736523-e848-4693-aded-3e44fb76371f" name="PHP 7.4 (project level)" home="C:\laragon\bin\php\php-7.4.15-Win32-vc15-x64\php.exe" debugger_id="php.debugger.XDebug" />
     </interpreters>
   </component>
   <component name="PhpInterpretersPhpInfoCache">
     <phpInfoCache>
-      <interpreter name="PHP 7.4">
+      <interpreter name="PHP 7.4 (project level)">
         <phpinfo binary_type="PHP" php_cgi="C:\laragon\bin\php\php-7.4.15-Win32-vc15-x64\php-cgi.exe" php_cli="C:\laragon\bin\php\php-7.4.15-Win32-vc15-x64\php.exe" path_separator=";" version="7.4.15">
           <additional_php_ini />
           <configuration_file>C:\laragon\bin\php\php-7.4.15-Win32-vc15-x64\php.ini</configuration_file>

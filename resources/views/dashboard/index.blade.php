@@ -1,23 +1,21 @@
 @extends('layouts.app')
 
-<body>
 @section('content')
     <div class="container-fluid py-5 px-5 ">
 
         <div class="mb- ">
-            <h1 class="display-4 title" ">Dashboard</h1>
+            <h1 class="display-4 title">Dashboard</h1>
         </div>
-        <div class="
-                    row mb-3" style=>
-            <div class="col-md-4 col">
+        <div class="row mb-3" style=>
+            <div class="col-md-3 col">
                 <div class="bg-success-200 text-white py-3 px-4 w-100">
                     <div class="d-flex justify-content-between">
                         <div class="icon">
-                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-graduation-cap"></i></p>
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-product-hunt"></i></p>
                         </div>
                         <div class="text-right">
                             <p class="mb-0" style="font-size: 3rem;">{{ $student_count }}</p>
-                            <span class="">Enrolled Students</span>
+                            <span class="">Products</span>
                         </div>
                     </div>
                 </div>
@@ -30,16 +28,15 @@
                     </a>
                 </div>
             </div>
-
-            <div class="col-md-4 col">
+            <div class="col-md-3 col">
                 <div class="bg-warning-200 text-white py-3 px-4 w-100">
                     <div class="d-flex justify-content-between">
                         <div class="icon">
-                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-user"></i></p>
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-car"></i></p>
                         </div>
                         <div class="text-right">
-                            <p class="mb-0" style="font-size: 3rem;">5</p>
-                            <span class="">Total of Admin</span>
+                            <p class="mb-0" style="font-size: 3rem;">85</p>
+                            <span class="">Suppliers</span>
                         </div>
                     </div>
                 </div>
@@ -52,36 +49,49 @@
                     </a>
                 </div>
             </div>
-
-
-
-            <div class="col-md-4 col"">
-
-
-            <div class="
-                        bg-info-200 text-white py-3 px-4 w-100">
-                <div class="d-flex justify-content-between">
-                    <div class="icon">
-                        <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-users"></i></p>
-                    </div>
-                    <div class="text-right">
-                        <p class="mb-0" style="font-size: 3rem;">{{ $teacher_count }}</p>
-                        <span class="">Teachers</span>
+            <div class="col-md-3 col">
+                <div class="bg-info-200 text-white py-3 px-4 w-100">
+                    <div class="d-flex justify-content-between">
+                        <div class="icon">
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-money"></i></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="mb-0" style="font-size: 3rem;">{{ $teacher_count }}</p>
+                            <span class="">Transactions</span>
+                        </div>
                     </div>
                 </div>
+                <div class="bg-info-100 text-white px-4 py-1">
+                    <a href="{{ route('employees.index') }}" style="color: white;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
+                            <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="bg-info-100 text-white px-4 py-1">
-                <a href="{{ route('employees.index') }}" style="color: white;">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
-                        <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
+            <div class="col-md-3 col">
+                <div class="bg-violet-200 text-white py-3 px-4 w-100">
+                    <div class="d-flex justify-content-between">
+                        <div class="icon">
+                            <p style="font-size: 4rem;" class="mb-0"><i class="fa fa-users"></i></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="mb-0" style="font-size: 3rem;">{{ $teacher_count }}</p>
+                            <span class="">Users</span>
+                        </div>
                     </div>
-                </a>
+                </div>
+                <div class="bg-violet-100 text-white px-4 py-1">
+                    <a href="{{ route('employees.index') }}" style="color: white;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-0" style="font-size: 0.7rem;">VIEW MORE</p>
+                            <p class="mb-0"><i class="fa fa-arrow-circle-right"></i></p>
+                        </div>
+                    </a>
+                </div>
             </div>
-
         </div>
-
-    </div>
 
     </div>
 
@@ -130,7 +140,6 @@
             </div>
         </div>
 
-    </div>
     </div>
 @endsection
 
@@ -206,9 +215,6 @@
         });
 
 
-
-
-
         var daily_clearance_ctx = document.getElementById("daily_clearance").getContext('2d');
         var daily_clearance_data = JSON.parse($('meta[name="daily_clearance_data"]').attr('content'));
         var daily_clearance_chart = new Chart(daily_clearance_ctx, {
@@ -216,13 +222,13 @@
             data: {
                 labels: daily_clearance_data['days'],
                 datasets: [{
-                    label: 'Quizes Taken', // Name the series
+                    label: 'Daily Sales', // Name the series
                     data: daily_clearance_data['class_clearance'], // Specify the data values array
                     fill: false,
                     borderColor: '#2196f3', // Add custom color border (Line)
                     backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                     borderWidth: 3 // Specify bar border width
-                }, ]
+                },]
             },
             options: {
                 responsive: true, // Instruct chart js to respond nicely.
@@ -231,7 +237,7 @@
             options: {
                 title: {
                     display: true,
-                    text: 'Daily Quizes Taken Status',
+                    text: 'Daily Sales',
                     fontStyle: 'bold',
                     fontSize: 32
                 },

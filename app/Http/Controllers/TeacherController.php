@@ -24,8 +24,11 @@ class TeacherController extends Controller
     public function index(): View
     {
         $employees = new Employee();
-        $teachers = $employees->teachers();
-        return view('teacher.index')->with('teachers', $teachers);
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('teacher.index5 ')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
     }
 
     public function my_classes()

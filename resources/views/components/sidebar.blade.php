@@ -1,10 +1,10 @@
-<div class="accordion side-bar pt-0" id="accordion" style="background-color:#14394C; opacity: 1;">
+<div class="accordion side-bar pt-0" id="accordion">
 
 
 
     <div class=" tab-menu" data-toggle="collapse" data-target="#collapse-dashboard" aria-expanded="true"
         aria-controls="collapse-dashboard">
-        <div class="header" id="heading-dashboard" style="background-color:#14394C;; opacity: 1;">
+        <div class="header" id="heading-dashboard">
             <p><i class=" fa fa-tachometer"></i>Dashboard </p>
         </div>
 
@@ -20,8 +20,8 @@
 
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-teacher" aria-expanded="false"
         aria-controls="collapse-teacher">
-        <div class="header" id="heading-teacher" style="background-color:#14394C;; opacity: 1;">
-            <p><i class="fa fa-users" aria-hidden="true"></i>Teacher</p>
+        <div class="header" id="heading-teacher">
+            <p><i class="fa fa-product-hunt" aria-hidden="true"></i>Products</p>
         </div>
         <div id="collapse-teacher" class="collapse" aria-labelledby="heading-teacher" data-parent="#accordion">
             <div class="content">
@@ -31,15 +31,15 @@
             </div>
             <div class="content">
                 <a href="{{ route('employees.create') }}" class="btn btn-link collapsed">
-                    Add Teacher
+                    Add Product
                 </a>
             </div>
         </div>
     </div>
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-student" aria-expanded="false"
         aria-controls="collapse-student">
-        <div class="header" id="heading-student" style="background-color:#14394C;; opacity: 1;">
-            <p><i class="fa fa-graduation-cap" aria-hidden="true"></i></i>Student</p>
+        <div class="header" id="heading-student">
+            <p><i class="fa fa-car" aria-hidden="true"></i></i>Suppliers</p>
         </div>
         <div id="collapse-student" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
@@ -49,7 +49,82 @@
             </div>
             <div class="content">
                 <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
-                    Add Student
+                    Add Supplier
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{--  Transactions  --}}
+    <div class="tab-menu" data-toggle="collapse" data-target="#collapse-transactions" aria-expanded="false"
+         aria-controls="collapse-student">
+        <div class="header" id="heading-student">
+            <p><i class="fa fa-money" aria-hidden="true"></i></i>Transactions</p>
+        </div>
+        <div id="collapse-transactions" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
+            <div class="content">
+                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                    View All
+                </a>
+            </div>
+            <div class="content">
+                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                    Manage Transactions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{--  Inventory  --}}
+    <div class="tab-menu" data-toggle="collapse" data-target="#collapse-inventories" aria-expanded="false"
+         aria-controls="collapse-student">
+        <div class="header" id="heading-student">
+            <p><i class="fa fa-home" aria-hidden="true"></i></i>Inventory</p>
+        </div>
+        <div id="collapse-inventories" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
+            <div class="content">
+                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                    View All
+                </a>
+            </div>
+            <div class="content">
+                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                    Manage Inventory
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{--  Reports  --}}
+    <div class="tab-menu" data-toggle="collapse" data-target="#collapse-reports" aria-expanded="false"
+         aria-controls="collapse-student">
+        <div class="header" id="heading-student">
+            <p><i class="fa fa-book" aria-hidden="true"></i></i>Reports</p>
+        </div>
+        <div id="collapse-reports" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
+            <div class="content">
+                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                    View All
+                </a>
+            </div>
+            <div class="content">
+                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                    Create Report
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{--  Settings  --}}
+    <div class="tab-menu" data-toggle="collapse" data-target="#collapse-settings" aria-expanded="false"
+         aria-controls="collapse-student">
+        <div class="header" id="heading-student">
+            <p><i class="fa fa-cog" aria-hidden="true"></i></i>Settings</p>
+        </div>
+        <div id="collapse-settings" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
+            <div class="content">
+                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                    View All
                 </a>
             </div>
         </div>
@@ -57,7 +132,7 @@
 
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-user" aria-expanded="false"
         aria-controls="collapse-user">
-        <div class="header" id="heading-user" style="background-color:#14394C;; opacity: 1;">
+        <div class="header" id="heading-user">
             <p> <i class="fa fa-user-circle-o"></i>Account</p>
         </div>
         <div id="collapse-user" class="collapse" aria-labelledby="heading-user" data-parent="#accordion">

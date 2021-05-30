@@ -5,7 +5,7 @@
     <div class="container-fluid py-5 px-5"">
 
                                 <div class=" mb-5">
-        <p class="display-4 title">Products</p>
+        <p class="display-4 title">Suppliers</p>
     </div>
     @if (session()->has('success'))
 
@@ -19,18 +19,18 @@
     @endif
 
     <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Product</a>
+        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Supplier</a>
     </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
             <th width="5%">Image</th>
-            <th>Product ID</th>
-            <th>Product Type</th>
-            <th>Product Name</th>
-            <th>Expiry Date</th>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Address</th>
+            <th>Contact No</th>
+            <th>Email</th>
             <th>Status</th>
-            <th>Stock</th>
             <th>Actions</th>
         </thead>
         <tbody>
@@ -44,22 +44,23 @@
                         </div>
                     </td>
 
-                    <td>PRD-30{{ $teacher->id }}</td>
-                    <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid','Prinivil','Glucophage '][rand(0,4)]}}</td>
-                    <td>{{ ['Altace', 'Amaryl', 'Ambien','Mevacor','Zestril','Zocor','Zovirax'][rand(0,6)]}}</td>
-                    <td>{{ now()->addDays(rand(0,30))->format('M  d,Y ') }}</td>
+                    <td>SPLR-30{{ $teacher->id }}</td>
+                    <td>{{ $teacher->full_name }}</td>
+                    <td>{{ Faker\Factory::create()->address() }}</td>
+                    <td>{{ Faker\Factory::create()->e164PhoneNumber() }}</td>
+                    <td>{{ Faker\Factory::create()->email() }}</td>
                     <td>
                         @php
                         $status = rand(0,1);
                         @endphp
 
                         @if($status === 0)
-                            <span class="badge badge-pill badge-danger">Out of Stock</span>
+                            <span class="badge badge-pill badge-danger">Inactive</span>
                         @else
-                            <span class="badge badge-pill badge-success">Available</span>
+                            <span class="badge badge-pill badge-success">Active</span>
                         @endif
                     </td>
-                    <td>{{ $status * rand(0,2312) }}</td>
+
                     <td>
                         <a type="button" class="btn btn-success btn-sm"
                             href="{{ route('employees.edit', $teacher->id) }}">Manage</a>

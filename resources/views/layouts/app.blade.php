@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('custom-meta')
-    <title>{{ config('app.name', 'Gardner') }}</title>
+    <title>ADA Drugstore</title>
 
 
     <!-- Fonts -->
@@ -46,9 +46,10 @@
             <div class="container-fluid">
 
 
-                <a class="navbar-brand" href="{{ url('/') }}" style="font-weight:400;">
-                    <img src="/img/logo_burned.png" alt="" style="height:30px; margin-top:-6px;" class="mr-2">
-                    GQuiz
+                <a class="navbar-brand" href="{{ url('/') }}" style="font-weight:600;">
+{{--                    <img src="/img/logo.PNG" alt="" style="height:30px; margin-top:-6px;" class="mr-2">--}}
+                     <i class="fa fa-medkit mr-2"></i>
+                    ADA Drugstore
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
