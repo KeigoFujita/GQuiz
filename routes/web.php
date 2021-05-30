@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Employee;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -191,4 +193,58 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-quizzes/{quiz}/take-quiz','StudentController@take_quiz')->name('students.take-quiz');
     Route::post('my-quizzes/{quiz}/submit-quiz','StudentController@submit_quiz')->name('students.submit-quiz');
     Route::post('my-quizzes/{quiz}/submit-quiz-radio','StudentController@submit_quiz_radio')->name('students.submit-quiz-radio');
+
+
+
+
+    Route::get('/products',function(){
+        $employees = new Employee();
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('adadrugstore.index ')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
+    });
+
+
+        Route::get('/Suppliers',function(){
+        $employees = new Employee();
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('adadrugstore.index1')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
+    });
+    
+
+    
+    Route::get('/Transactions',function(){
+        $employees = new Employee();
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('adadrugstore.index3')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
+    });
+
+    Route::get('/Inventory',function(){
+        $employees = new Employee();
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('adadrugstore.index4')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
+
+    });
+    Route::get('/Reports',function(){
+        $employees = new Employee();
+        $teachers = $employees->teachers()->take(7);
+        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
+        return view('adadrugstore.index4')
+            ->with('teachers', $teachers)
+            ->with('colors', $colors);
+    });
+
+
+
 });

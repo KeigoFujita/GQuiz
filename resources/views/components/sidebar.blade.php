@@ -25,7 +25,7 @@
         </div>
         <div id="collapse-teacher" class="collapse" aria-labelledby="heading-teacher" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('teachers.index') }}" class="btn btn-link collapsed">
+                <a href="/products" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -43,7 +43,7 @@
         </div>
         <div id="collapse-student" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                <a href="/Suppliers" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -55,15 +55,15 @@
         </div>
     </div>
 
-    {{--  Transactions  --}}
+    {{-- Transactions --}}
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-transactions" aria-expanded="false"
-         aria-controls="collapse-student">
+        aria-controls="collapse-student">
         <div class="header" id="heading-student">
             <p><i class="fa fa-money" aria-hidden="true"></i></i>Transactions</p>
         </div>
         <div id="collapse-transactions" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                <a href="/Transaction" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -75,15 +75,15 @@
         </div>
     </div>
 
-    {{--  Inventory  --}}
+    {{-- Inventory --}}
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-inventories" aria-expanded="false"
-         aria-controls="collapse-student">
+        aria-controls="collapse-student">
         <div class="header" id="heading-student">
             <p><i class="fa fa-home" aria-hidden="true"></i></i>Inventory</p>
         </div>
         <div id="collapse-inventories" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                <a href="/Inventory" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -95,15 +95,15 @@
         </div>
     </div>
 
-    {{--  Reports  --}}
+    {{-- Reports --}}
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-reports" aria-expanded="false"
-         aria-controls="collapse-student">
+        aria-controls="collapse-student">
         <div class="header" id="heading-student">
             <p><i class="fa fa-book" aria-hidden="true"></i></i>Reports</p>
         </div>
         <div id="collapse-reports" class="collapse" aria-labelledby="heading-student" data-parent="#accordion">
             <div class="content">
-                <a href="{{ route('students.index') }}" class="btn btn-link collapsed">
+                <a href="/Reports" class="btn btn-link collapsed">
                     View All
                 </a>
             </div>
@@ -115,9 +115,9 @@
         </div>
     </div>
 
-    {{--  Settings  --}}
+    {{-- Settings --}}
     <div class="tab-menu" data-toggle="collapse" data-target="#collapse-settings" aria-expanded="false"
-         aria-controls="collapse-student">
+        aria-controls="collapse-student">
         <div class="header" id="heading-student">
             <p><i class="fa fa-cog" aria-hidden="true"></i></i>Settings</p>
         </div>
