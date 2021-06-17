@@ -32,13 +32,13 @@ Route::get('/login/admin',function(){
 
 });
 
-Route::get('/login/student',function(){
-    return view('auth.login_student');
+Route::get('/login/cashier',function(){
+    return view('auth.login_cashier');
 
 });
 
-Route::get('/login/teacher',function(){
-    return view('auth.login_teacher');
+Route::get('/Cashier',function(){
+    return view('adadrugstore.cashiers');
 
 });
 Route::get('/home', 'HomeController@index')->name('home');
@@ -236,14 +236,7 @@ Route::middleware(['auth'])->group(function () {
             ->with('colors', $colors);
 
     });
-    Route::get('/Reports',function(){
-        $employees = new Employee();
-        $teachers = $employees->teachers()->take(7);
-        $colors = ['#157A6E', '#499F68', '#587792', '#2E1F27', '#2C2C54', '#9EB25D', '#55505C', '#5A2A27', '#2D2D2A', '#C14953'];
-        return view('adadrugstore.index5')
-            ->with('teachers', $teachers)
-            ->with('colors', $colors);
-    });
+    
 
 
 

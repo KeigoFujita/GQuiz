@@ -4,7 +4,7 @@
 <style>
     html,
     body {
-        background-image: url('/img/admin3.png');
+        background-image: url('/img/drug1.jpg');
         background-attachment: fixed;
         background-size: 100%;
         object-fit: scale-down;
@@ -37,7 +37,7 @@
             <div class="col-md-5" style=" margin-left:400px; position: relative;">
                 <div class="rounded" style="background-color: black; opacity: 0.5; height: 350px;"></div>
                 <div class="card" style="background-color:transparent; position: relative; top: -350px;">
-                    <h3 style="color:white; margin-top: 40px;margin-left:230px;font-family:Arial Narrow"> ADMIN </h3>
+                    <h3 style="color:white; margin-top: 40px;margin-left:250px;font-family:Arial Narrow"> ADMIN </h3>
 
 
                     <div class="card-body " style=" height: 300px;  ">
@@ -88,7 +88,7 @@
 
                             <div class="form-group row mb-0 mt-2">
                                 <div class="col-md-8 offset-md-0">
-                                    <button type="submit" class="btn btn-outline-secondary bg-gardner text-white"
+                                    <button type="submit" class="btn btn-outline-secondary text-white"
                                         style="width:320px;margin-left:110;">
                                         {{ __('Login') }}
                                     </button>
@@ -97,10 +97,7 @@
                                         {{ __('Cancel') }}
                                     </a>
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}"
-                                            style="margin-left:160;">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
+                                        <a class="btn btn-link" href="{{ route('password.request') }}" </a>
                                     @endif
                                 </div>
                             </div>

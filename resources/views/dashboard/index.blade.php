@@ -109,21 +109,21 @@
         <div class="col-md-6">
             <div class="card" style="height: 500px;margin-left: 100px;">
                 <div class="card-body">
-                    <p style="color: black; font-size: 1.5rem;">Department Heads</p>
+                    <p style="color: black; font-size: 1.5rem;">Drug Expiry Notification</p>
                     <div class="border mb-3"></div>
                     @foreach ($departments as $department)
                         <div class="d-flex align-items-center mb-3">
                             <div class="portrait-sm mr-4"
-                                 style="background-color: {{ $department->role->assigned_officer->color }};">
+                                style="background-color: {{ $department->role->assigned_officer->color }};">
                                 <p class="default-font my-0">{{ $department->role->assigned_officer->two_initials }}
                                 </p>
                             </div>
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0" style="font-size: 1.2rem;">
-                                        {{ $department->role->assigned_officer['full_name'] }}</span>
+                                        Brand ID SDF23422
                                     <p class="mb-0 text-secondary" style="font-size: 0.8rem; ">
-                                        {{ $department->role->role_name }}</span>
+                                        Brand Name: Mefenamic
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
                     borderColor: '#2196f3', // Add custom color border (Line)
                     backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                     borderWidth: 3 // Specify bar border width
-                },]
+                }, ]
             },
             options: {
                 responsive: true, // Instruct chart js to respond nicely.

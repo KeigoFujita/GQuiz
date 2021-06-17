@@ -4,30 +4,19 @@
 
     <div class="container-fluid py-5 px-5"">
 
-                                <div class=" mb-5">
+                                                                                                                            <div class="
+        mb-5">
         <p class="display-4 title">Products</p>
     </div>
-    @if (session()->has('success'))
 
-        <div class="alert alert-success alert-dismissible fade show">
-            {{ session()->get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-    @endif
-
-    <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Product</a>
-    </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
             <th width="5%">Image</th>
-            <th>Product ID</th>
-            <th>Product Type</th>
-            <th>Product Name</th>
+            <th>Brand ID</th>
+            <th>Brand Name</th>
+            <th>Generic Name</th>
+            <th>Brand Type</th>
             <th>Expiry Date</th>
             <th>Status</th>
             <th>Stock</th>
@@ -45,24 +34,25 @@
                     </td>
 
                     <td>PRD-30{{ $teacher->id }}</td>
-                    <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid','Prinivil','Glucophage '][rand(0,4)]}}</td>
-                    <td>{{ ['Altace', 'Amaryl', 'Ambien','Mevacor','Zestril','Zocor','Zovirax'][rand(0,6)]}}</td>
-                    <td>{{ now()->addDays(rand(0,30))->format('M  d,Y ') }}</td>
+                    <td>{{ ['Altace', 'Amaryl', 'Ambien', 'Mevacor', 'Zestril', 'Zocor', 'Zovirax'][rand(0, 6)] }}</td>
+                    <td>{{ ['NAPROXEN 500MG TABLET', 'ASCORBIC ACID + ZINC 100MG', 'ASCORBIC ACID 100MG/5ML 120ML', 'NAPROXEN 500MG TABLET', 'NNAPROXEN 500MG TABLET '][rand(0, 4)] }}
+                    </td>
+                    <td>{{ ['Rx', 'Non-Rx', 'Rx', 'Non-Rx', 'Non-Rx '][rand(0, 4)] }}</td>
+                    <td>{{ now()->addDays(rand(0, 30))->format('M  d,Y ') }}</td>
                     <td>
                         @php
-                        $status = rand(0,1);
+                            $status = rand(0, 1);
                         @endphp
 
-                        @if($status === 0)
+                        @if ($status === 0)
                             <span class="badge badge-pill badge-danger">Out of Stock</span>
                         @else
                             <span class="badge badge-pill badge-success">Available</span>
                         @endif
                     </td>
-                    <td>{{ $status * rand(0,2312) }}</td>
+                    <td>{{ $status * rand(0, 2312) }}</td>
                     <td>
-                        <a type="button" class="btn btn-success btn-sm"
-                            href="{{ route('employees.edit', $teacher->id) }}">Manage</a>
+                        <a type="button" class="btn btn-success btn-sm">Manage</a>
                     </td>
                 </tr>
             @endforeach

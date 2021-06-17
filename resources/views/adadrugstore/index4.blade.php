@@ -4,7 +4,7 @@
 
     <div class="container-fluid py-5 px-5"">
 
-                                <div class=" mb-5">
+                                                                        <div class=" mb-5">
         <p class="display-4 title">Inventory</p>
     </div>
     @if (session()->has('success'))
@@ -19,48 +19,54 @@
     @endif
 
     <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Make Inventory Check</a>
+        <a href="#" class="btn btn-success">Make Inventory Check</a>
     </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
-        <th>Product ID</th>
-        <th>Drawer ID</th>
-        <th>Product Name</th>
-        <th>Product Category</th>
-        <th>Supplier Name</th>
-        <th>Status</th>
-        <th>Stock</th>
-        <th>Actions</th>
+            <th>Product ID</th>
+            <th>Drawer ID</th>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Supplier Name</th>
+            <th>Status</th>
+            <th>Stock</th>
+            <th>Onhand</th>
+            <th>Price</th>
+            <th>Actions</th>
         </thead>
         <tbody>
 
-        @foreach ($teachers as $teacher)
-            <tr>
+            @foreach ($teachers as $teacher)
+                <tr>
 
-                <td>PRD-30{{ $teacher->id }}</td>
-                <td>DRW-{{ rand(1,15) }}</td>
-                <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid','Prinivil','Glucophage '][rand(0,4)]}}</td>
-                <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid','Prinivil','Glucophage '][rand(0,4)]}}</td>
-                <td>{{ $teacher->full_name }}</td>
-                <td>
-                    @php
-                        $status = rand(0,1);
-                    @endphp
+                    <td>PRD-30{{ $teacher->id }}</td>
+                    <td>DRW-{{ rand(1, 15) }}</td>
+                    <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid', 'Prinivil', 'Glucophage '][rand(0, 4)] }}</td>
+                    <td>{{ ['Amoxicillin', 'Neurontin', 'Synthroid', 'Prinivil', 'Glucophage '][rand(0, 4)] }}</td>
+                    <td>{{ $teacher->full_name }}</td>
+                    <td>
+                        @php
+                            $status = rand(0, 1);
+                        @endphp
 
-                    @if($status === 0)
-                        <span class="badge badge-pill badge-danger">Out of Stock</span>
-                    @else
-                        <span class="badge badge-pill badge-success">Available</span>
-                    @endif
-                </td>
-                <td>{{ $status * rand(0,2312) }}</td>
-                <td>
-                    <a type="button" class="btn btn-success btn-sm"
-                       href="{{ route('employees.edit', $teacher->id) }}">Manage</a>
-                </td>
-            </tr>
-        @endforeach
+                        @if ($status === 0)
+                            <span class="badge badge-pill badge-danger">Out of Stock</span>
+                        @else
+                            <span class="badge badge-pill badge-success">Available</span>
+                        @endif
+
+
+
+                    </td>
+                    <td>{{ $status * rand(0, 2312) }}</td>
+                    <td>{{ $status * rand(0, 2312) }}</td>
+                    <td>Php. {{ Faker\Factory::create()->randomFloat(2) }}</td>
+                    <td>
+                        <a type="button" class="btn btn-success btn-sm" href="#">Manage</a>
+                    </td>
+                </tr>
+            @endforeach
 
         </tbody>
     </table>

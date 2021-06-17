@@ -50,18 +50,20 @@
             <div class="row no-gutters">
                 <div class="col-2">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-action {{ $active === 'students' ? 'active' : '' }}" id="list-home-list" data-toggle="list"
-                            href="#list-students" role="tab" aria-controls="home">
+                        <a class="list-group-item list-group-item-action {{ $active === 'students' ? 'active' : '' }}"
+                            id="list-home-list" data-toggle="list" href="#list-students" role="tab" aria-controls="home">
                             <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
                             Students
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'quiz' ? 'active' : '' }}" id="list-profile-list" data-toggle="list"
-                            href="#list-quizzes" role="tab" aria-controls="profile">
+                        <a class="list-group-item list-group-item-action {{ $active === 'quiz' ? 'active' : '' }}"
+                            id="list-profile-list" data-toggle="list" href="#list-quizzes" role="tab"
+                            aria-controls="profile">
                             <i class="fa fa-pencil mr-2" aria-hidden="true"></i>
                             Quizzes
                         </a>
-                        <a class="list-group-item list-group-item-action {{ $active === 'settings' ? 'active' : '' }}" id="list-settings-list" data-toggle="list"
-                            href="#list-settings" role="tab" aria-controls="settings">
+                        <a class="list-group-item list-group-item-action {{ $active === 'settings' ? 'active' : '' }}"
+                            id="list-settings-list" data-toggle="list" href="#list-settings" role="tab"
+                            aria-controls="settings">
                             <i class="fa fa-cog mr-2" aria-hidden="true"></i>
                             Settings
                         </a>
@@ -113,7 +115,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cancel</button>
-                    <form action="{{ route('teachers.my-classes-invite-student',$class) }}" method="post" id="invite-students">
+                    <form action="{{ route('teachers.my-classes-invite-student', $class) }}" method="post"
+                        id="invite-students">
                         @csrf
                         <button type="submit" class="btn btn-success">Invite All</button>
                     </form>
@@ -133,12 +136,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('teachers.quizzes-store',$class) }}" method="post" id="create-quiz">
+                    <form action="{{ route('teachers.quizzes-store', $class) }}" method="post" id="create-quiz">
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name"
-                                placeholder="E.g. Prelim Exam">
+                            <input type="text" class="form-control" name="name" placeholder="E.g. Prelim Exam">
                         </div>
                         <div class="form-group">
                             <label for="description">Notes</label>
@@ -168,7 +170,6 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-
         $("#expires_at").flatpickr({
             enableTime: true,
             defaultDate: "today",
@@ -182,7 +183,7 @@
             $('#table').DataTable({});
             $('#quiz-table').DataTable({});
 
-            $('#invite-students').on('submit',function(){
+            $('#invite-students').on('submit', function() {
                 students_to_invite.forEach(student_id => {
                     $(this).append(`<input type="hidden" name="students[]" value="${student_id}">`);
                 });
@@ -190,9 +191,9 @@
 
             $('#search').on('keypress', function(e) {
 
-                if($(this).val() === ''){
+                if ($(this).val() === '') {
                     $('#result-set').hide();
-                }else{
+                } else {
                     $('#result-set').show();
                 }
 
@@ -215,64 +216,64 @@
             })
         });
 
-        function inviteStudent(student_id, student_name, student_number){
+        function inviteStudent(student_id, student_name, student_number) {
 
-           $('#result-set').empty();
-           $('#result-set').hide();
+            $('#result-set').empty();
+            $('#result-set').hide();
 
-           $.ajaxSetup({
+            $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
             $.post("{{ route('teachers.check-student', $class) }}", {
-                'student_id' : student_id
+                'student_id': student_id
             }, function(data, status) {
-                if(data.status === 'unauthorized'){
+                if (data.status === 'unauthorized') {
                     $('#student-status').empty();
                     $('#student-status').append(`
-                        <div class="alert alert-danger alert-dismissible fade show">
-                            ${student_name} is already in the class!
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    `)
-                }else{
-                    is_added_already = false;
-
-                    students_to_invite.forEach((element, index) => {
-                        if(element === student_id){
-                            is_added_already = true;
-                        }
-                    });
-
-                    if(!is_added_already){
-
-                        students_to_invite.push(student_id);
-                        console.log(students_to_invite);
-                        $('#student-invite-table tbody').append(
-                        `
-                            <tr id="student_${student_id}">
-                                <td>${student_number}</td>
-                                <td>${student_name}</td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm" onclick="uninviteStudent(${student_id})">Uninvite</button>
-                                </td>
-                            </tr>
-                        `)
-
-                    }else{
-                        $('#student-status').empty();
-                        $('#student-status').append(`
                             <div class="alert alert-danger alert-dismissible fade show">
-                                ${student_name} is added already for invitation!
+                                ${student_name} is already in the class!
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         `)
+                } else {
+                    is_added_already = false;
+
+                    students_to_invite.forEach((element, index) => {
+                        if (element === student_id) {
+                            is_added_already = true;
+                        }
+                    });
+
+                    if (!is_added_already) {
+
+                        students_to_invite.push(student_id);
+                        console.log(students_to_invite);
+                        $('#student-invite-table tbody').append(
+                            `
+                                <tr id="student_${student_id}">
+                                    <td>${student_number}</td>
+                                    <td>${student_name}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" onclick="uninviteStudent(${student_id})">Uninvite</button>
+                                    </td>
+                                </tr>
+                            `)
+
+                    } else {
+                        $('#student-status').empty();
+                        $('#student-status').append(`
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    ${student_name} is added already for invitation!
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            `)
                     }
 
                 }
@@ -280,13 +281,13 @@
 
         }
 
-        function uninviteStudent(student_id){
+        function uninviteStudent(student_id) {
             students_to_invite.forEach((element, index) => {
-              if(element === student_id){
-                 students_to_invite.splice(index,1)
-              }
+                if (element === student_id) {
+                    students_to_invite.splice(index, 1)
+                }
             });
-            $('#student_'+student_id).remove();
+            $('#student_' + student_id).remove();
 
             console.log(students_to_invite);
         }
@@ -331,9 +332,9 @@
             font-family: 'Inter', sans-serif !important;
         }
 
-        #result-set{
+        #result-set {
             position: absolute;
-            width: 100% ;
+            width: 100%;
             max-height: 340px;
             overflow-y: auto;
         }

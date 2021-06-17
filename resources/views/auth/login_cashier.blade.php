@@ -4,7 +4,7 @@
 <style>
     html,
     body {
-        background-image: url('/img/student.jpg');
+        background-image: url('/img/PICS1.jpeg');
         background-attachment: fixed;
         background-size: 100%;
         object-fit: scale-down;
@@ -38,7 +38,7 @@
                 <div class="rounded" style="background-color: black; opacity: 0.5; height: 350px;"></div>
                 <div class="card" style="background-color:transparent; position: relative; top: -350px;">
                     <h3 style="color:white; margin-top: 40px;margin-left:230px;font-family:Arial Narrow">
-                        STUDENT</h3>
+                        Cashier</h3>
 
 
                     <div class="card-body" style=" height: 300px; ">
@@ -93,15 +93,14 @@
                                         style="width:320px;margin-left:110;">
                                         {{ __('Login') }}
                                     </button>
+
                                     <a href="/" class="btn btn-outline-danger bg-danger  text-white"
                                         style="width:320px;margin-left:110; margin-top:5px;">
                                         {{ __('Cancel') }}
                                     </a>
+
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}"
-                                            style="margin-left:160;">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
+
                                     @endif
                                 </div>
                             </div>

@@ -4,23 +4,12 @@
 
     <div class="container-fluid py-5 px-5"">
 
-                                <div class=" mb-5">
+                                        <div class=" mb-5">
         <p class="display-4 title">Suppliers</p>
     </div>
-    @if (session()->has('success'))
 
-        <div class="alert alert-success alert-dismissible fade show">
-            {{ session()->get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
 
-    @endif
 
-    <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Supplier</a>
-    </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
@@ -51,10 +40,10 @@
                     <td>{{ Faker\Factory::create()->email() }}</td>
                     <td>
                         @php
-                        $status = rand(0,1);
+                            $status = rand(0, 1);
                         @endphp
 
-                        @if($status === 0)
+                        @if ($status === 0)
                             <span class="badge badge-pill badge-danger">Inactive</span>
                         @else
                             <span class="badge badge-pill badge-success">Active</span>
@@ -62,8 +51,7 @@
                     </td>
 
                     <td>
-                        <a type="button" class="btn btn-success btn-sm"
-                            href="{{ route('employees.edit', $teacher->id) }}">Manage</a>
+                        <a type="button" class="btn btn-success btn-sm">Manage</a>
                     </td>
                 </tr>
             @endforeach

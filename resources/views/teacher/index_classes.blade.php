@@ -47,130 +47,208 @@
 
 
 @section('content')
-    <div class="container-fluid py-5 px-5 font-inter">
 
-        <div class="d-flex justify-content-between align-items-center">
-            <p class="title mb-5">
-                My Classes
-            </p>
-            
-            <div class="d-flex align-items-center justify-content-center">
-                <div class="dropdown show mr-2">
-                    <a class="btn btn-outline-secondary px-4 -py-2 dropdown-toggle" href="#" role="button"
-                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-filter mr-2" aria-hidden="true"></i>
-                        Filter
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="{{ route('teachers.my-classes') }}">Active</a>
-                        <a class="dropdown-item" href="{{ route('teachers.my-classes-archived') }}">Archived</a>
-                    </div>
-                </div>
-
-                <div>
-                    <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#add-modal">
-                        <i class="fa fa-plus mr-2" aria-hidden="true"></i>
-                        Add Class
-                    </button>
-
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            Search Drugs
         </div>
+        <div class="card-body">
 
-        @if (session()->has('success'))
-
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ session()->get('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-        @endif
-
-
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show">
-                    {{ $error }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endforeach
-        @endif
-
-        <div class="row">
-            @forelse ($classes as $class)
-                <div class="px-3 mb-3">
-                    <div class="card" style="width: 25rem;">
-                        <div class="card-header text-white py-4"
-                            style="background-color: {{ $colors[array_rand($colors)] }} !important;">
-                            <a href="{{ route('teachers.my-classes-show', $class) }}"
-                                class="mb-0">{{ $class->class_code }}</a>
-                            <span class="d-block">{{ $class->schedule }}</span>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="card-text heading-text text-secondary mb-0">
-                                <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
-                                {{ $class->students->count() === 0 ? 'No ' : $class->students->count() }} enrolled
-                                students
-                            </p>
-                            <p class="card-text heading-text text-secondary mb-0">
-                                <i class="fa fa-file-text mr-2" aria-hidden="true" style="width: 1rem;"></i>
-                                {{ $class->quizzes->count() }} quizzes made
-                            </p>
-                        </div>
-                        <div class="card-footer py-3">
-
-                        </div>
-                    </div>
-                </div>
-            @empty
-            <div class="w-100 card shadow-sm">
-                <div class="card-header py-3"></div>
-                <div class="card-body">
-                    <img src="https://img.icons8.com/cotton/344/empty-box.png" class="d-block mx-auto mb-3" alt="" style="width: 100px;">
-                    <p class="text-center" style="font-size: 1.5rem;">You don't have any classes yet!</p>
-                </div>
-            </div>
-            @endforelse
-
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Class</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('schoolClass.store') }}" method="post" id="main_form">
-                        @csrf
-                        <div class="form-group">
-                            <label for="class_code">Class Name</label>
-                            <input type="text" class="form-control" name="class_code">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="class_schedule">Class Schedule</label>
-                            <input type="text" class="form-control " id="deadline" name="class_schedule">
-                        </div>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            style="width: 1350px">
+                        <button class="btn btn-outline-danger" type="submit">Search</button>
                     </form>
+
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" form="main_form">Add Class</button>
+            </nav>
+            <style>
+                .owl-carousel .item {
+                    height: 12rem;
+                    background: whitesmoke;
+                    padding: 1rem;
+                }
+
+                .owl-carousel .item h4 {
+                    color: #FFF;
+                    font-weight: 400;
+                    margin-top: 0rem;
+                }
+
+            </style>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
+            <script>
+                jQuery(document).ready(function($) {
+                    $('.owl-carousel').owlCarousel({
+                        loop: true,
+                        margin: 10,
+                        nav: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 6
+                            },
+                            1000: {
+                                items: 8
+                            }
+                        }
+                    })
+                })
+
+            </script>
+
+
+            <div class="owl-carousel owl-theme mt-5">
+                <div class="item">
+                    <h4><img src="/img/D1.jpg" alt="" style="width:150px;"></h4>
                 </div>
+                <div class="item">
+                    <h4><img src="/img/D12.jfif" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D3.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D4.jfif" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D5.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D7.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D8.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D9.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D10.jpg" alt="" style="width:150px;"></h4>
+                </div>
+                <div class="item">
+                    <h4><img src="/img/D11.jpg" alt="" style="width:150px;"></h4>
+                </div>
+
             </div>
-        </div>
-    </div>
-@endsection
+            <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
+                <thead>
+
+                    <th>Brand ID</th>
+                    <th>Brand Name</th>
+                    <th>Generic Name</th>
+                    <th>Brand Type</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>On Hand</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+
+
+                    <td>PRD-30{{ $teacher->id }}</td>
+                    <td>{{ ['Altace', 'Amaryl', 'Ambien', 'Mevacor', 'Zestril', 'Zocor', 'Zovirax'][rand(0, 6)] }}</td>
+                    <td>{{ ['NAPROXEN 500MG TABLET', 'ASCORBIC ACID + ZINC 100MG', 'ASCORBIC ACID 100MG/5ML 120ML', 'NAPROXEN 500MG TABLET', 'NNAPROXEN 500MG TABLET '][rand(0, 4)] }}
+                    </td>
+                    <td>{{ ['Rx', 'Non-Rx', 'Rx', 'Non-Rx', 'Non-Rx '][rand(0, 4)] }}</td>
+                    <td>{{ now()->addDays(rand(0, 30))->format('M  d,Y ') }}</td>
+                    <td>
+                        @php
+                            $status = rand(0, 1);
+                        @endphp
+
+                        @if ($status === 0)
+                            <span class="badge badge-pill badge-danger">Out of Stock</span>
+                        @else
+                            <span class="badge badge-pill badge-success">Available</span>
+                        @endif
+                    </td>
+                    <td>{{ $status * rand(0, 2312) }}</td>
+                    <td>{{ $status * rand(0, 2312) }}</td>
+
+                    <td>{{ $status * rand(0, 2312) }}</td>
+                    <td>
+                        <a type="button" class="btn btn-danger btn-sm">Add to
+                            Cart</a>
+                    </td>
+                    </tr>
+
+
+            </table>
+
+
+            <div class="card ">
+                <div class="card-header">
+                    </h1>Bills</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row align-items-start">
+                            <div class="col-6">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Brand Name</th>
+                                            <th scope="col">Qty</th>
+                                            <th scope="col">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>KIDNEY CARE CAPSULE</td>
+                                            <td>20</td>
+                                            <td>63</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>SANGOBION + IRON SYRUP 100ML</td>
+                                            <td>62</td>
+                                            <td>32</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td colspan="2">PROPAN TLC SYRUP ORANGE FLAVOR 250ML</td>
+
+                                            <td colspan="2">23</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-5">
+                                <h4> Payment</h4>
+                                <br>
+                                <h4> One of three columns </h4>
+
+                            </div>
+                            <a href="#" class="btn btn-danger">Print</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <!-- Modal -->
+
+        @endsection

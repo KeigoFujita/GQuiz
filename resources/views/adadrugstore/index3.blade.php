@@ -4,27 +4,15 @@
 
     <div class="container-fluid py-5 px-5"">
 
-                                <div class=" mb-5">
+                                                    <div class=" mb-5">
         <p class="display-4 title">Transactions</p>
     </div>
-    @if (session()->has('success'))
 
-        <div class="alert alert-success alert-dismissible fade show">
-            {{ session()->get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
 
-    @endif
-
-    <div class="d-flex justify-content-start align-items-center mb-5">
-        <a href="{{ route('employees.create') }}" class="btn btn-success">Add Transaction</a>
-    </div>
 
     <table class="table table-bordered table-centered table-hover shadow-sm" id="table">
         <thead>
-{{--            <th width="5%">Image</th>--}}
+            {{-- <th width="5%">Image</th> --}}
             <th>Transaction ID</th>
             <th>Transaction Date</th>
             <th>Cashier Name</th>
@@ -38,25 +26,25 @@
 
             @foreach ($teachers as $teacher)
                 <tr>
-{{--                    <td>--}}
-{{--                        <div class="portrait-sm" style="background-color: {{ $teacher->color }};">--}}
-{{--                            <p class="default-font my-0">--}}
-{{--                                {{ $teacher->two_initials }}</p>--}}
-{{--                        </div>--}}
-{{--                    </td>--}}
+                    {{-- <td> --}}
+                    {{-- <div class="portrait-sm" style="background-color: {{ $teacher->color }};"> --}}
+                    {{-- <p class="default-font my-0"> --}}
+                    {{-- {{ $teacher->two_initials }}</p> --}}
+                    {{-- </div> --}}
+                    {{-- </td> --}}
 
                     <td>TR-30{{ $teacher->id }}</td>
                     <td>{{ now()->format('M d, Y') }}</td>
-                    <td>{{ Faker\Factory::create()->randomElement(['Andrea Collins','Alberto Diaz']) }}</td>
+                    <td>{{ Faker\Factory::create()->randomElement(['Jenny Ablaza', 'Cloyd Alberto']) }}</td>
                     <td>{{ Faker\Factory::create()->randomNumber() }}</td>
                     <td>Php. {{ Faker\Factory::create()->randomFloat(2) }}</td>
-                    <td>{{ Faker\Factory::create()->randomElement(['Jeanie Rivers','Sesanta Andre','Walk-In']) }}</td>
+                    <td>{{ Faker\Factory::create()->randomElement(['Jeanie Rivers', 'Sesanta Andre', 'Walk-In']) }}</td>
                     <td>
                         @php
-                        $status = rand(0,1);
+                            $status = rand(0, 1);
                         @endphp
 
-                        @if($status === 0)
+                        @if ($status === 0)
                             <span class="badge badge-pill badge-danger">Return</span>
                         @else
                             <span class="badge badge-pill badge-success">Sales</span>
@@ -64,8 +52,7 @@
                     </td>
 
                     <td>
-                        <a type="button" class="btn btn-success btn-sm"
-                            href="{{ route('employees.edit', $teacher->id) }}">Manage</a>
+                        <a type="button" class="btn btn-success btn-sm" href="#">Manage</a>
                     </td>
                 </tr>
             @endforeach

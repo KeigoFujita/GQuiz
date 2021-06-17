@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="content">
-                <a href="{{ route('employees.create') }}" class="btn btn-link collapsed">
+                <a href="#" class="btn btn-link collapsed">
                     Add Product
                 </a>
             </div>
@@ -48,7 +48,7 @@
                 </a>
             </div>
             <div class="content">
-                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                <a href="#" class="btn btn-link collapsed">
                     Add Supplier
                 </a>
             </div>
@@ -68,7 +68,7 @@
                 </a>
             </div>
             <div class="content">
-                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                <a href="#" class="btn btn-link collapsed">
                     Manage Transactions
                 </a>
             </div>
@@ -88,7 +88,7 @@
                 </a>
             </div>
             <div class="content">
-                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                <a href="#" class="btn btn-link collapsed">
                     Manage Inventory
                 </a>
             </div>
@@ -108,7 +108,7 @@
                 </a>
             </div>
             <div class="content">
-                <a href="{{ route('students.create') }}" class="btn btn-link collapsed">
+                <a href="#" class="btn btn-link collapsed">
                     Create Report
                 </a>
             </div>
